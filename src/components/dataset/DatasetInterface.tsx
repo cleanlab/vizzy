@@ -1,17 +1,27 @@
 import React from 'react'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem, Heading, SimpleGrid, Spinner, VStack } from '@chakra-ui/react'
+import ImageWithLabel from './ImageWithLabel'
+import { DatasetInterfaceProps } from './types'
+import LoadingSpinner from '../misc/Loading'
 
-const DatasetInterface = (props) => {
+const DatasetInterface = (props: DatasetInterfaceProps) => {
+  const { data } = props
+
+  if (!data) {
+    return <LoadingSpinner />
+  }
+
   return (
-    <Flex
-      backgroundColor={'limegreen'}
-      width={'100%'}
-      height={'100%'}
-      justify={'center'}
-      align={'center'}
-    >
-      Dataset interface
-    </Flex>
+    <VStack width={'100%'} height={'100%'} overflowY={'auto'}>
+      <Heading size={'md'}>Dataset</Heading>
+      <Grid templateColumns="repeat(3, 1fr)" gap={0}>
+        {data.slice(300).map((datapoint) => (
+          <GridItem key={datapoint.id}>
+            <ImageWithLabel {...datapoint} />
+          </GridItem>
+        ))}
+      </Grid>
+    </VStack>
   )
 }
 

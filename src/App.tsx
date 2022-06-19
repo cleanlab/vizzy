@@ -8,17 +8,28 @@ import ConfidentJointMatrix from './components/confidentJoint/ConfidentJointMatr
 import Results from './components/results/Results'
 import OutOfDistribution from './components/ood/OutOfDistribution'
 import SomeSlider from './components/sliders/Slider'
+import { Datapoint } from './components/dataset/types'
 
 export const App = () => {
-  const [imageDataset, setImageDataset] = useState(null)
+  const [imageDataset, setImageDataset] = useState<Array<Datapoint>>(null)
   const [predProbsData, setPredProbsData] = useState([])
   const [confidentJointData, setConfidentJointData] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch('https://labelerrors.com/api/data?dataset=ImageNet&page=1&limit=1000')
-      const data = res.json()
-      setImageDataset(data)
+      const data = await res.json()
+      const labelOptions = ['monkey', 'gorilla', 'chimp']
+      setImageDataset(
+        data.map((e, idx) => {
+          return {
+            id: `image-${idx}`,
+            src: `https://labelerrors.com/${e['path']}`,
+            givenLabel: e['label'],
+            labelOptions: labelOptions,
+          }
+        })
+      )
     }
     fetchData()
   })
@@ -33,10 +44,9 @@ export const App = () => {
           <ColorModeSwitcher justifySelf="flex-end" />
         </HStack>
         <HStack width={'90%'} height={'90vh'}>
-          <VStack width={'20%'} height={'100%'}>
-            <DatasetInterface />
-            <SomeSlider />
-          </VStack>
+          <Box width={'20%'} height={'100%'}>
+            <DatasetInterface data={imageDataset} />
+          </Box>
           <Box width={'25%'} height={'100%'}>
             <PredProbs />
           </Box>
