@@ -1,20 +1,7 @@
 import * as React from 'react'
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-  HStack,
-  Container,
-  Flex,
-  Heading,
-} from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
+import { Box, ChakraProvider, Heading, HStack, theme, VStack } from '@chakra-ui/react'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
-import { Logo } from './Logo'
 import DatasetInterface from './components/dataset/DatasetInterface'
 import PredProbs from './components/predProbs/PredProbs'
 import ConfidentJointMatrix from './components/confidentJoint/ConfidentJointMatrix'
@@ -23,9 +10,18 @@ import OutOfDistribution from './components/ood/OutOfDistribution'
 import SomeSlider from './components/sliders/Slider'
 
 export const App = () => {
-  const getFilterFunc = (data, func) => {
-    return data.filter(func)
-  }
+  const [imageDataset, setImageDataset] = useState(null)
+  const [predProbsData, setPredProbsData] = useState([])
+  const [confidentJointData, setConfidentJointData] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('https://labelerrors.com/api/data?dataset=ImageNet&page=1&limit=1000')
+      const data = res.json()
+      setImageDataset(data)
+    }
+    fetchData()
+  })
 
   return (
     <ChakraProvider theme={theme}>
