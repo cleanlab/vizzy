@@ -1,11 +1,17 @@
 import React from 'react'
-import {Box} from "@chakra-ui/react";
+import { Box, Flex } from '@chakra-ui/react'
 
 const Results = (props) => {
   return (
-    <Box backgroundColor={'blue'}>
+    <Flex
+      backgroundColor={'coral'}
+      align={'center'}
+      justify={'center'}
+      height={'100%'}
+      width={'100%'}
+    >
       Results
-    </Box>
+    </Flex>
   )
 }
 

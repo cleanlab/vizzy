@@ -1,11 +1,17 @@
 import React from 'react'
-import {Box} from "@chakra-ui/react";
+import { Box, Flex } from '@chakra-ui/react'
 
 const DatasetInterface = (props) => {
   return (
-    <Box backgroundColor={'green'}>
+    <Flex
+      backgroundColor={'limegreen'}
+      width={'100%'}
+      height={'100%'}
+      justify={'center'}
+      align={'center'}
+    >
       Dataset interface
-    </Box>
+    </Flex>
   )
 }
 

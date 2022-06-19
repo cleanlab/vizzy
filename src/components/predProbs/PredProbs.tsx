@@ -1,11 +1,17 @@
 import React from 'react'
-import {Box} from "@chakra-ui/react";
+import { Box, Flex } from '@chakra-ui/react'
 
 const PredProbs = (props) => {
   return (
-    <Box backgroundColor={'pink'}>
+    <Flex
+      backgroundColor={'pink'}
+      width={'100%'}
+      height={'100%'}
+      justify={'center'}
+      align={'center'}
+    >
       Predictive probabilities
-    </Box>
+    </Flex>
   )
 }
 

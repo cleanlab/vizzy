@@ -1,11 +1,17 @@
 import React from 'react'
-import {Box} from "@chakra-ui/react";
+import { Box, Flex } from '@chakra-ui/react'
 
 const ConfidentJointMatrix = (props) => {
   return (
-    <Box backgroundColor={'red'}>
+    <Flex
+      backgroundColor={'lightyellow'}
+      height={'100%'}
+      width={'100%'}
+      align={'center'}
+      justify={'center'}
+    >
       Confident Joint matrix
-    </Box>
+    </Flex>
   )
 }
 
