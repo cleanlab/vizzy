@@ -14,7 +14,6 @@ import { Logo } from "./Logo"
 
 export const App = () => {
 
-  // @ts-ignore
   const getFilterFunc = (data, func) => {
     return data.filter(func)
   }
