@@ -12,9 +12,9 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
   }
 
   return (
-    <VStack width={'100%'} height={'100%'} overflowY={'auto'}>
+    <VStack width={'100%'} height={'100%'}>
       <Heading size={'md'}>Dataset</Heading>
-      <Grid templateColumns="repeat(3, 1fr)" gap={0}>
+      <Grid templateColumns="repeat(3, 1fr)" gap={0} overflowY={'auto'}>
         {data.slice(300).map((datapoint) => (
           <GridItem key={datapoint.id}>
             <ImageWithLabel {...datapoint} />

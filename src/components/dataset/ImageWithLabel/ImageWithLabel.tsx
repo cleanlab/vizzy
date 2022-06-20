@@ -16,7 +16,7 @@ import { BiChevronDown } from 'react-icons/bi'
 import './ImageWithLabel.css'
 
 const ImageWithLabel = (props: ImageWithLabelProps) => {
-  const { givenLabel, labelOptions } = props
+  const { givenLabel, labelOptions, ...imageProps } = props
   return (
     <Box position={'relative'}>
       <Select
@@ -38,7 +38,7 @@ const ImageWithLabel = (props: ImageWithLabelProps) => {
         ))}
       </Select>
 
-      <Image src={props.src} {...props} />
+      <Image {...imageProps} />
     </Box>
   )
 }
