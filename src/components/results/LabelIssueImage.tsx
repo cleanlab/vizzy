@@ -1,17 +1,26 @@
 import React from 'react'
-import { Box, Image, Tag } from '@chakra-ui/react'
+import { Box, Image, Tag, VStack } from '@chakra-ui/react'
 import { LabelIssueImageProps } from './types'
 
 const LabelIssueImage = (props: LabelIssueImageProps) => {
   const { givenLabel, suggestedLabel, ...imageProps } = props
   return (
     <Box position={'relative'}>
-      <Tag colorScheme={'blue'} bottom={'0px'} left={'0px'}>
-        Given: {givenLabel}
-      </Tag>
-      <Tag colorScheme={'yellow'} bottom={'0px'} right={'0px'}>
-        Suggested: {suggestedLabel}
-      </Tag>
+      <VStack
+        position={'absolute'}
+        bottom={'0px'}
+        right={'0px'}
+        spacing={'0rem'}
+        align={'flex-start'}
+      >
+        <Tag colorScheme={'blue'} opacity={'80%'} size={'sm'}>
+          Given: {givenLabel}
+        </Tag>
+        <Tag colorScheme={'yellow'} opacity={'80%'} size={'sm'}>
+          Suggested: {suggestedLabel}
+        </Tag>
+      </VStack>
+
       <Image {...imageProps} />
     </Box>
   )

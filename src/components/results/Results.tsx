@@ -18,7 +18,7 @@ const Results = (props: ResultsProps) => {
       {issues === null && <EmptyResults text={'No results yet.'} />}
       {issues?.length === 0 && <EmptyResults text={'No errors found.'} />}
       {issues?.length && (
-        <Grid templateColumns="repeat(1, 1fr)" gap={0} overflowY={'auto'}>
+        <Grid templateColumns="repeat(2, 1fr)" gap={0} overflowY={'auto'}>
           {issues.map((datapoint) => (
             <GridItem key={datapoint.id}>
               <LabelIssueImage {...datapoint} />

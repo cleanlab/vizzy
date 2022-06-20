@@ -32,6 +32,17 @@ export const App = () => {
           }
         })
       )
+
+      setIssues(
+        data.slice(30).map((e, idx) => {
+          return {
+            id: `image-${idx}`,
+            src: `https://labelerrors.com/${e['path']}`,
+            givenLabel: e['label'],
+            suggestedLabel: 'kirby',
+          }
+        })
+      )
     }
     fetchData()
   }, [])
