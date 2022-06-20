@@ -60,7 +60,7 @@ export const App = () => {
             </Box>
           </VStack>
           <Box width={'20%'} height={'100%'}>
-            <Results />
+            <Results issues={[]} />
           </Box>
         </HStack>
       </VStack>

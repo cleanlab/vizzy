@@ -1,18 +1,6 @@
 import React from 'react'
-import {
-  Box,
-  Button,
-  Flex,
-  Image,
-  ImageProps,
-  Menu,
-  Portal,
-  Select,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Box, Image, Select } from '@chakra-ui/react'
 import { ImageWithLabelProps } from '../types'
-import { BiChevronDown } from 'react-icons/bi'
 import './ImageWithLabel.css'
 
 const ImageWithLabel = (props: ImageWithLabelProps) => {
