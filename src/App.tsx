@@ -19,6 +19,11 @@ export const App = () => {
   const [confidentJointData, setConfidentJointData] = useState([])
   const [issues, setIssues] = useState<Array<LabelIssue>>(null)
 
+  const updateDatasetLabel = (id, label) => {
+    console.log(`updating label to ${label}`)
+    setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch('https://labelerrors.com/api/data?dataset=ImageNet&page=1&limit=300')
@@ -61,7 +66,7 @@ export const App = () => {
         </HStack>
         <HStack width={'95%'} height={'90vh'}>
           <Box width={'20%'} height={'100%'}>
-            <DatasetInterface data={imageDataset} />
+            <DatasetInterface data={imageDataset} updateLabel={updateDatasetLabel} />
           </Box>
           <VStack width={'60%'} height={'100%'}>
             <HStack width={'100%'} height={'80%'}>

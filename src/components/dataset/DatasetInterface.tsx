@@ -5,23 +5,23 @@ import { DatasetInterfaceProps } from './types'
 import LoadingSpinner from '../misc/Loading'
 
 const DatasetInterface = (props: DatasetInterfaceProps) => {
-  const { data } = props
-  if (!data) {
-    return <LoadingSpinner />
-  }
+  const { data, updateLabel } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
       <Heading size={'sm'} fontWeight={500}>
         DATA
       </Heading>
-      <Grid templateColumns="repeat(1, 1fr)" gap={0} overflowY={'auto'}>
-        {Object.values(data).map((datapoint) => (
-          <GridItem key={datapoint.id}>
-            <ImageWithLabel {...datapoint} />
-          </GridItem>
-        ))}
-      </Grid>
+      {!data && <LoadingSpinner />}
+      {data && (
+        <Grid templateColumns="repeat(1, 1fr)" gap={0} overflowY={'auto'}>
+          {Object.values(data).map((datapoint) => (
+            <GridItem key={datapoint.id}>
+              <ImageWithLabel {...datapoint} updateLabel={updateLabel} />
+            </GridItem>
+          ))}
+        </Grid>
+      )}
     </VStack>
   )
 }
