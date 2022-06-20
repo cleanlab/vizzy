@@ -14,7 +14,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
       </Heading>
       {!data && <LoadingSpinner />}
       {data && (
-        <Grid templateColumns="repeat(1, 1fr)" gap={0} overflowY={'auto'}>
+        <Grid templateColumns="repeat(1, 1fr)" gap={2} overflowY={'auto'}>
           {Object.values(data).map((datapoint) => (
             <GridItem key={datapoint.id}>
               <ImageWithLabel {...datapoint} updateLabel={updateLabel} />
