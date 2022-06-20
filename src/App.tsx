@@ -15,6 +15,7 @@ export const App = () => {
   const [imageDataset, setImageDataset] = useState<Array<Datapoint>>(null)
   const [predProbsData, setPredProbsData] = useState([])
   const [confidentJointData, setConfidentJointData] = useState([])
+  const [issues, setIssues] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +34,7 @@ export const App = () => {
       )
     }
     fetchData()
-  })
+  }, [])
 
   return (
     <ChakraProvider theme={theme}>
@@ -60,7 +61,7 @@ export const App = () => {
             </Box>
           </VStack>
           <Box width={'20%'} height={'100%'}>
-            <Results issues={[]} />
+            <Results issues={issues} />
           </Box>
         </HStack>
       </VStack>
