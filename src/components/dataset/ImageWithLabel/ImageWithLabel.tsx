@@ -22,9 +22,9 @@ const ImageWithLabel = (props: ImageWithLabelProps) => {
       <Select
         // colorScheme={useColorModeValue('blackAlpha', 'blackAlpha')}
         backgroundColor={'white'}
-        opacity={'50%'}
+        opacity={'60%'}
         color={'black'}
-        size={'xs'}
+        size={'sm'}
         bottom={'0px'}
         right={'0px'}
         position={'absolute'}
