@@ -15,12 +15,14 @@ import {
   HStack,
   Divider,
   Flex,
+  Box,
 } from '@chakra-ui/react'
 import { PredProbsEntryProps, PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
+import PercentileSlider from './PercentileSlider'
 
 const PredProbs = (props: PredProbsProps) => {
-  const { data } = props
+  const { data, classPercentile, setClassPercentile } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
@@ -32,7 +34,14 @@ const PredProbs = (props: PredProbsProps) => {
           Nothing computed.
         </Flex>
       )}
-      {data && <PredProbsTable data={Object.values(data)} />}
+      {data && (
+        <VStack height={'100%'}>
+          <Box height={'80%'}>
+            <PredProbsTable data={Object.values(data)} />
+            <PercentileSlider percentile={classPercentile} setPercentile={setClassPercentile} />
+          </Box>
+        </VStack>
+      )}
     </VStack>
   )
 }

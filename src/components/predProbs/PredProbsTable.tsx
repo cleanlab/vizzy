@@ -19,6 +19,7 @@ interface PredProbsTableProps {
 }
 const PredProbsTable = (props: PredProbsTableProps) => {
   const { data } = props
+
   const renderRow = (datapoint: PredProbsEntryProps) => {
     return (
       <Tr>
@@ -36,7 +37,7 @@ const PredProbsTable = (props: PredProbsTableProps) => {
   }
 
   return (
-    <TableContainer overflowY={'auto'}>
+    <TableContainer overflowY={'auto'} height={'100%'}>
       <Table variant="simple" size="sm">
         {/*<TableCaption placement="top">Predicted Probabilities for each label</TableCaption>*/}
         <Thead>

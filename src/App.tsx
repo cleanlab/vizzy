@@ -21,6 +21,7 @@ export const App = () => {
   const [issues, setIssues] = useState<Array<LabelIssue>>(null)
   const [OODData, setOODData] = useState<Array<LabelIssue>>(null)
   const [activeImageId, setActiveImageId] = useState(null)
+  const [classPercentile, setClassPercentile] = useState(50)
 
   const updateDatasetLabel = (id, label) => {
     console.log(`updating label to ${label}`)
@@ -86,7 +87,11 @@ export const App = () => {
           <VStack width={'60%'} height={'100%'}>
             <HStack width={'100%'} height={'80%'}>
               <Box width={'40%'} height={'100%'}>
-                <PredProbs data={predProbsData} />
+                <PredProbs
+                  data={predProbsData}
+                  classPercentile={classPercentile}
+                  setClassPercentile={setClassPercentile}
+                />
               </Box>
               <VStack width={'60%'} height={'100%'}>
                 <SomeSlider />
