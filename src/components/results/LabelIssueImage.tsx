@@ -3,9 +3,9 @@ import { Box, Image, Tag, VStack } from '@chakra-ui/react'
 import { LabelIssueImageProps } from './types'
 
 const LabelIssueImage = (props: LabelIssueImageProps) => {
-  const { givenLabel, suggestedLabel, ...imageProps } = props
+  const { id, givenLabel, suggestedLabel, setActiveImageId, ...imageProps } = props
   return (
-    <Box position={'relative'}>
+    <Box position={'relative'} onMouseEnter={() => setActiveImageId(id)}>
       <VStack
         position={'absolute'}
         bottom={'0px'}

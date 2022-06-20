@@ -8,6 +8,8 @@ export interface LabelIssue {
 }
 
 export interface LabelIssueImageProps extends ImageProps {
+  id: string
   givenLabel: string
   suggestedLabel: string
+  setActiveImageId: (string) => void
 }

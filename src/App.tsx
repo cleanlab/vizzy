@@ -18,6 +18,7 @@ export const App = () => {
   const [predProbsData, setPredProbsData] = useState([])
   const [confidentJointData, setConfidentJointData] = useState([])
   const [issues, setIssues] = useState<Array<LabelIssue>>(null)
+  const [activeImageId, setActiveImageId] = useState(null)
 
   const updateDatasetLabel = (id, label) => {
     console.log(`updating label to ${label}`)
@@ -87,7 +88,7 @@ export const App = () => {
             </Box>
           </VStack>
           <Box width={'20%'} height={'100%'}>
-            <Results issues={issues} />
+            <Results issues={issues} setActiveImageId={setActiveImageId} />
           </Box>
         </HStack>
       </VStack>
