@@ -14,7 +14,9 @@ const Results = (props: ResultsProps) => {
 
   return (
     <VStack width={'100%'} height={'100%'}>
-      <Heading size={'md'}>Results</Heading>
+      <Heading size={'sm'} fontWeight={500}>
+        LABEL ISSUES
+      </Heading>
       {issues === null && <EmptyResults text={'No results yet.'} />}
       {issues?.length === 0 && <EmptyResults text={'No errors found.'} />}
       {issues?.length && (

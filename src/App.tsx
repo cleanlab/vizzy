@@ -51,13 +51,13 @@ export const App = () => {
   return (
     <ChakraProvider theme={theme}>
       <VStack width={'100%'} height={'100%'}>
-        <HStack justify={'space-between'} width={'100%'}>
-          <Heading pl={4} fontSize={'md'}>
-            Cleanlab - Easy Vizzy
-          </Heading>
+        <HStack justify={'flex-end'} width={'100%'}>
+          {/*<Heading pl={4} fontSize={'md'}>*/}
+          {/*  Cleanlab - Easy Vizzy*/}
+          {/*</Heading>*/}
           <ColorModeSwitcher justifySelf="flex-end" />
         </HStack>
-        <HStack width={'90%'} height={'90vh'}>
+        <HStack width={'95%'} height={'90vh'}>
           <Box width={'20%'} height={'100%'}>
             <DatasetInterface data={imageDataset} />
           </Box>
