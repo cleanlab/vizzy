@@ -43,7 +43,7 @@ export const App = () => {
       setImageDataset(dataset)
 
       setIssues(
-        data.slice(30).map((e, idx) => {
+        data.slice(0, 30).map((e, idx) => {
           return {
             id: `image-${idx}`,
             src: `https://labelerrors.com/${e['path']}`,
@@ -84,7 +84,9 @@ export const App = () => {
               </VStack>
             </HStack>
             <Box height={'20%'} width={'100%'}>
-              <Explainer />
+              <Explainer
+                datapoint={imageDataset && activeImageId ? imageDataset[activeImageId] : null}
+              />
             </Box>
           </VStack>
           <Box width={'20%'} height={'100%'}>
