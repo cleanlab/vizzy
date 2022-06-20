@@ -6,6 +6,9 @@
     "@chakra-ui/react": "^2.2.1",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
+    "@nivo/core": "^0.79.0",
+    "@nivo/heatmap": "^0.79.1",
+    "@nivo/legends": "^0.79.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^14.1.0",
@@ -25,6 +28,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "overrides": {
+    "@nivo/core": {
+      "react": "17.0.2",
+      "react-dom": "17.0.2"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"

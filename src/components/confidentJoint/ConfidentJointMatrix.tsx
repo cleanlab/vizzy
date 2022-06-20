@@ -1,17 +1,15 @@
 import React from 'react'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import ConfidentJointHeatmap from './ConfidentJointHeatmap'
 
 const ConfidentJointMatrix = (props) => {
   return (
-    <Flex
-      backgroundColor={'lightyellow'}
-      height={'100%'}
-      width={'100%'}
-      align={'center'}
-      justify={'center'}
-    >
-      Confident Joint matrix
-    </Flex>
+    <Stack align={'center'} height={'100%'} width={'100%'}>
+      <Heading size={'sm'} fontWeight={500}>
+        Confident Joint matrix
+      </Heading>
+      <ConfidentJointHeatmap />
+    </Stack>
   )
 }
 
