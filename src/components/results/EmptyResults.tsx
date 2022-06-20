@@ -1,7 +1,7 @@
 import { Flex, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
 
-const NoResults = () => {
+const EmptyResults = ({ text }) => {
   return (
     <Flex
       borderColor={useColorModeValue('gray.500', 'gray.300')}
@@ -12,8 +12,8 @@ const NoResults = () => {
       justify={'center'}
       align={'center'}
     >
-      No results yet.
+      {text}
     </Flex>
   )
 }
-export default NoResults
+export default EmptyResults

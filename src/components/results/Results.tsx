@@ -3,7 +3,7 @@ import { Box, Flex, Grid, GridItem, Heading, VStack } from '@chakra-ui/react'
 import ImageWithLabel from '../dataset/ImageWithLabel/ImageWithLabel'
 import { LabelIssue } from './types'
 import LabelIssueImage from './LabelIssueImage'
-import NoResults from './NoResults'
+import EmptyResults from './EmptyResults'
 
 interface ResultsProps {
   issues: Array<LabelIssue>
@@ -15,8 +15,9 @@ const Results = (props: ResultsProps) => {
   return (
     <VStack width={'100%'} height={'100%'}>
       <Heading size={'md'}>Results</Heading>
-      {issues.length === 0 && <NoResults />}
-      {issues.length && (
+      {issues === null && <EmptyResults text={'No results yet.'} />}
+      {issues?.length === 0 && <EmptyResults text={'No errors found.'} />}
+      {issues?.length && (
         <Grid templateColumns="repeat(1, 1fr)" gap={0} overflowY={'auto'}>
           {issues.map((datapoint) => (
             <GridItem key={datapoint.id}>
