@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { Box, ChakraProvider, Heading, HStack, theme, VStack } from '@chakra-ui/react'
+import { Box, ChakraProvider, Heading, HStack, VStack } from '@chakra-ui/react'
+import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
 import PredProbs from './components/predProbs/PredProbs'
