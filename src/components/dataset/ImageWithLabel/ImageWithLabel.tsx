@@ -4,7 +4,7 @@ import { ImageWithLabelProps } from '../types'
 import './ImageWithLabel.css'
 
 const ImageWithLabel = (props: ImageWithLabelProps) => {
-  const { givenLabel, labelOptions, ...imageProps } = props
+  const { id, givenLabel, labelOptions, updateLabel, ...imageProps } = props
   return (
     <Box position={'relative'}>
       <Select
@@ -19,6 +19,9 @@ const ImageWithLabel = (props: ImageWithLabelProps) => {
         maxWidth={'100%'}
         overflowX={'auto'}
         defaultValue={givenLabel}
+        onChange={(evt) => {
+          updateLabel(id, evt.target.value)
+        }}
       >
         <option key={givenLabel}>{givenLabel}</option>
         {labelOptions.map((v) => (

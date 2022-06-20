@@ -8,10 +8,13 @@ export interface Datapoint {
 }
 
 export interface DatasetInterfaceProps {
-  data: Array<Datapoint>
+  data: Record<string, Datapoint>
+  updateLabel: (string, label) => void
 }
 
 export interface ImageWithLabelProps extends ImageProps {
+  id: string
   givenLabel: string
   labelOptions: string[]
+  updateLabel: (string, Datapoint) => void
 }

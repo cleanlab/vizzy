@@ -7,10 +7,11 @@ import EmptyResults from './EmptyResults'
 
 interface ResultsProps {
   issues: Array<LabelIssue>
+  setActiveImageId: (string) => void
 }
 
 const Results = (props: ResultsProps) => {
-  const { issues } = props
+  const { issues, setActiveImageId } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
@@ -20,10 +21,14 @@ const Results = (props: ResultsProps) => {
       {issues === null && <EmptyResults text={'No results yet.'} />}
       {issues?.length === 0 && <EmptyResults text={'No errors found.'} />}
       {issues?.length && (
-        <Grid templateColumns="repeat(2, 1fr)" gap={0} overflowY={'auto'}>
+        <Grid templateColumns="repeat(6, 1fr)" gap={1} overflowY={'auto'}>
           {issues.map((datapoint) => (
             <GridItem key={datapoint.id}>
-              <LabelIssueImage {...datapoint} />
+              <LabelIssueImage
+                {...datapoint}
+                id={datapoint.id}
+                setActiveImageId={setActiveImageId}
+              />
             </GridItem>
           ))}
         </Grid>
