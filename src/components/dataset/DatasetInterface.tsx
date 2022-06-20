@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Flex, Grid, GridItem, Heading, SimpleGrid, Spinner, VStack } from '@chakra-ui/react'
-import ImageWithLabel from './ImageWithLabel'
+import ImageWithLabel from './ImageWithLabel/ImageWithLabel'
 import { DatasetInterfaceProps } from './types'
 import LoadingSpinner from '../misc/Loading'
 
