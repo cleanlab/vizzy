@@ -22,14 +22,13 @@ const ImageWithLabel = (props: ImageWithLabelProps) => {
       <Select
         // colorScheme={useColorModeValue('blackAlpha', 'blackAlpha')}
         backgroundColor={'white'}
-        width={'100%'}
         opacity={'50%'}
         color={'black'}
         size={'xs'}
         bottom={'0px'}
         right={'0px'}
         position={'absolute'}
-        // maxWidth={'100%'}
+        maxWidth={'100%'}
         overflowX={'auto'}
         defaultValue={givenLabel}
       >
@@ -37,7 +36,6 @@ const ImageWithLabel = (props: ImageWithLabelProps) => {
         {labelOptions.map((v) => (
           <option key={v}>{v}</option>
         ))}
-        <option>Tyrannosaurus Rex looool</option>
       </Select>
 
       <Image src={props.src} {...props} />
