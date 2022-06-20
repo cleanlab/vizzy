@@ -8,7 +8,7 @@ export interface Datapoint {
 }
 
 export interface DatasetInterfaceProps {
-  data: Array<Datapoint>
+  data: Record<string, Datapoint>
 }
 
 export interface ImageWithLabelProps extends ImageProps {
