@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { Box, ChakraProvider, Heading, HStack, VStack } from '@chakra-ui/react'
+import { Box, ChakraProvider, Divider, Heading, HStack, VStack } from '@chakra-ui/react'
 import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
@@ -12,13 +12,16 @@ import SomeSlider from './components/sliders/Slider'
 import { Datapoint } from './components/dataset/types'
 import Explainer from './components/explainer/Explainer'
 import { LabelIssue, LabelIssueImageProps } from './components/results/types'
+import { PredProbsEntryProps } from './components/predProbs/types'
 
 export const App = () => {
   const [imageDataset, setImageDataset] = useState<Record<string, Datapoint>>(null)
-  const [predProbsData, setPredProbsData] = useState([])
+  const [predProbsData, setPredProbsData] = useState<Record<string, PredProbsEntryProps>>(null)
   const [confidentJointData, setConfidentJointData] = useState([])
   const [issues, setIssues] = useState<Array<LabelIssue>>(null)
+  const [OODData, setOODData] = useState<Array<LabelIssue>>(null)
   const [activeImageId, setActiveImageId] = useState(null)
+  const [classPercentile, setClassPercentile] = useState(50)
 
   const updateDatasetLabel = (id, label) => {
     console.log(`updating label to ${label}`)
@@ -41,6 +44,18 @@ export const App = () => {
         return acc
       }, {})
       setImageDataset(dataset)
+
+      setPredProbsData(
+        data.reduce((acc, e, idx) => {
+          const id = `image-${idx}`
+          acc[id] = {
+            id,
+            src: `https://labelerrors.com/${e['path']}`,
+            probabilities: [...Array(3)].map((e) => Math.random().toFixed(3)),
+          }
+          return acc
+        }, {})
+      )
 
       setIssues(
         data.slice(0, 30).map((e, idx) => {
@@ -72,7 +87,11 @@ export const App = () => {
           <VStack width={'60%'} height={'100%'}>
             <HStack width={'100%'} height={'80%'}>
               <Box width={'40%'} height={'100%'}>
-                <PredProbs />
+                <PredProbs
+                  data={predProbsData}
+                  classPercentile={classPercentile}
+                  setClassPercentile={setClassPercentile}
+                />
               </Box>
               <VStack width={'60%'} height={'100%'}>
                 <SomeSlider />
@@ -83,6 +102,7 @@ export const App = () => {
                 </Box>
               </VStack>
             </HStack>
+            <Divider />
             <Box height={'20%'} width={'100%'}>
               <Explainer
                 datapoint={imageDataset && activeImageId ? imageDataset[activeImageId] : null}
