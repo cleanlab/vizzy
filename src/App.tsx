@@ -10,6 +10,7 @@ import Results from './components/results/Results'
 import OutOfDistribution from './components/ood/OutOfDistribution'
 import SomeSlider from './components/sliders/Slider'
 import { Datapoint } from './components/dataset/types'
+import Explainer from './components/explainer/Explainer'
 
 export const App = () => {
   const [imageDataset, setImageDataset] = useState<Array<Datapoint>>(null)
@@ -60,15 +61,22 @@ export const App = () => {
           <Box width={'20%'} height={'100%'}>
             <DatasetInterface data={imageDataset} />
           </Box>
-          <Box width={'25%'} height={'100%'}>
-            <PredProbs />
-          </Box>
-          <VStack width={'35%'} height={'100%'}>
-            <SomeSlider />
-            <SomeSlider />
-            <ConfidentJointMatrix />
-            <Box height={'20vh'} width={'100%'}>
-              <OutOfDistribution />
+          <VStack width={'60%'} height={'100%'}>
+            <HStack width={'100%'} height={'80%'}>
+              <Box width={'40%'} height={'100%'}>
+                <PredProbs />
+              </Box>
+              <VStack width={'60%'} height={'100%'}>
+                <SomeSlider />
+                <SomeSlider />
+                <ConfidentJointMatrix />
+                <Box height={'20vh'} width={'100%'}>
+                  <OutOfDistribution />
+                </Box>
+              </VStack>
+            </HStack>
+            <Box height={'20%'} width={'100%'}>
+              <Explainer />
             </Box>
           </VStack>
           <Box width={'20%'} height={'100%'}>
