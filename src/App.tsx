@@ -5,7 +5,7 @@ import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
 import PredProbs from './components/predProbs/PredProbs'
-import ConfidentJointMatrix from './components/confidentJoint/ConfidentJoint'
+import ConfidentJoint from './components/confidentJoint/ConfidentJoint'
 import Results from './components/results/Results'
 import OutOfDistribution from './components/ood/OutOfDistribution'
 import { Datapoint } from './components/dataset/types'
@@ -81,10 +81,10 @@ export const App = () => {
       )
 
       setConfidentJointData(
-        data.slice(50, 80).reduce((acc, e, idx) => {
-          const id = `image-${50 + idx}`
+        data.slice(0, 130).reduce((acc, e, idx) => {
+          const id = `image-${idx}`
           acc[id] = {
-            id: `image-${50 + idx}`,
+            id: `image-${idx}`,
             src: `https://labelerrors.com/${e['path']}`,
             givenLabel: _.sample(CLASSES),
             suggestedLabel: _.sample(CLASSES),
@@ -142,7 +142,7 @@ export const App = () => {
                   <Thresholds thresholds={thresholds} />
                 </Box>
               </VStack>
-              <ConfidentJointMatrix
+              <ConfidentJoint
                 labels={CLASSES}
                 issues={confidentJointData}
                 setActiveImageId={setActiveImageId}
