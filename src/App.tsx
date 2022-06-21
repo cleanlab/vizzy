@@ -14,8 +14,8 @@ import Explainer from './components/explainer/Explainer'
 import { LabelIssue, LabelIssueImageProps } from './components/results/types'
 import { PredProbsEntryProps } from './components/predProbs/types'
 import Thresholds from './components/predProbs/Thresholds'
+
 import util from './model/util'
-import percentile from 'percentile'
 
 const CLASSES = ['mouse', 'cat', 'dog']
 
@@ -84,23 +84,11 @@ export const App = () => {
   // compute class thresholds
   useEffect(() => {
     if (predProbsData) {
-      let classToProbs: Record<string, number[]> = {
-        mouse: [],
-        cat: [],
-        dog: [],
-      }
-      Object.values(predProbsData).map((v) => {
-        const argMax = util.argMax(v.probabilities)
-        const argMaxClass = CLASSES[argMax]
-        classToProbs[argMaxClass].push(v.probabilities[argMax])
-      })
-      const thresholds = Object.entries(classToProbs).reduce((acc, elt) => {
-        acc[elt[0]] = percentile(classPercentile, elt[1])
-        return acc
-      }, {})
+      const thresholds = util.computeClassThresholds(predProbsData, CLASSES, classPercentile)
       setThresholds(thresholds)
     }
   }, [predProbsData, classPercentile, setThresholds])
+
   return (
     <ChakraProvider theme={theme}>
       <VStack width={'100%'} height={'100%'}>
@@ -126,8 +114,6 @@ export const App = () => {
                 </Box>
               </VStack>
               <VStack width={'60%'} height={'100%'}>
-                <SomeSlider />
-                <SomeSlider />
                 <ConfidentJointMatrix />
                 <Box height={'20vh'} width={'100%'}>
                   <OutOfDistribution />
