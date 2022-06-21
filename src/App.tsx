@@ -108,6 +108,10 @@ export const App = () => {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    util.train()
+  }, [])
+
   // compute class thresholds
   useEffect(() => {
     if (predProbsData) {
