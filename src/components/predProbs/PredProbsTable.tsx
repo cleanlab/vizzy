@@ -22,15 +22,17 @@ const PredProbsTable = (props: PredProbsTableProps) => {
 
   const renderRow = (datapoint: PredProbsEntryProps) => {
     return (
-      <Tr>
+      <Tr key={datapoint.id}>
         <Td>
           <HStack height="40px">
             <Image boxSize="50px" src={datapoint.src} />
             <Divider orientation="vertical" />
           </HStack>
         </Td>
-        {datapoint.probabilities.map((prob) => (
-          <Td isNumeric>{prob}</Td>
+        {datapoint.probabilities.map((prob, idx) => (
+          <Td isNumeric key={idx}>
+            {prob}
+          </Td>
         ))}
       </Tr>
     )
@@ -39,7 +41,6 @@ const PredProbsTable = (props: PredProbsTableProps) => {
   return (
     <TableContainer overflowY={'auto'} height={'100%'}>
       <Table variant="simple" size="sm">
-        {/*<TableCaption placement="top">Predicted Probabilities for each label</TableCaption>*/}
         <Thead>
           <Tr>
             <Th isNumeric>Example</Th>

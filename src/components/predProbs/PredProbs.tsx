@@ -1,5 +1,5 @@
 import React from 'react'
-import { VStack, Heading, Flex, Box } from '@chakra-ui/react'
+import { VStack, Heading, Flex, Box, Text } from '@chakra-ui/react'
 import { PredProbsEntryProps, PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
 import PercentileSlider from './PercentileSlider'
@@ -14,7 +14,9 @@ const PredProbs = (props: PredProbsProps) => {
       </Heading>
       {!data && (
         <Flex width={'100%'} height={'100%'} justify={'center'} align={'center'}>
-          Nothing computed.
+          <Text fontSize={'sm'} fontStyle={'italic'}>
+            Nothing computed.
+          </Text>
         </Flex>
       )}
       {data && (
