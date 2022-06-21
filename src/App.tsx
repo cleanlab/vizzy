@@ -100,8 +100,8 @@ export const App = () => {
             <DatasetInterface data={imageDataset} updateLabel={updateDatasetLabel} />
           </Box>
           <VStack width={'60%'} height={'100%'}>
-            <HStack width={'100%'} height={'80%'}>
-              <VStack width={'40%'} height={'100%'}>
+            <HStack width={'100%'} height={'70%'} align={'space-between'}>
+              <VStack width={'40%'} height={'100%'} spacing={'0rem'}>
                 <Box height={'85%'}>
                   <PredProbs
                     data={predProbsData}
@@ -115,21 +115,21 @@ export const App = () => {
               </VStack>
               <VStack width={'60%'} height={'100%'}>
                 <ConfidentJointMatrix />
-                <Box height={'20vh'} width={'100%'}>
-                  <OutOfDistribution />
-                </Box>
               </VStack>
             </HStack>
-            <Divider />
             <Box height={'20%'} width={'100%'}>
               <Explainer
                 datapoint={imageDataset && activeImageId ? imageDataset[activeImageId] : null}
               />
             </Box>
           </VStack>
-          <Box width={'20%'} height={'100%'}>
-            <Results issues={issues} setActiveImageId={setActiveImageId} />
-          </Box>
+
+          <VStack width={'20%'} height={'100%'}>
+            <Box height={'60%'}>
+              <Results issues={issues} setActiveImageId={setActiveImageId} />
+            </Box>
+            <OutOfDistribution />
+          </VStack>
         </HStack>
       </VStack>
     </ChakraProvider>
