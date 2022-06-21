@@ -77,6 +77,17 @@ export const App = () => {
           }
         })
       )
+
+      setOODData(
+        data.slice(30, 60).map((e, idx) => {
+          return {
+            id: `image-${30 + idx}`,
+            src: `https://labelerrors.com/${e['path']}`,
+            givenLabel: e['label'],
+            suggestedLabel: 'kirby',
+          }
+        })
+      )
     }
     fetchData()
   }, [])
@@ -107,6 +118,7 @@ export const App = () => {
                     data={predProbsData}
                     classPercentile={classPercentile}
                     setClassPercentile={setClassPercentile}
+                    setActiveImageId={setActiveImageId}
                   />
                 </Box>
                 <Box height={'20%'}>
@@ -126,10 +138,12 @@ export const App = () => {
           </VStack>
 
           <VStack width={'20%'} height={'100%'}>
-            <Box height={'60%'}>
+            <Box height={'60%'} width={'100%'}>
               <Results issues={issues} setActiveImageId={setActiveImageId} />
             </Box>
-            <OutOfDistribution />
+            <Box height={'40%'} width={'100%'}>
+              <OutOfDistribution issues={OODData} setActiveImageId={setActiveImageId} />
+            </Box>
           </VStack>
         </HStack>
       </VStack>
