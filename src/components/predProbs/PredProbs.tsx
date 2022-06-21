@@ -5,7 +5,7 @@ import PredProbsTable from './PredProbsTable'
 import PercentileSlider from './PercentileSlider'
 
 const PredProbs = (props: PredProbsProps) => {
-  const { data, classPercentile, setClassPercentile } = props
+  const { data, classPercentile, setClassPercentile, setActiveImageId } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
@@ -21,7 +21,7 @@ const PredProbs = (props: PredProbsProps) => {
       )}
       {data && (
         <>
-          <PredProbsTable data={Object.values(data)} />
+          <PredProbsTable data={Object.values(data)} setActiveImageId={setActiveImageId} />
           <Box>
             <PercentileSlider percentile={classPercentile} setPercentile={setClassPercentile} />
           </Box>
