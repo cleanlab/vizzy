@@ -26,7 +26,8 @@ const computeClassThresholds = (
   }, {})
 }
 
-export default {
+const exports = {
   argMax,
   computeClassThresholds,
 }
+export default exports
