@@ -5,7 +5,7 @@ import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
 import PredProbs from './components/predProbs/PredProbs'
-import ConfidentJointMatrix from './components/confidentJoint/ConfidentJointMatrix'
+import ConfidentJointMatrix from './components/confidentJoint/ConfidentJoint'
 import Results from './components/results/Results'
 import OutOfDistribution from './components/ood/OutOfDistribution'
 import { Datapoint } from './components/dataset/types'
@@ -26,7 +26,7 @@ export const App = () => {
     cat: 0,
     mouse: 0,
   })
-  const [confidentJointData, setConfidentJointData] = useState([])
+  const [confidentJointData, setConfidentJointData] = useState<Record<string, LabelIssue>>(null)
   const [issues, setIssues] = useState<Record<string, LabelIssue>>(null)
   const [OODData, setOODData] = useState<Record<string, LabelIssue>>(null)
   const [activeImageId, setActiveImageId] = useState(null)
@@ -71,6 +71,19 @@ export const App = () => {
           const id = `image-${idx}`
           acc[id] = {
             id,
+            src: `https://labelerrors.com/${e['path']}`,
+            givenLabel: e['label'],
+            suggestedLabel: 'kirby',
+          }
+          return acc
+        }, {})
+      )
+
+      setConfidentJointData(
+        data.slice(50, 80).reduce((acc, e, idx) => {
+          const id = `image-${50 + idx}`
+          acc[id] = {
+            id: `image-${50 + idx}`,
             src: `https://labelerrors.com/${e['path']}`,
             givenLabel: e['label'],
             suggestedLabel: 'kirby',
@@ -128,7 +141,10 @@ export const App = () => {
                   <Thresholds thresholds={thresholds} />
                 </Box>
               </VStack>
-              <ConfidentJointMatrix issues={issues} setActiveImageId={setActiveImageId} />
+              <ConfidentJointMatrix
+                issues={confidentJointData}
+                setActiveImageId={setActiveImageId}
+              />
             </HStack>
             <Divider />
             <Box height={'20%'} width={'100%'}>
