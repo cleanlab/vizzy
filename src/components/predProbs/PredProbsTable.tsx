@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { PredProbsEntryProps } from './types'
+import placeholder from '../../assets/placeholder.png'
 
 interface PredProbsTableProps {
   data: Array<PredProbsEntryProps>
@@ -25,7 +26,7 @@ const PredProbsTable = (props: PredProbsTableProps) => {
       <Tr key={datapoint.id}>
         <Td>
           <HStack height="40px">
-            <Image boxSize="50px" src={datapoint.src} />
+            <Image boxSize="50px" src={datapoint.src} loading={'lazy'} fallbackSrc={placeholder} />
             <Divider orientation="vertical" />
           </HStack>
         </Td>

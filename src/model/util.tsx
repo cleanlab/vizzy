@@ -15,17 +15,15 @@ const computeClassThresholds = (
     cat: [],
     dog: [],
   }
-  Object.values(predProbsData).map((v) => {
+  Object.values(predProbsData).forEach((v) => {
     const arg_max = argMax(v.probabilities)
     const argMaxClass = classes[arg_max]
     classToProbs[argMaxClass].push(v.probabilities[arg_max])
   })
-  const thresholds = Object.entries(classToProbs).reduce((acc, elt) => {
-    acc[elt[0]] = percentile(classPercentile, elt[1])
+  return Object.entries(classToProbs).reduce((acc, [className, probs]) => {
+    acc[className] = percentile(classPercentile, probs)
     return acc
   }, {})
-
-  return thresholds
 }
 
 export default {

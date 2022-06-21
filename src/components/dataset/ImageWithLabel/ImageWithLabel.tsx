@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Image, Select } from '@chakra-ui/react'
 import { ImageWithLabelProps } from '../types'
 import './ImageWithLabel.css'
+import placeholder from '../../../assets/placeholder.png'
 
 const ImageWithLabel = (props: ImageWithLabelProps) => {
   const { id, givenLabel, labelOptions, updateLabel, ...imageProps } = props
@@ -29,7 +30,7 @@ const ImageWithLabel = (props: ImageWithLabelProps) => {
         ))}
       </Select>
 
-      <Image {...imageProps} />
+      <Image {...imageProps} loading={'lazy'} fallbackSrc={placeholder} />
     </Box>
   )
 }
