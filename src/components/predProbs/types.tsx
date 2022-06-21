@@ -8,5 +8,6 @@ export interface PredProbsProps {
 export interface PredProbsEntryProps {
   id: string
   src: string
+  givenLabel: string
   probabilities: Array<number>
 }

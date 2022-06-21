@@ -15,7 +15,6 @@ import { PredProbsEntryProps } from './components/predProbs/types'
 import Thresholds from './components/predProbs/Thresholds'
 
 import util from './model/util'
-import _ from 'lodash'
 
 const CLASSES = ['mouse', 'cat', 'dog']
 
@@ -61,6 +60,7 @@ export const App = () => {
           acc[id] = {
             id,
             src: `https://labelerrors.com/${e['path']}`,
+            givenLabel: e['label'],
             probabilities: [...Array(3)].map((e) => Math.random().toFixed(3)),
           }
           return acc
@@ -75,19 +75,6 @@ export const App = () => {
             src: `https://labelerrors.com/${e['path']}`,
             givenLabel: e['label'],
             suggestedLabel: 'kirby',
-          }
-          return acc
-        }, {})
-      )
-
-      setConfidentJointData(
-        data.slice(0, 130).reduce((acc, e, idx) => {
-          const id = `image-${idx}`
-          acc[id] = {
-            id: `image-${idx}`,
-            src: `https://labelerrors.com/${e['path']}`,
-            givenLabel: _.sample(CLASSES),
-            suggestedLabel: _.sample(CLASSES),
           }
           return acc
         }, {})
@@ -109,11 +96,17 @@ export const App = () => {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    util.train()
+  }, [])
+
   // compute class thresholds
   useEffect(() => {
     if (predProbsData) {
       const thresholds = util.computeClassThresholds(predProbsData, CLASSES, classPercentile)
       setThresholds(thresholds)
+      const cjData = util.constructConfidentJoint(predProbsData, CLASSES, thresholds)
+      setConfidentJointData(cjData)
     }
   }, [predProbsData, classPercentile, setThresholds])
 
