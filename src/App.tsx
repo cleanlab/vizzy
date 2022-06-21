@@ -117,6 +117,7 @@ export const App = () => {
                 <ConfidentJointMatrix />
               </VStack>
             </HStack>
+            <Divider />
             <Box height={'20%'} width={'100%'}>
               <Explainer
                 datapoint={imageDataset && activeImageId ? imageDataset[activeImageId] : null}
