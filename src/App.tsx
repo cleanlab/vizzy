@@ -94,9 +94,7 @@ export const App = () => {
                 />
               </Box>
               <VStack width={'60%'} height={'100%'}>
-                <SomeSlider />
-                <SomeSlider />
-                <ConfidentJointMatrix />
+                <ConfidentJointMatrix issues={issues} />
                 <Box height={'20vh'} width={'100%'}>
                   <OutOfDistribution />
                 </Box>

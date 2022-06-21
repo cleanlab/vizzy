@@ -13,7 +13,7 @@ const ConfidentJointHeatmap = (props) => {
         tickPadding: 5,
         tickRotation: -90,
         legend: 'Predicted Label', // TODO: figure out why it's displayed behind chart
-        legendOffset: 46,
+        legendOffset: 0,
       }}
       // axisRight={{
       //   tickSize: 5,
@@ -26,36 +26,18 @@ const ConfidentJointHeatmap = (props) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: 'Actual Label',
+        legend: 'Given Label',
         legendPosition: 'middle',
         legendOffset: -72,
       }}
       colors={{
         type: 'diverging',
-        scheme: 'red_yellow_blue',
+        scheme: 'greys',
         divergeAt: 0.5,
         minValue: 0,
         maxValue: 1,
       }}
       emptyColor="#555555"
-      legends={[
-        {
-          anchor: 'bottom',
-          translateX: 0,
-          translateY: 30,
-          length: 400,
-          thickness: 8,
-          direction: 'row',
-          tickPosition: 'after',
-          tickSize: 3,
-          tickSpacing: 4,
-          tickOverlap: false,
-          // tickFormat: '>-.2s',
-          title: 'Value →',
-          titleAlign: 'start',
-          titleOffset: 4,
-        },
-      ]}
     />
   )
 }
