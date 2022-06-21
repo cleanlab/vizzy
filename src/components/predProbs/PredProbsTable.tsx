@@ -1,5 +1,7 @@
 import {
+  Box,
   Divider,
+  Flex,
   HStack,
   Image,
   Table,
@@ -13,24 +15,34 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { PredProbsEntryProps } from './types'
+import placeholder from '../../assets/placeholder.png'
 
 interface PredProbsTableProps {
   data: Array<PredProbsEntryProps>
+  setActiveImageId: (string) => void
 }
 const PredProbsTable = (props: PredProbsTableProps) => {
-  const { data } = props
+  const { data, setActiveImageId } = props
 
   const renderRow = (datapoint: PredProbsEntryProps) => {
     return (
-      <Tr>
+      <Tr key={datapoint.id}>
         <Td>
-          <HStack height="40px">
-            <Image boxSize="50px" src={datapoint.src} />
-            <Divider orientation="vertical" />
-          </HStack>
+          <Flex height="40px" justify={'center'} align={'center'}>
+            <Box onMouseEnter={() => setActiveImageId(datapoint.id)}>
+              <Image
+                boxSize="50px"
+                src={datapoint.src}
+                loading={'lazy'}
+                fallbackSrc={placeholder}
+              />
+            </Box>
+          </Flex>
         </Td>
-        {datapoint.probabilities.map((prob) => (
-          <Td isNumeric>{prob}</Td>
+        {datapoint.probabilities.map((prob, idx) => (
+          <Td isNumeric key={idx}>
+            {prob}
+          </Td>
         ))}
       </Tr>
     )
@@ -39,7 +51,6 @@ const PredProbsTable = (props: PredProbsTableProps) => {
   return (
     <TableContainer overflowY={'auto'} height={'100%'}>
       <Table variant="simple" size="sm">
-        {/*<TableCaption placement="top">Predicted Probabilities for each label</TableCaption>*/}
         <Thead>
           <Tr>
             <Th isNumeric>Example</Th>

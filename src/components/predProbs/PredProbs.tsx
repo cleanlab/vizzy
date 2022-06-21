@@ -1,28 +1,11 @@
 import React from 'react'
-import {
-  VStack,
-  Heading,
-  TableContainer,
-  Table,
-  TableCaption,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-  Tfoot,
-  Image,
-  HStack,
-  Divider,
-  Flex,
-  Box,
-} from '@chakra-ui/react'
+import { VStack, Heading, Flex, Box, Text } from '@chakra-ui/react'
 import { PredProbsEntryProps, PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
 import PercentileSlider from './PercentileSlider'
 
 const PredProbs = (props: PredProbsProps) => {
-  const { data, classPercentile, setClassPercentile } = props
+  const { data, classPercentile, setClassPercentile, setActiveImageId } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
@@ -31,16 +14,18 @@ const PredProbs = (props: PredProbsProps) => {
       </Heading>
       {!data && (
         <Flex width={'100%'} height={'100%'} justify={'center'} align={'center'}>
-          Nothing computed.
+          <Text fontSize={'sm'} fontStyle={'italic'}>
+            Nothing computed.
+          </Text>
         </Flex>
       )}
       {data && (
-        <VStack height={'100%'}>
-          <Box height={'80%'}>
-            <PredProbsTable data={Object.values(data)} />
+        <>
+          <PredProbsTable data={Object.values(data)} setActiveImageId={setActiveImageId} />
+          <Box>
             <PercentileSlider percentile={classPercentile} setPercentile={setClassPercentile} />
           </Box>
-        </VStack>
+        </>
       )}
     </VStack>
   )
