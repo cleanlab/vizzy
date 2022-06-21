@@ -67,7 +67,7 @@ export const App = () => {
       )
 
       setIssues(
-        data.slice(0, 30).reduce((acc, e, idx) => {
+        data.slice(0, 40).reduce((acc, e, idx) => {
           const id = `image-${idx}`
           acc[id] = {
             id,

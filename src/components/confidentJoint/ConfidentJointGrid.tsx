@@ -14,11 +14,11 @@ const ConfidentJointGrid = (props: ResultsProps) => {
   // TODO: make conf joint image grid a new component when it renders real data
   const renderImageGrid = () => {
     return (
-      <Grid templateColumns="repeat(5, 1fr)" gap={1} overflowY={'auto'}>
+      <Grid templateColumns="repeat(10, 1fr)" gap={1} p={1} overflowY={'auto'}>
         {Object.values(issues)
-          .slice(0, 19)
+          .slice(0, 30)
           .map((datapoint) => (
-            <GridItem key={datapoint.id}>
+            <GridItem key={datapoint.id} height={'fit-content'}>
               <LabelIssueImage
                 {...datapoint}
                 id={datapoint.id}
@@ -34,17 +34,17 @@ const ConfidentJointGrid = (props: ResultsProps) => {
     <HStack width={'100%'} height={'100%'}>
       <Grid alignItems="center" height={'100%'}>
         <GridItem>
-          <Tag colorScheme={'blue'} opacity={'80%'} size={'sm'}>
+          <Tag colorScheme={'blue'} size={'sm'}>
             given: cat
           </Tag>
         </GridItem>
         <GridItem>
-          <Tag colorScheme={'blue'} opacity={'80%'} size={'sm'}>
+          <Tag colorScheme={'blue'} size={'sm'}>
             given: dog
           </Tag>
         </GridItem>
         <GridItem>
-          <Tag colorScheme={'blue'} opacity={'80%'} size={'sm'}>
+          <Tag colorScheme={'blue'} size={'sm'}>
             given: mouse
           </Tag>
         </GridItem>
