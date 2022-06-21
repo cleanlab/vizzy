@@ -1,13 +1,31 @@
 import React from 'react'
-import { Box, Flex, HStack, Image, Tag, Text, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  HStack,
+  Image,
+  Table,
+  TableContainer,
+  Tag,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+  VStack,
+} from '@chakra-ui/react'
 import { Datapoint, ImageWithLabelProps } from '../dataset/types'
 import { LabelIssue } from '../results/types'
 import { PredProbsEntryProps } from '../predProbs/types'
+import PredProbsTable from '../predProbs/PredProbsTable'
+import PredProbsTableRow from '../predProbs/PredProbsTableRow'
 
 interface ExplainerProps {
   imageDataset: Record<string, Datapoint>
   predProbsData: Record<string, PredProbsEntryProps>
   thresholds: Record<string, number>
+  classes: Array<String>
   classPercentile: number
   issues: Record<string, LabelIssue>
   OODData: Record<string, LabelIssue>
@@ -19,6 +37,7 @@ const Explainer = (props: ExplainerProps) => {
     imageDataset,
     predProbsData,
     thresholds,
+    classes,
     classPercentile,
     issues,
     OODData,
@@ -48,6 +67,26 @@ const Explainer = (props: ExplainerProps) => {
     <HStack height={'100%'} width={'100%'} align={'center'} justify={'flex-start'}>
       <Image height={'100%'} src={datapoint.src} />
       <VStack align={'flex-start'}>
+        {predProbs && (
+          <TableContainer overflowY={'auto'} height={'100%'}>
+            <Table variant="simple" size="sm">
+              <Thead>
+                <Tr>
+                  {classes.map((c) => (
+                    <Th isNumeric>{c}</Th>
+                  ))}
+                </Tr>
+              </Thead>
+              <Tbody>
+                <Tr>
+                  {predProbs.probabilities.map((v, idx) => (
+                    <Td key={idx}>{v}</Td>
+                  ))}
+                </Tr>
+              </Tbody>
+            </Table>
+          </TableContainer>
+        )}
         <Tag colorScheme={'blue'} size={'md'}>
           Given label: {datapoint.givenLabel}
         </Tag>

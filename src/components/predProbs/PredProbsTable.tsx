@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { PredProbsEntryProps } from './types'
-import placeholder from '../../assets/placeholder.png'
+import PredProbsTableRow from './PredProbsTableRow'
 
 interface PredProbsTableProps {
   data: Array<PredProbsEntryProps>
@@ -23,30 +23,6 @@ interface PredProbsTableProps {
 }
 const PredProbsTable = (props: PredProbsTableProps) => {
   const { data, setActiveImageId } = props
-
-  const renderRow = (datapoint: PredProbsEntryProps) => {
-    return (
-      <Tr key={datapoint.id}>
-        <Td>
-          <Flex height="40px" justify={'center'} align={'center'}>
-            <Box onMouseEnter={() => setActiveImageId(datapoint.id)}>
-              <Image
-                boxSize="50px"
-                src={datapoint.src}
-                loading={'lazy'}
-                fallbackSrc={placeholder}
-              />
-            </Box>
-          </Flex>
-        </Td>
-        {datapoint.probabilities.map((prob, idx) => (
-          <Td isNumeric key={idx}>
-            {prob}
-          </Td>
-        ))}
-      </Tr>
-    )
-  }
 
   return (
     <TableContainer overflowY={'auto'} height={'100%'}>
@@ -59,15 +35,11 @@ const PredProbsTable = (props: PredProbsTableProps) => {
             <Th isNumeric>C3</Th>
           </Tr>
         </Thead>
-        <Tbody>{Object.values(data).map((datapoint) => renderRow(datapoint))}</Tbody>
-        <Tfoot>
-          <Tr>
-            <Th isNumeric>Example</Th>
-            <Th isNumeric>C1</Th>
-            <Th isNumeric>C2</Th>
-            <Th isNumeric>C3</Th>
-          </Tr>
-        </Tfoot>
+        <Tbody>
+          {Object.values(data).map((datapoint) => (
+            <PredProbsTableRow datapoint={datapoint} setActiveImageId={setActiveImageId} />
+          ))}
+        </Tbody>
       </Table>
     </TableContainer>
   )

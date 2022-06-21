@@ -137,6 +137,7 @@ export const App = () => {
               <Explainer
                 imageDataset={imageDataset}
                 predProbsData={predProbsData}
+                classes={CLASSES}
                 thresholds={thresholds}
                 issues={issues}
                 OODData={OODData}
