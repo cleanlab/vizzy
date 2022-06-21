@@ -6,7 +6,7 @@ import LabelIssueImage from './LabelIssueImage'
 import EmptyResults from './EmptyResults'
 
 interface ResultsProps {
-  issues: Array<LabelIssue>
+  issues: Record<string, LabelIssue>
   setActiveImageId: (string) => void
 }
 
@@ -19,10 +19,10 @@ const Results = (props: ResultsProps) => {
         LABEL ISSUES
       </Heading>
       {issues === null && <EmptyResults text={'No results yet.'} />}
-      {issues?.length === 0 && <EmptyResults text={'No errors found.'} />}
-      {issues?.length && (
+      {issues && Object.keys(issues).length === 0 && <EmptyResults text={'No errors found.'} />}
+      {issues && Object.keys(issues).length && (
         <Grid templateColumns="repeat(6, 1fr)" gap={1} overflowY={'auto'}>
-          {issues.map((datapoint) => (
+          {Object.values(issues).map((datapoint) => (
             <GridItem key={datapoint.id}>
               <LabelIssueImage
                 {...datapoint}

@@ -8,7 +8,6 @@ import PredProbs from './components/predProbs/PredProbs'
 import ConfidentJointMatrix from './components/confidentJoint/ConfidentJointMatrix'
 import Results from './components/results/Results'
 import OutOfDistribution from './components/ood/OutOfDistribution'
-import SomeSlider from './components/sliders/Slider'
 import { Datapoint } from './components/dataset/types'
 import Explainer from './components/explainer/Explainer'
 import { LabelIssue, LabelIssueImageProps } from './components/results/types'
@@ -28,8 +27,8 @@ export const App = () => {
     mouse: 0,
   })
   const [confidentJointData, setConfidentJointData] = useState([])
-  const [issues, setIssues] = useState<Array<LabelIssue>>(null)
-  const [OODData, setOODData] = useState<Array<LabelIssue>>(null)
+  const [issues, setIssues] = useState<Record<string, LabelIssue>>(null)
+  const [OODData, setOODData] = useState<Record<string, LabelIssue>>(null)
   const [activeImageId, setActiveImageId] = useState(null)
   const [classPercentile, setClassPercentile] = useState(50)
 
@@ -68,25 +67,29 @@ export const App = () => {
       )
 
       setIssues(
-        data.slice(0, 30).map((e, idx) => {
-          return {
-            id: `image-${idx}`,
+        data.slice(0, 30).reduce((acc, e, idx) => {
+          const id = `image-${idx}`
+          acc[id] = {
+            id,
             src: `https://labelerrors.com/${e['path']}`,
             givenLabel: e['label'],
             suggestedLabel: 'kirby',
           }
-        })
+          return acc
+        }, {})
       )
 
       setOODData(
-        data.slice(30, 60).map((e, idx) => {
-          return {
+        data.slice(30, 60).reduce((acc, e, idx) => {
+          const id = `image-${30 + idx}`
+          acc[id] = {
             id: `image-${30 + idx}`,
             src: `https://labelerrors.com/${e['path']}`,
             givenLabel: e['label'],
             suggestedLabel: 'kirby',
           }
-        })
+          return acc
+        }, {})
       )
     }
     fetchData()
@@ -130,7 +133,13 @@ export const App = () => {
             <Divider />
             <Box height={'20%'} width={'100%'}>
               <Explainer
-                datapoint={imageDataset && activeImageId ? imageDataset[activeImageId] : null}
+                imageDataset={imageDataset}
+                predProbsData={predProbsData}
+                thresholds={thresholds}
+                issues={issues}
+                OODData={OODData}
+                classPercentile={classPercentile}
+                activeImageId={activeImageId}
               />
             </Box>
           </VStack>
