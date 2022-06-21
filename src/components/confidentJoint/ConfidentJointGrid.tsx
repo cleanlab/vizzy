@@ -13,16 +13,16 @@ const ConfidentJointGrid = (props: ConfidentJointProps) => {
   const { labels, issues, setActiveImageId } = props
   return (
     <HStack width={'100%'} height={'100%'}>
-      <Grid alignItems="center" height={'100%'}>
+      <Grid alignItems="center" height={'100%'} justifyItems={'flex-end'} width={'6%'}>
         {labels.map((label) => (
           <GridItem>
-            <Tag colorScheme={'blue'} size={'sm'}>
+            <Tag colorScheme={'blue'} size={'sm'} transform={'rotate(270deg)'} width={'100%'}>
               {`given: ${label}`}
             </Tag>
           </GridItem>
         ))}
       </Grid>
-      <VStack width={'100%'} height={'100%'}>
+      <VStack width={'94%'} height={'100%'}>
         <Grid templateColumns="repeat(3, 1fr)" gap={2} h="5" width={'100%'} justifyItems="center">
           {labels.map((label) => (
             <GridItem>
