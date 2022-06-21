@@ -26,6 +26,30 @@ const computeClassThresholds = (
   }, {})
 }
 
+const constructConfidentJoint = (
+  predProbsData: Record<string, PredProbsEntryProps>,
+  classes,
+  thresholds
+) => {
+  const data = Object.values(predProbsData).reduce((acc, elt, idx) => {
+    const predProbs = elt.probabilities
+    const maxPredProbs = Math.max(...predProbs)
+    const argMaxPredProbs = argMax(predProbs)
+    const argMaxClass = classes[argMaxPredProbs]
+    const classThreshold = thresholds[argMaxClass]
+    let suggestedLabel = null
+    if (maxPredProbs >= classThreshold) {
+      suggestedLabel = argMaxClass
+    }
+    acc[elt.id] = {
+      ...elt,
+      suggestedLabel: suggestedLabel,
+    }
+    return acc
+  }, {})
+  return data
+}
+
 const train = async () => {
   const SVM = await require('libsvm-js/asm')
   const svm = new SVM({
@@ -48,6 +72,7 @@ const train = async () => {
 const exports = {
   argMax,
   computeClassThresholds,
+  constructConfidentJoint,
   train,
 }
 export default exports
