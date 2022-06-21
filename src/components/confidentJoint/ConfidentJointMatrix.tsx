@@ -17,18 +17,19 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
       <Grid templateColumns="repeat(5, 1fr)" gap={1} p={1} overflowY={'auto'}>
         {Object.values(issues)
           .slice(0, 30)
-          .map((datapoint) => (
-            // TODO: enable this condition when labels are real
-            //   datapoint['givenLabel'] === givenLabel &&
-            //   datapoint['suggestedLabel'] === suggestedLabel &&
-            <GridItem key={datapoint.id} height={'fit-content'}>
-              <LabelIssueImage
-                {...datapoint}
-                id={datapoint.id}
-                setActiveImageId={setActiveImageId}
-              />
-            </GridItem>
-          ))}
+          .map(
+            (datapoint) =>
+              datapoint['givenLabel'] === givenLabel &&
+              datapoint['suggestedLabel'] === suggestedLabel && (
+                <GridItem key={datapoint.id} height={'fit-content'}>
+                  <LabelIssueImage
+                    {...datapoint}
+                    id={datapoint.id}
+                    setActiveImageId={setActiveImageId}
+                  />
+                </GridItem>
+              )
+          )}
       </Grid>
     )
   }

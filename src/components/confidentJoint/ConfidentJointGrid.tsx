@@ -4,17 +4,17 @@ import { LabelIssue } from '../results/types'
 import ConfidentJointMatrix from './ConfidentJointMatrix'
 
 interface ConfidentJointProps {
+  labels: Array<string>
   issues: Record<string, LabelIssue>
   setActiveImageId: (string) => void
 }
 
 const ConfidentJointGrid = (props: ConfidentJointProps) => {
-  const { issues, setActiveImageId } = props
-  const LABELS = ['cat', 'dog', 'mouse']
+  const { labels, issues, setActiveImageId } = props
   return (
     <HStack width={'100%'} height={'100%'}>
       <Grid alignItems="center" height={'100%'}>
-        {LABELS.map((label) => (
+        {labels.map((label) => (
           <GridItem>
             <Tag colorScheme={'blue'} size={'sm'}>
               {`given: ${label}`}
@@ -24,7 +24,7 @@ const ConfidentJointGrid = (props: ConfidentJointProps) => {
       </Grid>
       <VStack width={'100%'} height={'100%'}>
         <Grid templateColumns="repeat(3, 1fr)" gap={2} h="5" width={'100%'} justifyItems="center">
-          {LABELS.map((label) => (
+          {labels.map((label) => (
             <GridItem>
               <Tag colorScheme={'yellow'} size={'sm'}>
                 {`suggested: ${label}`}
@@ -32,7 +32,7 @@ const ConfidentJointGrid = (props: ConfidentJointProps) => {
             </GridItem>
           ))}
         </Grid>
-        <ConfidentJointMatrix issues={issues} setActiveImageId={setActiveImageId} labels={LABELS} />
+        <ConfidentJointMatrix issues={issues} setActiveImageId={setActiveImageId} labels={labels} />
       </VStack>
     </HStack>
   )
