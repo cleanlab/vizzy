@@ -64,9 +64,9 @@ const Explainer = (props: ExplainerProps) => {
   console.log('Object.keys(OODData)', Object.keys(OODData))
 
   return (
-    <HStack height={'100%'} width={'100%'} align={'center'} justify={'flex-start'}>
+    <HStack height={'100%'} width={'100%'} justify={'flex-start'}>
       <Image height={'100%'} src={datapoint.src} />
-      <VStack align={'flex-start'}>
+      <VStack align={'flex-start'} justify={'flex-start'} height={'100%'}>
         {predProbs && (
           <TableContainer overflowY={'auto'} height={'100%'}>
             <Table variant="simple" size="sm">
@@ -87,18 +87,28 @@ const Explainer = (props: ExplainerProps) => {
             </Table>
           </TableContainer>
         )}
-        <Tag colorScheme={'blue'} size={'md'}>
-          Given label: {datapoint.givenLabel}
-        </Tag>
-        {isIssue && (
-          <Tag colorScheme={'yellow'} size={'md'}>
-            Suggested label: {issueEntry.suggestedLabel}
+        <HStack>
+          <Tag colorScheme={'blue'} size={'md'}>
+            Given label
           </Tag>
+          <Text fontSize={'sm'}>{datapoint.givenLabel}</Text>
+        </HStack>
+
+        {isIssue && (
+          <HStack>
+            <Tag colorScheme={'yellow'} size={'md'}>
+              Suggested label
+            </Tag>
+            <Text fontSize={'sm'}>{issueEntry.suggestedLabel}</Text>
+          </HStack>
         )}
         {isOOD && (
-          <Tag colorScheme={'red'} size={'md'}>
-            Out of distribution: This example does not belong to any of the 3 classes.
-          </Tag>
+          <HStack>
+            <Tag colorScheme={'red'} size={'md'}>
+              Out of distribution
+            </Tag>
+            <Text fontSize={'sm'}>This example does not belong to any of the 3 classes.</Text>
+          </HStack>
         )}
       </VStack>
     </HStack>
