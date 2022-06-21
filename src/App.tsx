@@ -15,6 +15,7 @@ import { PredProbsEntryProps } from './components/predProbs/types'
 import Thresholds from './components/predProbs/Thresholds'
 
 import util from './model/util'
+import _ from 'lodash'
 
 const CLASSES = ['mouse', 'cat', 'dog']
 
@@ -85,8 +86,8 @@ export const App = () => {
           acc[id] = {
             id: `image-${50 + idx}`,
             src: `https://labelerrors.com/${e['path']}`,
-            givenLabel: e['label'],
-            suggestedLabel: 'kirby',
+            givenLabel: _.sample(CLASSES),
+            suggestedLabel: _.sample(CLASSES),
           }
           return acc
         }, {})
@@ -146,6 +147,7 @@ export const App = () => {
                 </Box>
               </VStack>
               <ConfidentJointMatrix
+                labels={CLASSES}
                 issues={confidentJointData}
                 setActiveImageId={setActiveImageId}
               />
