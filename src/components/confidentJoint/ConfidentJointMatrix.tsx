@@ -14,7 +14,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
 
   const renderImageGrid = (givenLabel, suggestedLabel) => {
     return (
-      <Grid templateColumns="repeat(5, 1fr)" gap={1} p={1} overflowY={'auto'}>
+      <Grid templateColumns="repeat(5, 1fr)" gap={1} p={1} overflowY={'auto'} maxHeight={'150px'}>
         {Object.values(issues).map(
           (datapoint) =>
             datapoint['givenLabel'] === givenLabel &&
