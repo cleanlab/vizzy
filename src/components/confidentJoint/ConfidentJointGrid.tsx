@@ -1,19 +1,31 @@
 import React from 'react'
 import { Grid, GridItem, VStack, Tag, HStack } from '@chakra-ui/react'
 import LabelIssueImage from '../results/LabelIssueImage'
+import { LabelIssue } from '../results/types'
 
-const ConfidentJointGrid = (props) => {
+interface ResultsProps {
+  issues: Record<string, LabelIssue>
+  setActiveImageId: (string) => void
+}
+
+const ConfidentJointGrid = (props: ResultsProps) => {
   const { issues, setActiveImageId } = props
 
   // TODO: make conf joint image grid a new component when it renders real data
   const renderImageGrid = () => {
     return (
       <Grid templateColumns="repeat(5, 1fr)" gap={1} overflowY={'auto'}>
-        {issues.slice(0, 19).map((datapoint) => (
-          <GridItem key={datapoint.id}>
-            <LabelIssueImage {...datapoint} id={datapoint.id} setActiveImageId={setActiveImageId} />
-          </GridItem>
-        ))}
+        {Object.values(issues)
+          .slice(0, 19)
+          .map((datapoint) => (
+            <GridItem key={datapoint.id}>
+              <LabelIssueImage
+                {...datapoint}
+                id={datapoint.id}
+                setActiveImageId={setActiveImageId}
+              />
+            </GridItem>
+          ))}
       </Grid>
     )
   }

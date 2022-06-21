@@ -4,14 +4,14 @@ import { Heading, Stack } from '@chakra-ui/react'
 import ConfidentJointGrid from './ConfidentJointGrid'
 
 const ConfidentJointMatrix = (props) => {
-  const { issues } = props
+  const { issues, setActiveImageId } = props
   return (
     <Stack align={'center'} height={'100%'} width={'100%'}>
       <Heading size={'sm'} fontWeight={500}>
         CONFIDENT JOINT MATRIX
       </Heading>
       {/* <ConfidentJointHeatmap /> */}
-      <ConfidentJointGrid issues={issues} />
+      <ConfidentJointGrid issues={issues} setActiveImageId={setActiveImageId} />
     </Stack>
   )
 }

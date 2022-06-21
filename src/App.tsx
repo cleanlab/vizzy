@@ -128,7 +128,7 @@ export const App = () => {
                   <Thresholds thresholds={thresholds} />
                 </Box>
               </VStack>
-              <ConfidentJointMatrix issues={issues} />
+              <ConfidentJointMatrix issues={issues} setActiveImageId={setActiveImageId} />
             </HStack>
             <Divider />
             <Box height={'20%'} width={'100%'}>
