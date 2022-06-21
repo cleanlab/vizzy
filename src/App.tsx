@@ -5,7 +5,7 @@ import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
 import PredProbs from './components/predProbs/PredProbs'
-import ConfidentJointMatrix from './components/confidentJoint/ConfidentJoint'
+import ConfidentJoint from './components/confidentJoint/ConfidentJoint'
 import Results from './components/results/Results'
 import OutOfDistribution from './components/ood/OutOfDistribution'
 import { Datapoint } from './components/dataset/types'
@@ -135,7 +135,7 @@ export const App = () => {
                   <Thresholds thresholds={thresholds} />
                 </Box>
               </VStack>
-              <ConfidentJointMatrix
+              <ConfidentJoint
                 labels={CLASSES}
                 issues={confidentJointData}
                 setActiveImageId={setActiveImageId}
