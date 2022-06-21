@@ -58,7 +58,7 @@ const Explainer = (props: ExplainerProps) => {
         )}
         {isOOD && (
           <Tag colorScheme={'red'} size={'md'}>
-            Out of distribution: This example does not belong to any of the 3 codes.
+            Out of distribution: This example does not belong to any of the 3 classes.
           </Tag>
         )}
       </VStack>
