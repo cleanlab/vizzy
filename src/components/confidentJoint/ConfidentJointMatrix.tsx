@@ -27,7 +27,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
   }
 
   return (
-    <Grid templateColumns="repeat(3, 1fr)" gap={0} width={'100%'} height={'100%'} maxWidth="465px">
+    <Grid templateColumns="repeat(3, 1fr)" gap={0} width={'100%'} height={'100%'}>
       <Grid borderWidth="1px" borderColor="gray.600">
         <GridItem>{issues && renderImageGrid(labels[0], labels[0])}</GridItem>
       </Grid>
