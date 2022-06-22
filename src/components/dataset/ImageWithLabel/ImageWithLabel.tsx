@@ -5,7 +5,7 @@ import './ImageWithLabel.css'
 import placeholder from '../../../assets/placeholder.png'
 
 const ImageWithLabel = (props: ImageWithLabelProps) => {
-  const { id, givenLabel, labelOptions, updateLabel, ...imageProps } = props
+  const { id, givenLabel, classes, updateLabel, ...imageProps } = props
   return (
     <Box position={'relative'}>
       <Select
@@ -25,7 +25,7 @@ const ImageWithLabel = (props: ImageWithLabelProps) => {
         }}
       >
         <option key={givenLabel}>{givenLabel}</option>
-        {labelOptions.map((v) => (
+        {classes.map((v) => (
           <option key={v}>{v}</option>
         ))}
       </Select>

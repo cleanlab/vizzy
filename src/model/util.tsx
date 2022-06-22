@@ -12,7 +12,7 @@ const computeClassThresholds = (
   classPercentile
 ) => {
   let classToProbs: Record<string, number[]> = {
-    mouse: [],
+    bear: [],
     cat: [],
     dog: [],
   }

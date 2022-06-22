@@ -5,7 +5,7 @@ import { DatasetInterfaceProps } from './types'
 import LoadingSpinner from '../misc/Loading'
 
 const DatasetInterface = (props: DatasetInterfaceProps) => {
-  const { data, updateLabel } = props
+  const { data, classes, updateLabel } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
@@ -17,7 +17,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
         <Grid templateColumns="repeat(1, 1fr)" gap={2} overflowY={'auto'}>
           {Object.values(data).map((datapoint) => (
             <GridItem key={datapoint.id}>
-              <ImageWithLabel {...datapoint} updateLabel={updateLabel} />
+              <ImageWithLabel {...datapoint} classes={classes} updateLabel={updateLabel} />
             </GridItem>
           ))}
         </Grid>

@@ -16,7 +16,7 @@ import Thresholds from './components/predProbs/Thresholds'
 
 import util from './model/util'
 
-const CLASSES = ['mouse', 'cat', 'dog']
+const CLASSES = ['cat', 'dog', 'bear']
 
 export const App = () => {
   const [imageDataset, setImageDataset] = useState<Record<string, Datapoint>>(null)
@@ -31,74 +31,73 @@ export const App = () => {
   const [OODData, setOODData] = useState<Record<string, LabelIssue>>(null)
   const [activeImageId, setActiveImageId] = useState(null)
   const [classPercentile, setClassPercentile] = useState(50)
+  const embeddings: Record<string, Datapoint> = require('./model/embeddings.json')
 
   const updateDatasetLabel = (id, label) => {
     console.log(`updating label to ${label}`)
     setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
   }
 
+  // load all data
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('https://labelerrors.com/api/data?dataset=ImageNet&page=1&limit=300')
-      const data = await res.json()
-      const labelOptions = CLASSES
-      const dataset = data.reduce((acc, e, idx) => {
-        const id = `image-${idx}`
+    if (embeddings) {
+      const dataset = Object.entries(embeddings).reduce((acc, [id, datapoint]) => {
         acc[id] = {
-          id: `image-${idx}`,
-          src: `https://labelerrors.com/${e['path']}`,
-          givenLabel: e['label'],
-          labelOptions: labelOptions,
+          ...datapoint,
+          src: `https://labelerrors.com/static/imagenet/val/${datapoint.src}`,
         }
         return acc
       }, {})
       setImageDataset(dataset)
-
-      setPredProbsData(
-        data.reduce((acc, e, idx) => {
-          const id = `image-${idx}`
-          acc[id] = {
-            id,
-            src: `https://labelerrors.com/${e['path']}`,
-            givenLabel: e['label'],
-            probabilities: [...Array(3)].map((e) => Math.random().toFixed(3)),
-          }
-          return acc
-        }, {})
-      )
-
-      setIssues(
-        data.slice(0, 40).reduce((acc, e, idx) => {
-          const id = `image-${idx}`
-          acc[id] = {
-            id,
-            src: `https://labelerrors.com/${e['path']}`,
-            givenLabel: e['label'],
-            suggestedLabel: 'kirby',
-          }
-          return acc
-        }, {})
-      )
-
-      setOODData(
-        data.slice(30, 60).reduce((acc, e, idx) => {
-          const id = `image-${30 + idx}`
-          acc[id] = {
-            id: `image-${30 + idx}`,
-            src: `https://labelerrors.com/${e['path']}`,
-            givenLabel: e['label'],
-            suggestedLabel: 'kirby',
-          }
-          return acc
-        }, {})
-      )
     }
-    fetchData()
-  }, [])
+  }, [embeddings])
 
-  useEffect(() => {
-    util.train()
-  }, [])
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await fetch('https://labelerrors.com/api/data?dataset=ImageNet&page=1&limit=300')
+  //     const data = await res.json()
+  //
+  //     setPredProbsData(
+  //       data.reduce((acc, e, idx) => {
+  //         const id = `image-${idx}`
+  //         acc[id] = {
+  //           id,
+  //           src: `https://labelerrors.com/${e['path']}`,
+  //           givenLabel: e['label'],
+  //           probabilities: [...Array(3)].map((e) => Math.random().toFixed(3)),
+  //         }
+  //         return acc
+  //       }, {})
+  //     )
+  //
+  //     setIssues(
+  //       data.slice(0, 40).reduce((acc, e, idx) => {
+  //         const id = `image-${idx}`
+  //         acc[id] = {
+  //           id,
+  //           src: `https://labelerrors.com/${e['path']}`,
+  //           givenLabel: e['label'],
+  //           suggestedLabel: 'kirby',
+  //         }
+  //         return acc
+  //       }, {})
+  //     )
+  //
+  //     setOODData(
+  //       data.slice(30, 60).reduce((acc, e, idx) => {
+  //         const id = `image-${30 + idx}`
+  //         acc[id] = {
+  //           id: `image-${30 + idx}`,
+  //           src: `https://labelerrors.com/${e['path']}`,
+  //           givenLabel: e['label'],
+  //           suggestedLabel: 'kirby',
+  //         }
+  //         return acc
+  //       }, {})
+  //     )
+  //   }
+  //   fetchData()
+  // }, [])
 
   // compute class thresholds
   useEffect(() => {
@@ -118,7 +117,11 @@ export const App = () => {
         </HStack>
         <HStack width={'95%'} height={'90vh'}>
           <Box width={'20%'} height={'100%'}>
-            <DatasetInterface data={imageDataset} updateLabel={updateDatasetLabel} />
+            <DatasetInterface
+              data={imageDataset}
+              classes={CLASSES}
+              updateLabel={updateDatasetLabel}
+            />
           </Box>
           <VStack width={'60%'} height={'100%'}>
             <HStack width={'100%'} height={'70%'} align={'space-between'}>
