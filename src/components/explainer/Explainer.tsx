@@ -25,7 +25,7 @@ interface ExplainerProps {
   imageDataset: Record<string, Datapoint>
   predProbsData: Record<string, PredProbsEntryProps>
   thresholds: Record<string, number>
-  classes: Array<String>
+  classes: Array<string>
   classPercentile: number
   issues: Record<string, LabelIssue>
   OODData: Record<string, LabelIssue>
@@ -73,7 +73,9 @@ const Explainer = (props: ExplainerProps) => {
               <Thead>
                 <Tr>
                   {classes.map((c) => (
-                    <Th isNumeric>{c}</Th>
+                    <Th key={c} isNumeric>
+                      {c}
+                    </Th>
                   ))}
                 </Tr>
               </Thead>
