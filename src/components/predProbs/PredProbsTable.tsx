@@ -37,7 +37,7 @@ const PredProbsTable = (props: PredProbsTableProps) => {
       <Table variant="simple" size="sm">
         <Thead>
           <Tr>
-            <Th isNumeric>Example</Th>
+            <Th isNumeric>Image</Th>
             {classes.map((c) => (
               <Th isNumeric key={c}>
                 {c}

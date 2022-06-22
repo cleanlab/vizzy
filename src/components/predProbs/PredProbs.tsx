@@ -15,17 +15,23 @@ const PredProbs = (props: PredProbsProps) => {
     setOODPercentile,
     setActiveImageId,
     populatePredProbs,
+    predProbsComputing,
+    setPredProbsComputing,
   } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
       <HStack>
         <IconButton
-          size={'lg'}
+          fontSize={'30px'}
           aria-label={'compute pred probs'}
           icon={<AiFillPlayCircle />}
+          isLoading={predProbsComputing}
           variant={'unstyled'}
-          onClick={populatePredProbs}
+          onClick={() => {
+            setPredProbsComputing(true)
+            populatePredProbs()
+          }}
         />
         <Heading size={'sm'} fontWeight={500}>
           PREDICTED PROBABILITIES
