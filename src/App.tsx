@@ -32,7 +32,7 @@ export const App = () => {
   const [OODData, setOODData] = useState<Record<string, LabelIssue>>(null)
   const [activeImageId, setActiveImageId] = useState(null)
   const [classPercentile, setClassPercentile] = useState(50)
-  const embeddings: Record<string, Datapoint> = require('./model/embeddings.json')
+  const embeddings: Record<string, Datapoint> = require('./model/embeddings_32.json')
 
   const updateDatasetLabel = (id, label) => {
     console.log(`updating label to ${label}`)
