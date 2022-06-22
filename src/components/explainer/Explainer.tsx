@@ -54,14 +54,14 @@ const Explainer = (props: ExplainerProps) => {
   }
   const predProbs = predProbsData[activeImageId]
   const isIssue = issues ? Object.keys(issues).includes(activeImageId) : false
-  const issueEntry = issues[activeImageId]
+  const issueEntry = issues ? issues[activeImageId] : null
   const isOOD = OODData ? Object.keys(OODData).includes(activeImageId) : false
-  const OODEntry = OODData[activeImageId]
+  const OODEntry = OODData ? OODData[activeImageId] : null
   const datapoint = imageDataset[activeImageId]
   console.log('isIssue', isIssue)
   console.log('isOOD', isOOD)
   console.log('activeImageId', activeImageId)
-  console.log('Object.keys(OODData)', Object.keys(OODData))
+  // console.log('Object.keys(OODData)', Object.keys(OODData))
 
   return (
     <HStack height={'100%'} width={'100%'} justify={'flex-start'}>
@@ -96,7 +96,7 @@ const Explainer = (props: ExplainerProps) => {
           <Text fontSize={'sm'}>{datapoint.givenLabel}</Text>
         </HStack>
 
-        {isIssue && (
+        {isIssue && issueEntry && (
           <HStack>
             <Tag colorScheme={'yellow'} size={'md'}>
               Suggested label
@@ -104,7 +104,7 @@ const Explainer = (props: ExplainerProps) => {
             <Text fontSize={'sm'}>{issueEntry.suggestedLabel}</Text>
           </HStack>
         )}
-        {isOOD && (
+        {isOOD && OODEntry && (
           <HStack>
             <Tag colorScheme={'red'} size={'md'}>
               Out of distribution

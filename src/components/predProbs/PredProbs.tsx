@@ -1,17 +1,28 @@
 import React from 'react'
-import { VStack, Heading, Flex, Box, Text } from '@chakra-ui/react'
+import { VStack, Heading, Flex, Box, Text, HStack, IconButton } from '@chakra-ui/react'
 import { PredProbsEntryProps, PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
 import PercentileSlider from './PercentileSlider'
+import { AiFillPlayCircle } from 'react-icons/all'
 
 const PredProbs = (props: PredProbsProps) => {
-  const { data, classPercentile, setClassPercentile, setActiveImageId } = props
+  const { data, classPercentile, setClassPercentile, setActiveImageId, populatePredProbs } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
-      <Heading size={'sm'} fontWeight={500}>
-        PREDICTED PROBABILITIES
-      </Heading>
+      <HStack>
+        <IconButton
+          size={'lg'}
+          aria-label={'compute pred probs'}
+          icon={<AiFillPlayCircle />}
+          variant={'unstyled'}
+          onClick={populatePredProbs}
+        />
+        <Heading size={'sm'} fontWeight={500}>
+          PREDICTED PROBABILITIES
+        </Heading>
+      </HStack>
+
       {!data && (
         <Flex width={'100%'} height={'100%'} justify={'center'} align={'center'}>
           <Text fontSize={'sm'} fontStyle={'italic'}>

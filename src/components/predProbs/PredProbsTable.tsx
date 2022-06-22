@@ -23,6 +23,7 @@ interface PredProbsTableProps {
 }
 const PredProbsTable = (props: PredProbsTableProps) => {
   const { data, setActiveImageId } = props
+  console.log('data in pred probs table', data)
 
   return (
     <TableContainer overflowY={'auto'} height={'100%'}>

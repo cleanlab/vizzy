@@ -53,6 +53,12 @@ export const App = () => {
     }
   }, [embeddings])
 
+  const populatePredProbs = async () => {
+    const predProbs = await util.computePredProbs(imageDataset, CLASSES)
+    console.log('returned pred probs', predProbs)
+    setPredProbsData(predProbs)
+  }
+
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const res = await fetch('https://labelerrors.com/api/data?dataset=ImageNet&page=1&limit=300')
@@ -133,6 +139,7 @@ export const App = () => {
                     classPercentile={classPercentile}
                     setClassPercentile={setClassPercentile}
                     setActiveImageId={setActiveImageId}
+                    populatePredProbs={populatePredProbs}
                   />
                 </Box>
                 <Box height={'20%'}>

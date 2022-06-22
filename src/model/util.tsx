@@ -75,8 +75,7 @@ const splitArrayIntoKFolds = (arr, numFolds = 5) => {
   return chunks
 }
 
-const train = async (
-  id_to_embeddings,
+const computePredProbs = async (
   imageDataset: Record<string, Datapoint>,
   classes: Array<string>
 ) => {
@@ -95,36 +94,54 @@ const train = async (
     return acc
   }, {})
 
-  const indexToClass = classes.reduce((acc, c, idx) => {
-    acc[idx] = c
-    return acc
-  }, {})
+  // const indexToClass = classes.reduce((acc, c, idx) => {
+  //   acc[idx] = c
+  //   return acc
+  // }, {})
 
-  const ids = Object.keys(id_to_embeddings)
+  const ids = Object.keys(imageDataset)
   const folds = splitArrayIntoKFolds(shuffleArray(ids), numFolds)
   console.log('constructing k folds')
   const predProbsData = {}
   for (let i = 0; i < numFolds; i++) {
     console.log(`training fold ${i}`)
-    let train_ids = folds.slice(0, i).concat(folds.slice(i + 1))
+    let train_ids = folds
+      .slice(0, i)
+      .concat(folds.slice(i + 1))
+      .flat()
     let test_ids = folds[i]
-
-    let train_features = train_ids.map((id) => id_to_embeddings[id])
-    let test_features = test_ids.map((id) => id_to_embeddings[id])
+    console.log('train ids', train_ids)
+    console.log('image ID', imageDataset[train_ids[0]])
+    let train_features = train_ids.map((id) => imageDataset[id].embedding)
+    console.log('train features', train_features)
+    let test_features = test_ids.map((id) => imageDataset[id].embedding)
     let train_labels = ids.map((id) => classToIndex[imageDataset[id].givenLabel])
     svm.train(train_features, train_labels) // train the model
-    let test_preds = svm.predictOneProbability(test_features)
+    let test_preds = svm.predictProbability(test_features)
+    console.log('test_preds', test_preds)
     test_ids.reduce((acc, id, idx) => {
-      predProbsData[id] = test_preds[idx]
+      console.log('test_pred[idx]', test_preds[idx])
+      const probs = test_preds[idx].estimates.reduce(
+        (predsArray, labelAndProb) => {
+          const labelIdx = Number(labelAndProb.label)
+          console.log('labelIdx', labelIdx)
+          const probability = labelAndProb.probability
+          console.log('proba', probability)
+          predsArray[labelIdx] = probability
+          return predsArray
+        },
+        [0, 0, 0]
+      )
+      predProbsData[id] = { ...imageDataset[id], probabilities: probs }
       return acc
     }, predProbsData)
   }
-  console.log('pred probs', predProbsData)
+  return predProbsData
 }
 const exports = {
   argMax,
   computeClassThresholds,
   constructConfidentJoint,
-  train,
+  computePredProbs,
 }
 export default exports
