@@ -38,7 +38,7 @@ export const App = () => {
   const [OODData, setOODData] = useState<Record<string, LabelIssue>>(null)
   const [activeImageId, setActiveImageId] = useState(null)
   const [classPercentile, setClassPercentile] = useState(50)
-  const [OODPercentile, setOODPercentile] = useState(5)
+  const [OODPercentile, setOODPercentile] = useState(10)
   const embeddings: Record<string, Datapoint> = require('./model/embeddings_32.json')
 
   console.log('OOD percentile', OODPercentile)
