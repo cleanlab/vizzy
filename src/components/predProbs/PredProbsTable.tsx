@@ -37,7 +37,11 @@ const PredProbsTable = (props: PredProbsTableProps) => {
         </Thead>
         <Tbody>
           {Object.values(data).map((datapoint) => (
-            <PredProbsTableRow datapoint={datapoint} setActiveImageId={setActiveImageId} />
+            <PredProbsTableRow
+              key={datapoint.id}
+              datapoint={datapoint}
+              setActiveImageId={setActiveImageId}
+            />
           ))}
         </Tbody>
       </Table>

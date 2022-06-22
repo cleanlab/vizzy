@@ -25,7 +25,7 @@ const ConfidentJointGrid = (props: ConfidentJointProps) => {
       <VStack width={'92%'} height={'100%'}>
         <Grid templateColumns="repeat(3, 1fr)" gap={2} h="5" width={'100%'} justifyItems="center">
           {labels.map((label) => (
-            <GridItem>
+            <GridItem key={label}>
               <Tag colorScheme={'yellow'} size={'sm'}>
                 {`suggested: ${label}`}
               </Tag>

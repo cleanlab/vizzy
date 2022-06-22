@@ -10,7 +10,7 @@ interface PredProbsTableRowProps {
 const PredProbsTableRow = (props: PredProbsTableRowProps) => {
   const { datapoint, setActiveImageId } = props
   return (
-    <Tr key={datapoint.id}>
+    <Tr>
       <Td>
         <Flex height="40px" justify={'center'} align={'center'}>
           <Box onMouseEnter={() => setActiveImageId(datapoint.id)}>
