@@ -24,7 +24,6 @@ const ImageWithLabel = (props: ImageWithLabelProps) => {
           updateLabel(id, evt.target.value)
         }}
       >
-        <option key={givenLabel}>{givenLabel}</option>
         {classes.map((v) => (
           <option key={v}>{v}</option>
         ))}
