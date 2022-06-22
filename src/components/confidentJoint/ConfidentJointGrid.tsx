@@ -12,7 +12,7 @@ interface ConfidentJointProps {
 const ConfidentJointGrid = (props: ConfidentJointProps) => {
   const { labels, issues, setActiveImageId } = props
   return (
-    <HStack width={'100%'} height={'100%'}>
+    <HStack width={'100%'} height={'100%'} spacing={3}>
       <Grid alignItems="center" height={'100%'} justifyItems={'flex-end'} width={'6%'}>
         {labels.map((label) => (
           <GridItem>
