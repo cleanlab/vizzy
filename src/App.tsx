@@ -21,7 +21,13 @@ const CLASSES = ['cat', 'dog', 'bear']
 export const App = () => {
   const [imageDataset, setImageDataset] = useState<Record<string, Datapoint>>(null)
   const [predProbsData, setPredProbsData] = useState<Record<string, PredProbsEntryProps>>(null)
-  const [thresholds, setThresholds] = useState<Record<string, number>>(
+  const [classThresholds, setClassThresholds] = useState<Record<string, number>>(
+    CLASSES.reduce((acc, elt) => {
+      acc[elt] = 0
+      return acc
+    }, {})
+  )
+  const [OODThresholds, setOODThresholds] = useState<Record<string, number>>(
     CLASSES.reduce((acc, elt) => {
       acc[elt] = 0
       return acc
@@ -32,8 +38,10 @@ export const App = () => {
   const [OODData, setOODData] = useState<Record<string, LabelIssue>>(null)
   const [activeImageId, setActiveImageId] = useState(null)
   const [classPercentile, setClassPercentile] = useState(50)
+  const [OODPercentile, setOODPercentile] = useState(5)
   const embeddings: Record<string, Datapoint> = require('./model/embeddings_32.json')
 
+  console.log('OOD percentile', OODPercentile)
   const updateDatasetLabel = (id, label) => {
     console.log(`updating label to ${label}`)
     setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
@@ -109,9 +117,17 @@ export const App = () => {
   // compute class thresholds
   useEffect(() => {
     if (predProbsData) {
-      const thresholds = util.computeClassThresholds(predProbsData, CLASSES, classPercentile)
-      setThresholds(thresholds)
-      const cjData = util.constructConfidentJoint(predProbsData, CLASSES, thresholds)
+      const classThresholds_ = util.computeClassThresholds(predProbsData, CLASSES, classPercentile)
+      setClassThresholds(classThresholds_)
+
+      const OODThresholds_ = util.computeClassThresholds(predProbsData, CLASSES, OODPercentile)
+      setOODThresholds(OODThresholds_)
+      const cjData = util.constructConfidentJoint(
+        predProbsData,
+        CLASSES,
+        classThresholds_,
+        OODThresholds_
+      )
       setConfidentJointData(cjData)
       setIssues(
         Object.keys(cjData).reduce((acc, id) => {
@@ -125,14 +141,14 @@ export const App = () => {
       setOODData(
         Object.keys(cjData).reduce((acc, id) => {
           const datapoint = cjData[id]
-          if (datapoint.suggestedLabel === null) {
+          if (datapoint.OOD) {
             acc[id] = cjData[id]
           }
           return acc
         }, {})
       )
     }
-  }, [predProbsData, classPercentile, setThresholds])
+  }, [predProbsData, classPercentile, setClassThresholds, OODPercentile, setOODThresholds])
 
   return (
     <ChakraProvider theme={theme}>
@@ -151,19 +167,21 @@ export const App = () => {
           <VStack width={'60%'} height={'100%'}>
             <HStack width={'100%'} height={'70%'} align={'space-between'}>
               <VStack width={'40%'} height={'100%'} spacing={'0rem'}>
-                <Box height={'85%'}>
+                <Box height={'100%'}>
                   <PredProbs
                     data={predProbsData}
                     classes={CLASSES}
                     classPercentile={classPercentile}
                     setClassPercentile={setClassPercentile}
+                    OODPercentile={OODPercentile}
+                    setOODPercentile={setOODPercentile}
                     setActiveImageId={setActiveImageId}
                     populatePredProbs={populatePredProbs}
                   />
                 </Box>
-                <Box height={'20%'}>
-                  <Thresholds thresholds={thresholds} />
-                </Box>
+                {/*<Box height={'20%'}>*/}
+                {/*  <Thresholds thresholds={classThresholds} />*/}
+                {/*</Box>*/}
               </VStack>
               <ConfidentJoint
                 labels={CLASSES}
@@ -172,12 +190,12 @@ export const App = () => {
               />
             </HStack>
             <Divider />
-            <Box height={'20%'} width={'100%'}>
+            <Box height={'30%'} width={'100%'}>
               <Explainer
                 imageDataset={imageDataset}
                 predProbsData={predProbsData}
                 classes={CLASSES}
-                thresholds={thresholds}
+                thresholds={classThresholds}
                 issues={issues}
                 OODData={OODData}
                 classPercentile={classPercentile}

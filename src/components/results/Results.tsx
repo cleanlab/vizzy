@@ -1,6 +1,5 @@
 import React from 'react'
 import { Box, Flex, Grid, GridItem, Heading, VStack } from '@chakra-ui/react'
-import ImageWithLabel from '../dataset/ImageWithLabel/ImageWithLabel'
 import { LabelIssue } from './types'
 import LabelIssueImage from './LabelIssueImage'
 import EmptyResults from './EmptyResults'

@@ -12,16 +12,19 @@ import {
 } from '@chakra-ui/react'
 
 interface PercentileSliderProps {
+  name: string
   percentile: number
   setPercentile: (number) => void
 }
 
 const PercentileSlider = (props: PercentileSliderProps) => {
-  const { percentile, setPercentile } = props
+  const { name, percentile, setPercentile } = props
 
   return (
-    <VStack align={'flex-start'}>
-      <Text fontSize={'sm'}>Percentile threshold: {percentile}</Text>
+    <VStack align={'flex-start'} width={'100%'}>
+      <Text fontSize={'sm'}>
+        {name}: {percentile}
+      </Text>
       <Slider
         value={percentile}
         min={0}

@@ -1,6 +1,8 @@
 import percentile from 'percentile'
 import { PredProbsEntryProps } from '../components/predProbs/types'
 import { Datapoint } from '../components/dataset/types'
+import { zip } from 'lodash'
+import thresholds from '../components/predProbs/Thresholds'
 
 const argMax = (array) => {
   return [].reduce.call(array, (m, c, i, arr) => (c > arr[m] ? i : m), 0)
@@ -33,22 +35,27 @@ const computeClassThresholds = (
 const constructConfidentJoint = (
   predProbsData: Record<string, PredProbsEntryProps>,
   classes,
-  thresholds
+  classThresholds,
+  OODThresholds
 ) => {
   const data = Object.values(predProbsData).reduce((acc, elt, idx) => {
     const predProbs = elt.probabilities
     const maxPredProbs = Math.max(...predProbs)
     const argMaxPredProbs = argMax(predProbs)
     const argMaxClass = classes[argMaxPredProbs]
-    const classThreshold = thresholds[argMaxClass]
+    const classThreshold = classThresholds[argMaxClass]
+
     let suggestedLabel = null
     if (maxPredProbs >= classThreshold) {
       suggestedLabel = argMaxClass
     }
-    acc[elt.id] = {
-      ...elt,
-      suggestedLabel: suggestedLabel,
-    }
+    let OOD = true
+    predProbs.forEach((prob, idx) => {
+      if (prob >= OODThresholds[classes[idx]]) {
+        OOD = false
+      }
+    })
+    acc[elt.id] = { ...elt, suggestedLabel, OOD }
     return acc
   }, {})
   return data
@@ -115,7 +122,6 @@ const computePredProbs = async (
       .flat()
     let test_ids = folds[i]
     let train_features = train_ids.map((id) => imageDataset[id].embedding)
-    console.log('train features', train_features)
     let test_features = test_ids.map((id) => imageDataset[id].embedding)
     let train_labels = train_ids.map((id) => classToIndex[imageDataset[id].givenLabel])
 

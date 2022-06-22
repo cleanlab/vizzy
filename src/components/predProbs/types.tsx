@@ -3,6 +3,8 @@ export interface PredProbsProps {
   classes: Array<string>
   classPercentile: number
   setClassPercentile: (number) => void
+  OODPercentile: number
+  setOODPercentile: (number) => void
   setActiveImageId: (string) => void
   populatePredProbs: (string) => void
 }

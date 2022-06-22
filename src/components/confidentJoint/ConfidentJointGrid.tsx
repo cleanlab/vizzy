@@ -16,7 +16,7 @@ const ConfidentJointGrid = (props: ConfidentJointProps) => {
       <Grid alignItems="center" height={'100%'} justifyItems={'flex-end'} width={'8%'}>
         {labels.map((label) => (
           <GridItem key={label}>
-            <Tag colorScheme={'blue'} size={'sm'} transform={'rotate(270deg)'} width={'100px'}>
+            <Tag colorScheme={'blue'} size={'sm'} transform={'rotate(270deg)'} width={'90px'}>
               {`given: ${label}`}
             </Tag>
           </GridItem>

@@ -18,8 +18,6 @@ import {
 import { Datapoint, ImageWithLabelProps } from '../dataset/types'
 import { LabelIssue } from '../results/types'
 import { PredProbsEntryProps } from '../predProbs/types'
-import PredProbsTable from '../predProbs/PredProbsTable'
-import PredProbsTableRow from '../predProbs/PredProbsTableRow'
 
 interface ExplainerProps {
   imageDataset: Record<string, Datapoint>
@@ -58,13 +56,9 @@ const Explainer = (props: ExplainerProps) => {
   const isOOD = OODData ? Object.keys(OODData).includes(activeImageId) : false
   const OODEntry = OODData ? OODData[activeImageId] : null
   const datapoint = imageDataset[activeImageId]
-  console.log('isIssue', isIssue)
-  console.log('isOOD', isOOD)
-  console.log('activeImageId', activeImageId)
-  // console.log('Object.keys(OODData)', Object.keys(OODData))
 
   return (
-    <HStack height={'100%'} width={'100%'} justify={'flex-start'}>
+    <HStack height={'100%'} width={'100%'} justify={'flex-start'} p={4}>
       <Image height={'100%'} src={datapoint.src} />
       <VStack align={'flex-start'} justify={'flex-start'} height={'100%'}>
         {predProbs && (

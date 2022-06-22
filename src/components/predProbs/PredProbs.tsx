@@ -11,6 +11,8 @@ const PredProbs = (props: PredProbsProps) => {
     classes,
     classPercentile,
     setClassPercentile,
+    OODPercentile,
+    setOODPercentile,
     setActiveImageId,
     populatePredProbs,
   } = props
@@ -30,25 +32,25 @@ const PredProbs = (props: PredProbsProps) => {
         </Heading>
       </HStack>
 
-      {!data && (
-        <Flex width={'100%'} height={'100%'} justify={'center'} align={'center'}>
-          <Text fontSize={'sm'} fontStyle={'italic'}>
-            Nothing computed.
-          </Text>
-        </Flex>
-      )}
-      {data && (
-        <>
-          <PredProbsTable
-            data={Object.values(data)}
-            classes={classes}
-            setActiveImageId={setActiveImageId}
+      <>
+        <PredProbsTable
+          data={data ? Object.values(data) : []}
+          classes={classes}
+          setActiveImageId={setActiveImageId}
+        />
+        <Box width={'90%'}>
+          <PercentileSlider
+            name={'Class percentile'}
+            percentile={classPercentile}
+            setPercentile={setClassPercentile}
           />
-          <Box>
-            <PercentileSlider percentile={classPercentile} setPercentile={setClassPercentile} />
-          </Box>
-        </>
-      )}
+          <PercentileSlider
+            name={'Out-of-distribution percentile'}
+            percentile={OODPercentile}
+            setPercentile={setOODPercentile}
+          />
+        </Box>
+      </>
     </VStack>
   )
 }

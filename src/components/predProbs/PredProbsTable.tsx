@@ -11,6 +11,7 @@ import {
   Tfoot,
   Th,
   Thead,
+  Text,
   Tr,
 } from '@chakra-ui/react'
 import React from 'react'
@@ -24,7 +25,12 @@ interface PredProbsTableProps {
 }
 const PredProbsTable = (props: PredProbsTableProps) => {
   const { data, classes, setActiveImageId } = props
-  console.log('data in pred probs table', data)
+  const dummyPredProbs = {
+    id: null,
+    src: null,
+    givenLabel: null,
+    probabilities: [],
+  }
 
   return (
     <TableContainer overflowY={'auto'} height={'100%'}>
@@ -53,4 +59,5 @@ const PredProbsTable = (props: PredProbsTableProps) => {
   )
 }
 
+//<Tr key={idx}><Td>d</Td><Td>d</Td><Td>d</Td><Td>d</Td></Tr>
 export default PredProbsTable
