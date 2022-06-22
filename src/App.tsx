@@ -21,11 +21,12 @@ const CLASSES = ['cat', 'dog', 'bear']
 export const App = () => {
   const [imageDataset, setImageDataset] = useState<Record<string, Datapoint>>(null)
   const [predProbsData, setPredProbsData] = useState<Record<string, PredProbsEntryProps>>(null)
-  const [thresholds, setThresholds] = useState<Record<string, number>>({
-    dog: 0,
-    cat: 0,
-    mouse: 0,
-  })
+  const [thresholds, setThresholds] = useState<Record<string, number>>(
+    CLASSES.reduce((acc, elt) => {
+      acc[elt] = 0
+      return acc
+    }, {})
+  )
   const [confidentJointData, setConfidentJointData] = useState<Record<string, LabelIssue>>(null)
   const [issues, setIssues] = useState<Record<string, LabelIssue>>(null)
   const [OODData, setOODData] = useState<Record<string, LabelIssue>>(null)
