@@ -20,7 +20,7 @@ const PredProbsTableRow = (props: PredProbsTableRowProps) => {
       </Td>
       {datapoint.probabilities.map((prob, idx) => (
         <Td isNumeric key={idx}>
-          {prob}
+          {prob.toFixed(3)}
         </Td>
       ))}
     </Tr>

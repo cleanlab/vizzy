@@ -19,10 +19,11 @@ import PredProbsTableRow from './PredProbsTableRow'
 
 interface PredProbsTableProps {
   data: Array<PredProbsEntryProps>
+  classes: Array<string>
   setActiveImageId: (string) => void
 }
 const PredProbsTable = (props: PredProbsTableProps) => {
-  const { data, setActiveImageId } = props
+  const { data, classes, setActiveImageId } = props
   console.log('data in pred probs table', data)
 
   return (
@@ -31,9 +32,11 @@ const PredProbsTable = (props: PredProbsTableProps) => {
         <Thead>
           <Tr>
             <Th isNumeric>Example</Th>
-            <Th isNumeric>C1</Th>
-            <Th isNumeric>C2</Th>
-            <Th isNumeric>C3</Th>
+            {classes.map((c) => (
+              <Th isNumeric key={c}>
+                {c}
+              </Th>
+            ))}
           </Tr>
         </Thead>
         <Tbody>

@@ -82,7 +82,7 @@ const Explainer = (props: ExplainerProps) => {
               <Tbody>
                 <Tr>
                   {predProbs.probabilities.map((v, idx) => (
-                    <Td key={idx}>{v}</Td>
+                    <Td key={idx}>{v.toFixed(3)}</Td>
                   ))}
                 </Tr>
               </Tbody>

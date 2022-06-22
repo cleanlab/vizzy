@@ -22,7 +22,8 @@ const computeClassThresholds = (
     classToProbs[argMaxClass].push(v.probabilities[arg_max])
   })
   return Object.entries(classToProbs).reduce((acc, [className, probs]) => {
-    acc[className] = percentile(classPercentile, probs)
+    console.log('probs for thresholds', probs)
+    acc[className] = percentile(classPercentile, probs) || 1
     return acc
   }, {})
 }
@@ -84,7 +85,8 @@ const computePredProbs = async (
     kernel: SVM.KERNEL_TYPES.RBF, // The type of kernel I want to use
     type: SVM.SVM_TYPES.C_SVC, // The type of SVM I want to run
     gamma: 1, // RBF kernel gamma parameter
-    cost: 1, // C_SVC cost parameter
+    cost: 0.1, // C_SVC cost parameter
+    probabilityEstimates: true,
   })
   console.log('loaded svm')
 
@@ -116,18 +118,16 @@ const computePredProbs = async (
     console.log('train features', train_features)
     let test_features = test_ids.map((id) => imageDataset[id].embedding)
     let train_labels = ids.map((id) => classToIndex[imageDataset[id].givenLabel])
+    console.log('train labels', train_labels)
     svm.train(train_features, train_labels) // train the model
-    let test_preds = svm.predictProbability(test_features)
+    // let test_preds = svm.predictProbability(test_features)
+    let test_preds = test_features.map((v) => svm.predictOneProbability(v))
     console.log('test_preds', test_preds)
     test_ids.reduce((acc, id, idx) => {
-      console.log('test_pred[idx]', test_preds[idx])
       const probs = test_preds[idx].estimates.reduce(
         (predsArray, labelAndProb) => {
           const labelIdx = Number(labelAndProb.label)
-          console.log('labelIdx', labelIdx)
-          const probability = labelAndProb.probability
-          console.log('proba', probability)
-          predsArray[labelIdx] = probability
+          predsArray[labelIdx] = labelAndProb.probability
           return predsArray
         },
         [0, 0, 0]

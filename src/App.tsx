@@ -113,6 +113,24 @@ export const App = () => {
       setThresholds(thresholds)
       const cjData = util.constructConfidentJoint(predProbsData, CLASSES, thresholds)
       setConfidentJointData(cjData)
+      setIssues(
+        Object.keys(cjData).reduce((acc, id) => {
+          const datapoint = cjData[id]
+          if (datapoint.suggestedLabel && datapoint.givenLabel !== datapoint.suggestedLabel) {
+            acc[id] = cjData[id]
+          }
+          return acc
+        }, {})
+      )
+      setOODData(
+        Object.keys(cjData).reduce((acc, id) => {
+          const datapoint = cjData[id]
+          if (datapoint.suggestedLabel === null) {
+            acc[id] = cjData[id]
+          }
+          return acc
+        }, {})
+      )
     }
   }, [predProbsData, classPercentile, setThresholds])
 
@@ -136,6 +154,7 @@ export const App = () => {
                 <Box height={'85%'}>
                   <PredProbs
                     data={predProbsData}
+                    classes={CLASSES}
                     classPercentile={classPercentile}
                     setClassPercentile={setClassPercentile}
                     setActiveImageId={setActiveImageId}

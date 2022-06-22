@@ -6,7 +6,14 @@ import PercentileSlider from './PercentileSlider'
 import { AiFillPlayCircle } from 'react-icons/all'
 
 const PredProbs = (props: PredProbsProps) => {
-  const { data, classPercentile, setClassPercentile, setActiveImageId, populatePredProbs } = props
+  const {
+    data,
+    classes,
+    classPercentile,
+    setClassPercentile,
+    setActiveImageId,
+    populatePredProbs,
+  } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
@@ -32,7 +39,11 @@ const PredProbs = (props: PredProbsProps) => {
       )}
       {data && (
         <>
-          <PredProbsTable data={Object.values(data)} setActiveImageId={setActiveImageId} />
+          <PredProbsTable
+            data={Object.values(data)}
+            classes={classes}
+            setActiveImageId={setActiveImageId}
+          />
           <Box>
             <PercentileSlider percentile={classPercentile} setPercentile={setClassPercentile} />
           </Box>

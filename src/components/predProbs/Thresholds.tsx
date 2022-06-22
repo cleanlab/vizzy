@@ -14,7 +14,7 @@ const Thresholds = (props: ThresholdsProps) => {
           <HStack justify={'space-between'} width={'100%'} key={name}>
             <Text fontSize={'sm'}>Class '{name}' threshold</Text>
             <Text fontSize={'sm'} fontWeight={700}>
-              {thresholds[name]}
+              {thresholds[name].toFixed(3)}
             </Text>
           </HStack>
         )
