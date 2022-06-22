@@ -90,12 +90,13 @@ const Explainer = (props: ExplainerProps) => {
           <Text fontSize={'sm'}>{datapoint.givenLabel}</Text>
         </HStack>
 
-        {isIssue && issueEntry && (
+        {!isOOD && (
           <HStack>
             <Tag colorScheme={'yellow'} size={'md'}>
               Suggested label
             </Tag>
-            <Text fontSize={'sm'}>{issueEntry.suggestedLabel}</Text>
+            {isIssue && issueEntry && <Text fontSize={'sm'}>{issueEntry.suggestedLabel}</Text>}
+            {!isIssue && <Text fontSize={'sm'}>{datapoint.givenLabel}</Text>}
           </HStack>
         )}
         {isOOD && OODEntry && (
