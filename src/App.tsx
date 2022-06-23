@@ -42,9 +42,7 @@ export const App = () => {
   const embeddings: Record<string, Datapoint> = require('./model/embeddings_32.json')
   const [predProbsComputing, setPredProbsComputing] = useState(false)
 
-  console.log('OOD percentile', OODPercentile)
   const updateDatasetLabel = (id, label) => {
-    console.log(`updating label to ${label}`)
     setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
   }
 
@@ -67,53 +65,6 @@ export const App = () => {
     setPredProbsData(predProbs)
     setPredProbsComputing(false)
   }
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch('https://labelerrors.com/api/data?dataset=ImageNet&page=1&limit=300')
-  //     const data = await res.json()
-  //
-  //     setPredProbsData(
-  //       data.reduce((acc, e, idx) => {
-  //         const id = `image-${idx}`
-  //         acc[id] = {
-  //           id,
-  //           src: `https://labelerrors.com/${e['path']}`,
-  //           givenLabel: e['label'],
-  //           probabilities: [...Array(3)].map((e) => Math.random().toFixed(3)),
-  //         }
-  //         return acc
-  //       }, {})
-  //     )
-  //
-  //     setIssues(
-  //       data.slice(0, 40).reduce((acc, e, idx) => {
-  //         const id = `image-${idx}`
-  //         acc[id] = {
-  //           id,
-  //           src: `https://labelerrors.com/${e['path']}`,
-  //           givenLabel: e['label'],
-  //           suggestedLabel: 'kirby',
-  //         }
-  //         return acc
-  //       }, {})
-  //     )
-  //
-  //     setOODData(
-  //       data.slice(30, 60).reduce((acc, e, idx) => {
-  //         const id = `image-${30 + idx}`
-  //         acc[id] = {
-  //           id: `image-${30 + idx}`,
-  //           src: `https://labelerrors.com/${e['path']}`,
-  //           givenLabel: e['label'],
-  //           suggestedLabel: 'kirby',
-  //         }
-  //         return acc
-  //       }, {})
-  //     )
-  //   }
-  //   fetchData()
-  // }, [])
 
   // compute class thresholds
   useEffect(() => {
@@ -198,10 +149,12 @@ export const App = () => {
                 imageDataset={imageDataset}
                 predProbsData={predProbsData}
                 classes={CLASSES}
-                thresholds={classThresholds}
+                classThresholds={classThresholds}
+                OODThresholds={OODThresholds}
                 issues={issues}
                 OODData={OODData}
                 classPercentile={classPercentile}
+                OODPercentile={OODPercentile}
                 activeImageId={activeImageId}
               />
             </Box>

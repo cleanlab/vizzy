@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Box,
+  chakra,
   Flex,
   HStack,
   Image,
@@ -18,13 +19,17 @@ import {
 import { Datapoint, ImageWithLabelProps } from '../dataset/types'
 import { LabelIssue } from '../results/types'
 import { PredProbsEntryProps } from '../predProbs/types'
+import util from '../../model/util'
+import Explanation from './Explanation'
 
 interface ExplainerProps {
   imageDataset: Record<string, Datapoint>
   predProbsData: Record<string, PredProbsEntryProps>
-  thresholds: Record<string, number>
+  classThresholds: Record<string, number>
+  OODThresholds: Record<string, number>
   classes: Array<string>
   classPercentile: number
+  OODPercentile: number
   issues: Record<string, LabelIssue>
   OODData: Record<string, LabelIssue>
   activeImageId: string
@@ -34,9 +39,11 @@ const Explainer = (props: ExplainerProps) => {
   const {
     imageDataset,
     predProbsData,
-    thresholds,
+    classThresholds,
+    OODThresholds,
     classes,
     classPercentile,
+    OODPercentile,
     issues,
     OODData,
     activeImageId,
@@ -51,6 +58,8 @@ const Explainer = (props: ExplainerProps) => {
     )
   }
   const predProbs = predProbsData[activeImageId]
+  const predictedClass = classes[util.argMax(predProbs.probabilities)]
+  const predictedClassProb = Math.max(...predProbs.probabilities)
   const isIssue = issues ? Object.keys(issues).includes(activeImageId) : false
   const issueEntry = issues ? issues[activeImageId] : null
   const isOOD = OODData ? Object.keys(OODData).includes(activeImageId) : false
@@ -62,26 +71,43 @@ const Explainer = (props: ExplainerProps) => {
       <Image height={'100%'} src={datapoint.src} />
       <VStack align={'flex-start'} justify={'flex-start'} height={'100%'}>
         {predProbs && (
-          <TableContainer overflowY={'auto'} height={'100%'}>
-            <Table variant="simple" size="sm">
-              <Thead>
-                <Tr>
-                  {classes.map((c) => (
-                    <Th key={c} isNumeric>
-                      {c}
-                    </Th>
-                  ))}
-                </Tr>
-              </Thead>
-              <Tbody>
-                <Tr>
-                  {predProbs.probabilities.map((v, idx) => (
-                    <Td key={idx}>{v.toFixed(3)}</Td>
-                  ))}
-                </Tr>
-              </Tbody>
-            </Table>
-          </TableContainer>
+          <>
+            <TableContainer overflowY={'auto'} height={'100%'}>
+              <Table variant="simple" size="sm">
+                <Thead>
+                  <Tr>
+                    {classes.map((c) => (
+                      <Th key={c} isNumeric>
+                        {c}
+                      </Th>
+                    ))}
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  <Tr>
+                    {predProbs.probabilities.map((v, idx) => (
+                      <Td key={idx}>{v.toFixed(3)}</Td>
+                    ))}
+                  </Tr>
+                </Tbody>
+              </Table>
+            </TableContainer>
+            <Text fontSize={'sm'}>
+              The model predicts that is a{' '}
+              <chakra.span fontWeight={600}>{predictedClass}</chakra.span> with probability{' '}
+              <chakra.span fontWeight={600}>{predictedClassProb.toFixed(3)}</chakra.span>.
+            </Text>
+            <Explanation
+              datapoint={datapoint}
+              classes={classes}
+              predProbs={predProbs}
+              classPercentile={classPercentile}
+              classThresholds={classThresholds}
+              OODPercentile={OODPercentile}
+              OODThresholds={OODThresholds}
+              isOOD={isOOD}
+            />
+          </>
         )}
         <HStack>
           <Tag colorScheme={'blue'} size={'md'}>
