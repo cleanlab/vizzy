@@ -140,6 +140,7 @@ export const App = () => {
               <ConfidentJoint
                 labels={CLASSES}
                 issues={confidentJointData}
+                activeImageId={activeImageId}
                 setActiveImageId={setActiveImageId}
               />
             </HStack>
@@ -162,10 +163,18 @@ export const App = () => {
 
           <VStack width={'20%'} height={'100%'}>
             <Box height={'60%'} width={'100%'}>
-              <Results issues={issues} setActiveImageId={setActiveImageId} />
+              <Results
+                issues={issues}
+                activeImageId={activeImageId}
+                setActiveImageId={setActiveImageId}
+              />
             </Box>
             <Box height={'40%'} width={'100%'}>
-              <OutOfDistribution issues={OODData} setActiveImageId={setActiveImageId} />
+              <OutOfDistribution
+                issues={OODData}
+                activeImageId={activeImageId}
+                setActiveImageId={setActiveImageId}
+              />
             </Box>
           </VStack>
         </HStack>

@@ -6,11 +6,12 @@ import ConfidentJointMatrix from './ConfidentJointMatrix'
 interface ConfidentJointProps {
   labels: Array<string>
   issues: Record<string, LabelIssue>
+  activeImageId: string
   setActiveImageId: (string) => void
 }
 
 const ConfidentJointGrid = (props: ConfidentJointProps) => {
-  const { labels, issues, setActiveImageId } = props
+  const { labels, issues, activeImageId, setActiveImageId } = props
   return (
     <HStack width={'100%'} height={'100%'} spacing={3}>
       <Grid alignItems="center" height={'100%'} justifyItems={'flex-end'} width={'8%'}>
@@ -32,7 +33,12 @@ const ConfidentJointGrid = (props: ConfidentJointProps) => {
             </GridItem>
           ))}
         </Grid>
-        <ConfidentJointMatrix issues={issues} setActiveImageId={setActiveImageId} labels={labels} />
+        <ConfidentJointMatrix
+          issues={issues}
+          activeImageId={activeImageId}
+          setActiveImageId={setActiveImageId}
+          labels={labels}
+        />
       </VStack>
     </HStack>
   )

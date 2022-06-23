@@ -7,11 +7,12 @@ import EmptyResults from '../results/EmptyResults'
 
 interface OODProps {
   issues: Record<string, LabelIssue>
+  activeImageId: string
   setActiveImageId: (string) => void
 }
 
 const OutOfDistribution = (props: OODProps) => {
-  const { issues, setActiveImageId } = props
+  const { issues, activeImageId, setActiveImageId } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
@@ -29,6 +30,7 @@ const OutOfDistribution = (props: OODProps) => {
               <LabelIssueImage
                 {...datapoint}
                 id={datapoint.id}
+                activeImageId={activeImageId}
                 setActiveImageId={setActiveImageId}
               />
             </GridItem>

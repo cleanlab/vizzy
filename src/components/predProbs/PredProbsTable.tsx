@@ -13,6 +13,7 @@ import {
   Thead,
   Text,
   Tr,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import React from 'react'
 import { PredProbsEntryProps } from './types'
@@ -35,7 +36,7 @@ const PredProbsTable = (props: PredProbsTableProps) => {
   return (
     <TableContainer overflowY={'auto'} height={'100%'}>
       <Table variant="simple" size="sm">
-        <Thead>
+        <Thead position="sticky" top="0" backgroundColor={useColorModeValue('white', 'gray.900')}>
           <Tr>
             <Th isNumeric>Image</Th>
             {classes.map((c) => (
