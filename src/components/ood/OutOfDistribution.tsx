@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Grid, GridItem, Heading, VStack } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem, Heading, Tag, VStack } from '@chakra-ui/react'
 import ImageWithLabel from '../dataset/ImageWithLabel/ImageWithLabel'
 import { LabelIssue } from '../results/types'
 import LabelIssueImage from '../results/LabelIssueImage'
@@ -15,9 +15,9 @@ const OutOfDistribution = (props: OODProps) => {
 
   return (
     <VStack width={'100%'} height={'100%'}>
-      <Heading size={'sm'} fontWeight={500}>
-        OUT OF DISTRIBUTION
-      </Heading>
+      <Tag colorScheme={'red'} size={'md'}>
+        Out of distribution
+      </Tag>
       {issues === null && <EmptyResults text={'No results yet.'} />}
       {issues && Object.keys(issues).length === 0 && (
         <EmptyResults text={'No out-of-distribution examples found.'} />
