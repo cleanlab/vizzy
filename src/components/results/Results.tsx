@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Grid, GridItem, Heading, VStack } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem, Heading, Tag, VStack } from '@chakra-ui/react'
 import { LabelIssue } from './types'
 import LabelIssueImage from './LabelIssueImage'
 import EmptyResults from './EmptyResults'
@@ -15,9 +15,9 @@ const Results = (props: ResultsProps) => {
 
   return (
     <VStack width={'100%'} height={'100%'}>
-      <Heading size={'sm'} fontWeight={500}>
-        LABEL ISSUES
-      </Heading>
+      <Tag colorScheme={'purple'} size={'md'}>
+        Label Issues
+      </Tag>
       {issues === null && <EmptyResults text={'No results yet.'} />}
       {issues && Object.keys(issues).length === 0 && <EmptyResults text={'No errors found.'} />}
       {issues && Object.keys(issues).length && (
