@@ -27,10 +27,12 @@ interface ExplanationProps {
   OODThresholds: Record<string, number>
   isOOD: boolean
   selectedClass: string
+  showTooltip: boolean
+  setShowTooltip: (boolean) => void
 }
 
 const ThresholdSlider = (props: ExplanationProps) => {
-  const { predProbs, classes, classThresholds, OODThresholds, selectedClass } = props
+  const { predProbs, classes, classThresholds, OODThresholds, selectedClass, showTooltip } = props
 
   const predProbsClassMapping = classes.reduce((acc, class_, idx) => {
     acc[class_] = idx
@@ -114,18 +116,28 @@ const ThresholdSlider = (props: ExplanationProps) => {
             color="white"
             placement="top"
             fontSize="10"
+            isOpen={showTooltip}
             label={predictedClassProb.toFixed(3)}
           >
-            <Flex>
-              <SliderThumb
-                as={BsTriangleFill}
-                bg={'none'}
-                boxShadow={'none'}
-                transform={'translateY(-20%)'}
-                borderRadius={'none'}
-              />
-            </Flex>
+            <SliderMark value={predictedClassProb} textAlign="center" fontSize={'xs'} ml="2" />
           </Tooltip>
+            <SliderThumb
+              as={BsTriangleFill}
+              bg={'none'}
+              boxShadow={'none'}
+              borderWidth={'0px'}
+              transform={'translateY(-20%)'}
+              borderRadius={'none'}
+            />
+          <Box>
+            <SliderThumb
+              as={BsTriangleFill}
+              bg={'none'}
+              boxShadow={'none'}
+              borderWidth={'0px'}
+              transform={'translateY(-20%)'}
+            />
+          </Box>
         </Slider>
       )}
     </HStack>
