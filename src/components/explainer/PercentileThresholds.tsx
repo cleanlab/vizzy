@@ -28,8 +28,18 @@ const PercentileThresholds = (props: ExplanationProps) => {
     isOOD,
   } = props
 
+  const [showTooltip, setShowTooltip] = useState(false)
+
   return (
-    <VStack width={'100%'} height={'100%'} spacing={'2rem'} align={'flex-start'} pl={'4px'}>
+    <VStack
+      width={'100%'}
+      height={'100%'}
+      spacing={'2rem'}
+      align={'flex-start'}
+      pl={'4px'}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
       {classes.map((cls) => (
         <ThresholdSlider
           key={cls}
@@ -42,6 +52,8 @@ const PercentileThresholds = (props: ExplanationProps) => {
           OODPercentile={OODPercentile}
           OODThresholds={OODThresholds}
           isOOD={isOOD}
+          showTooltip={showTooltip}
+          setShowTooltip={setShowTooltip}
         />
       ))}
     </VStack>
