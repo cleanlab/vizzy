@@ -1,10 +1,11 @@
 import React from 'react'
-import { chakra, Flex, HStack, Image, Tag, Text, VStack, Divider } from '@chakra-ui/react'
+import { chakra, Flex, HStack, Image, Tag, Text, VStack, Divider, Box } from '@chakra-ui/react'
 import { Datapoint, ImageWithLabelProps } from '../dataset/types'
 import { LabelIssue } from '../results/types'
 import { PredProbsEntryProps } from '../predProbs/types'
 import util from '../../model/util'
 import PercentileThresholds from './PercentileThresholds'
+import Explanation from './Explanation'
 
 interface ExplainerProps {
   imageDataset: Record<string, Datapoint>
@@ -51,45 +52,42 @@ const Explainer = (props: ExplainerProps) => {
   const datapoint = imageDataset[activeImageId]
 
   return (
-    <HStack height={'100%'} width={'100%'}>
-      <Image height={'90%'} src={datapoint.src} />
-      <VStack align={'center'} justify={'flex-start'} height={'100%'} width={'100%'}>
-        <Text fontSize={'sm'}>
-          The model predicts that is a <chakra.span fontWeight={600}>{predictedClass}</chakra.span>{' '}
-          with probability{' '}
-          <chakra.span fontWeight={600}>{predictedClassProb.toFixed(3)}</chakra.span>.
-        </Text>
+    <HStack height={'100%'} width={'100%'} align={'flex-start'} spacing={'1rem'}>
+      <VStack width={'30%'} height={'100%'}>
+        <Image height={'95%'} src={datapoint.src} />
+
         <HStack spacing={'2rem'}>
           <HStack>
             <Tag colorScheme={'blue'} size={'sm'}>
-              Given label
+              Given
             </Tag>
-            <Text fontSize={'sm'}>
-              Either belongs to none of the 3 classes, or is an atypical example of one of the
-              classes
-            </Text>
+            <Text fontSize={'sm'}>{datapoint.givenLabel}</Text>
           </HStack>
 
           {!isOOD && (
             <HStack>
               <Tag colorScheme={'yellow'} size={'sm'}>
-                Suggested label
+                Suggested
               </Tag>
               {isIssue && issueEntry && <Text fontSize={'sm'}>{issueEntry.suggestedLabel}</Text>}
               {!isIssue && <Text fontSize={'sm'}>{datapoint.givenLabel}</Text>}
             </HStack>
           )}
           {isOOD && OODEntry && (
-            <HStack>
-              <Tag colorScheme={'red'} size={'sm'}>
-                Out of distribution
-              </Tag>
-              <Text fontSize={'sm'}>Does not belong to any of the 3 classes.</Text>
-            </HStack>
+            <Tag colorScheme={'red'} size={'sm'} width={'fit-content'}>
+              Out of distribution
+            </Tag>
           )}
         </HStack>
-        <Divider />
-        <PercentileThresholds
+      </VStack>
+
+      <VStack align={'space-between'} justify={'space-between'} width={'100%'}>
+        <Text fontSize={'sm'}>
+          The model predicts that is a <chakra.span fontWeight={600}>{predictedClass}</chakra.span>{' '}
+          with probability{' '}
+          <chakra.span fontWeight={600}>{predictedClassProb.toFixed(3)}</chakra.span>.
+        </Text>
+        <Explanation
           datapoint={datapoint}
           classes={classes}
           predProbs={predProbs}
@@ -99,6 +97,19 @@ const Explainer = (props: ExplainerProps) => {
           OODThresholds={OODThresholds}
           isOOD={isOOD}
         />
+        <br />
+        <VStack height={'20%'} width={'100%'} align={'flex-start'}>
+          <PercentileThresholds
+            datapoint={datapoint}
+            classes={classes}
+            predProbs={predProbs}
+            classPercentile={classPercentile}
+            classThresholds={classThresholds}
+            OODPercentile={OODPercentile}
+            OODThresholds={OODThresholds}
+            isOOD={isOOD}
+          />
+        </VStack>
       </VStack>
     </HStack>
   )

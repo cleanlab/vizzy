@@ -14,6 +14,7 @@ import {
 
 import { PredProbsEntryProps } from '../predProbs/types'
 import { Datapoint } from '../dataset/types'
+import { BsTriangleFill } from 'react-icons/bs'
 
 interface ExplanationProps {
   datapoint: Datapoint
@@ -112,10 +113,9 @@ const ThresholdSlider = (props: ExplanationProps) => {
             color="white"
             placement="top"
             fontSize="10"
-            // isOpen={tru}
             label={predictedClassProb.toFixed(3)}
           >
-            <SliderThumb />
+            <SliderThumb as={BsTriangleFill} bg={'none'} boxShadow={'none'} />
           </Tooltip>
         </Slider>
       )}

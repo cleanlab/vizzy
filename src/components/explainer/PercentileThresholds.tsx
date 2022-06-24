@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { PredProbsEntryProps } from '../predProbs/types'
 import { Datapoint } from '../dataset/types'
 import ThresholdSlider from './ThresholdSlider'
+import { VStack } from '@chakra-ui/react'
 
 interface ExplanationProps {
   datapoint: Datapoint
@@ -28,7 +29,7 @@ const PercentileThresholds = (props: ExplanationProps) => {
   } = props
 
   return (
-    <>
+    <VStack width={'100%'} height={'100%'} spacing={'2rem'} align={'flex-start'} pl={'4px'}>
       {classes.map((cls) => (
         <ThresholdSlider
           key={cls}
@@ -43,7 +44,7 @@ const PercentileThresholds = (props: ExplanationProps) => {
           isOOD={isOOD}
         />
       ))}
-    </>
+    </VStack>
   )
 }
 
