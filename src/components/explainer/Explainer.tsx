@@ -130,7 +130,10 @@ const Explainer = (props: ExplainerProps) => {
             <Tag colorScheme={'red'} size={'md'}>
               Out of distribution
             </Tag>
-            <Text fontSize={'sm'}>This example does not belong to any of the 3 classes.</Text>
+            <Text fontSize={'sm'}>
+              Either belongs to none of the 3 classes, or is an atypical example of one of the
+              classes
+            </Text>
           </HStack>
         )}
       </VStack>
