@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Box,
-  HStack,
   VStack,
   Slider,
   SliderFilledTrack,
-  SliderMark,
   SliderThumb,
   SliderTrack,
   Text,

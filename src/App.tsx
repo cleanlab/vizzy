@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { Box, ChakraProvider, Divider, Heading, HStack, VStack } from '@chakra-ui/react'
+import { Box, ChakraProvider, Divider, HStack, VStack } from '@chakra-ui/react'
 import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
@@ -10,9 +10,8 @@ import Results from './components/results/Results'
 import OutOfDistribution from './components/ood/OutOfDistribution'
 import { Datapoint } from './components/dataset/types'
 import Explainer from './components/explainer/Explainer'
-import { LabelIssue, LabelIssueImageProps } from './components/results/types'
+import { LabelIssue } from './components/results/types'
 import { PredProbsEntryProps } from './components/predProbs/types'
-import Thresholds from './components/predProbs/Thresholds'
 
 import util from './model/util'
 

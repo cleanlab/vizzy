@@ -1,20 +1,4 @@
-import {
-  Box,
-  Divider,
-  Flex,
-  HStack,
-  Image,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Tfoot,
-  Th,
-  Thead,
-  Text,
-  Tr,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Table, TableContainer, Tbody, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
 import { PredProbsEntryProps } from './types'
 import PredProbsTableRow from './PredProbsTableRow'

@@ -1,16 +1,6 @@
 import React from 'react'
-import {
-  VStack,
-  Heading,
-  Flex,
-  Box,
-  Text,
-  HStack,
-  IconButton,
-  Tooltip,
-  Icon,
-} from '@chakra-ui/react'
-import { PredProbsEntryProps, PredProbsProps } from './types'
+import { VStack, Heading, Flex, Box, HStack, Tooltip, Icon } from '@chakra-ui/react'
+import { PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
 import PercentileSlider from './PercentileSlider'
 import { AiFillPlayCircle } from 'react-icons/all'

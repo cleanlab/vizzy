@@ -1,6 +1,6 @@
 import React from 'react'
-import { chakra, Flex, HStack, Image, Tag, Text, VStack, Divider, Box } from '@chakra-ui/react'
-import { Datapoint, ImageWithLabelProps } from '../dataset/types'
+import { chakra, Flex, HStack, Image, Tag, Text, VStack } from '@chakra-ui/react'
+import { Datapoint } from '../dataset/types'
 import { LabelIssue } from '../results/types'
 import { PredProbsEntryProps } from '../predProbs/types'
 import util from '../../model/util'

@@ -1,8 +1,6 @@
 import percentile from 'percentile'
 import { PredProbsEntryProps } from '../components/predProbs/types'
 import { Datapoint } from '../components/dataset/types'
-import { zip } from 'lodash'
-import thresholds from '../components/predProbs/Thresholds'
 
 const argMax = (array) => {
   return [].reduce.call(array, (m, c, i, arr) => (c > arr[m] ? i : m), 0)
