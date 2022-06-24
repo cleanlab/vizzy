@@ -25,7 +25,6 @@ const PredProbs = (props: PredProbsProps) => {
         <Tooltip label={'Train a model on the data!'} hasArrow>
           <IconButton
             fontSize={'30px'}
-            color = "teal"
             aria-label={'compute pred probs'}
             icon={<AiFillPlayCircle />}
             isLoading={predProbsComputing}
@@ -47,7 +46,7 @@ const PredProbs = (props: PredProbsProps) => {
           classes={classes}
           setActiveImageId={setActiveImageId}
         />
-        <Box width={'100%'} borderWidth = {"3px"} borderColor = {"teal.400"} borderRadius={'lg'} padding = {"10px"}>
+        <Box width={'90%'}>
           <PercentileSlider
             name={'Class percentile'}
             percentile={classPercentile}
