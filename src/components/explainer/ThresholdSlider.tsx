@@ -54,6 +54,7 @@ const ThresholdSlider = (props: ExplanationProps) => {
           max={1}
           height={'1px'}
           value={predictedClassProb}
+          pl={'5px'} // TODO fix this: should not require padding for correct alignment
           colorScheme="gray.200"
           _hover={{ cursor: 'unset' }}
           width={'90%'}
