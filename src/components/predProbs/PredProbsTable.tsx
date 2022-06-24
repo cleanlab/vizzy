@@ -29,6 +29,7 @@ const PredProbsTable = (props: PredProbsTableProps) => {
   const dummyDataEntry = {
     id: null,
     src: 'https://via.placeholder.com/150',
+    // src: 'https://placem.at/things?w=150&h=150&txt=0&random=1&overlay_blend=difference',
     givenLabel: null,
     probabilities: [],
   }
@@ -69,5 +70,4 @@ const PredProbsTable = (props: PredProbsTableProps) => {
   )
 }
 
-//<Tr key={idx}><Td>d</Td><Td>d</Td><Td>d</Td><Td>d</Td></Tr>
 export default PredProbsTable

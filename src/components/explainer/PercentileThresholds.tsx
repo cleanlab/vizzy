@@ -31,6 +31,7 @@ const PercentileThresholds = (props: ExplanationProps) => {
     <>
       {classes.map((cls) => (
         <ThresholdSlider
+          key={cls}
           datapoint={datapoint}
           selectedClass={cls}
           classes={classes}

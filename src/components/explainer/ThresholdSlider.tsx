@@ -28,9 +28,13 @@ interface ExplanationProps {
 }
 
 const ThresholdSlider = (props: ExplanationProps) => {
-  const { predProbs, classThresholds, OODThresholds, selectedClass } = props
+  const { predProbs, classes, classThresholds, OODThresholds, selectedClass } = props
 
-  const predProbsClassMapping = { cat: 0, dog: 1, bear: 2 } // TODO: make this dynamic
+  const predProbsClassMapping = classes.reduce((acc, class_, idx) => {
+    acc[class_] = idx
+    return acc
+  }, {})
+
   const predictedClassProb = predProbs.probabilities[predProbsClassMapping[selectedClass]]
   const predictedClassThreshold = classThresholds[selectedClass]
   const predictedClassOODThreshold = OODThresholds[selectedClass]
