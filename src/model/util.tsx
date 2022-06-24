@@ -113,7 +113,11 @@ const computePredProbs = async (
   const ids = Object.keys(imageDataset)
   const folds = splitArrayIntoKFolds(shuffleArray(ids), numFolds)
   console.log('constructing k folds')
-  const predProbsData = {}
+  const predProbsData = ids.reduce((acc, id) => {
+    acc[id] = null
+    return acc
+  }, {})
+
   for (let i = 0; i < numFolds; i++) {
     console.log(`training fold ${i}`)
     let train_ids = folds
