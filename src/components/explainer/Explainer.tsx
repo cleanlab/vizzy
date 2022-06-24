@@ -56,7 +56,7 @@ const Explainer = (props: ExplainerProps) => {
       <VStack width={'30%'} height={'100%'}>
         <Image height={'95%'} src={datapoint.src} />
 
-        <HStack spacing={'2rem'}>
+        <HStack spacing={'1rem'} align={'flex-start'} width={'100%'}>
           <HStack>
             <Tag colorScheme={'blue'} size={'sm'}>
               Given
@@ -74,7 +74,7 @@ const Explainer = (props: ExplainerProps) => {
             </HStack>
           )}
           {isOOD && OODEntry && (
-            <Tag colorScheme={'red'} size={'sm'} width={'fit-content'}>
+            <Tag colorScheme={'red'} size={'sm'}>
               Out of distribution
             </Tag>
           )}
