@@ -126,7 +126,6 @@ const ThresholdSlider = (props: ExplanationProps) => {
               as={BsTriangleFill}
               bg={'none'}
               boxShadow={'none'}
-              borderWidth={'0px'}
               transform={'translateY(-20%)'}
               borderRadius={'none'}
             />
