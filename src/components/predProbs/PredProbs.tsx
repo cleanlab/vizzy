@@ -1,5 +1,5 @@
 import React from 'react'
-import { VStack, Heading, Flex, Box, Text, HStack, IconButton } from '@chakra-ui/react'
+import { VStack, Heading, Flex, Box, Text, HStack, IconButton, Tooltip } from '@chakra-ui/react'
 import { PredProbsEntryProps, PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
 import PercentileSlider from './PercentileSlider'
@@ -22,17 +22,19 @@ const PredProbs = (props: PredProbsProps) => {
   return (
     <VStack width={'100%'} height={'100%'}>
       <HStack>
-        <IconButton
-          fontSize={'30px'}
-          aria-label={'compute pred probs'}
-          icon={<AiFillPlayCircle />}
-          isLoading={predProbsComputing}
-          variant={'unstyled'}
-          onClick={() => {
-            setPredProbsComputing(true)
-            populatePredProbs()
-          }}
-        />
+        <Tooltip label={'Train a model on the data!'} hasArrow>
+          <IconButton
+            fontSize={'30px'}
+            aria-label={'compute pred probs'}
+            icon={<AiFillPlayCircle />}
+            isLoading={predProbsComputing}
+            variant={'unstyled'}
+            onClick={() => {
+              setPredProbsComputing(true)
+              populatePredProbs()
+            }}
+          />
+        </Tooltip>
         <Heading size={'sm'} fontWeight={500}>
           PREDICTED PROBABILITIES
         </Heading>
