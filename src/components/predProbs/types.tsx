@@ -7,8 +7,6 @@ export interface PredProbsProps {
   setOODPercentile: (number) => void
   setActiveImageId: (string) => void
   populatePredProbs: () => void
-  predProbsComputing: boolean
-  setPredProbsComputing: (boolean) => void
 }
 
 export interface PredProbsEntryProps {
