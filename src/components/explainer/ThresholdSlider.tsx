@@ -10,6 +10,7 @@ import {
   Text,
   Divider,
   HStack,
+  Flex,
 } from '@chakra-ui/react'
 
 import { PredProbsEntryProps } from '../predProbs/types'
@@ -115,7 +116,13 @@ const ThresholdSlider = (props: ExplanationProps) => {
             fontSize="10"
             label={predictedClassProb.toFixed(3)}
           >
-            <SliderThumb as={BsTriangleFill} bg={'none'} boxShadow={'none'} />
+            <SliderThumb
+              as={BsTriangleFill}
+              bg={'none'}
+              boxShadow={'none'}
+              borderWidth={'0px'}
+              transform={'translateY(-20%)'}
+            />
           </Tooltip>
         </Slider>
       )}
