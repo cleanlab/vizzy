@@ -1,5 +1,15 @@
 import React from 'react'
-import { VStack, Heading, Flex, Box, Text, HStack, IconButton } from '@chakra-ui/react'
+import {
+  VStack,
+  Heading,
+  Flex,
+  Box,
+  Text,
+  HStack,
+  IconButton,
+  Tooltip,
+  Icon,
+} from '@chakra-ui/react'
 import { PredProbsEntryProps, PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
 import PercentileSlider from './PercentileSlider'
@@ -15,24 +25,26 @@ const PredProbs = (props: PredProbsProps) => {
     setOODPercentile,
     setActiveImageId,
     populatePredProbs,
-    predProbsComputing,
-    setPredProbsComputing,
   } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
       <HStack>
-        <IconButton
-          fontSize={'30px'}
-          aria-label={'compute pred probs'}
-          icon={<AiFillPlayCircle />}
-          isLoading={predProbsComputing}
-          variant={'unstyled'}
-          onClick={() => {
-            setPredProbsComputing(true)
-            populatePredProbs()
-          }}
-        />
+        <Tooltip label={'Train a model on the data!'} hasArrow>
+          <Flex>
+            <Icon
+              fontSize={'60px'}
+              color="teal"
+              aria-label={'compute pred probs'}
+              as={AiFillPlayCircle}
+              // variant={'unstyled'}
+              _hover={{ cursor: 'pointer' }}
+              onClick={() => {
+                populatePredProbs()
+              }}
+            />
+          </Flex>
+        </Tooltip>
         <Heading size={'sm'} fontWeight={500}>
           PREDICTED PROBABILITIES
         </Heading>
@@ -44,7 +56,13 @@ const PredProbs = (props: PredProbsProps) => {
           classes={classes}
           setActiveImageId={setActiveImageId}
         />
-        <Box width={'90%'}>
+        <Box
+          width={'100%'}
+          borderWidth={'2px'}
+          borderColor={'teal.400'}
+          borderRadius={'lg'}
+          padding={'10px'}
+        >
           <PercentileSlider
             name={'Class percentile'}
             percentile={classPercentile}

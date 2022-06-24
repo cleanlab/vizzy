@@ -16,7 +16,7 @@ const Results = (props: ResultsProps) => {
   return (
     <VStack width={'100%'} height={'100%'}>
       <Tag colorScheme={'purple'} size={'md'}>
-        Label Issues
+        LABEL ISSUES
       </Tag>
       {issues === null && <EmptyResults text={'No results yet.'} />}
       {issues && Object.keys(issues).length === 0 && <EmptyResults text={'No errors found.'} />}

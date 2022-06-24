@@ -26,9 +26,9 @@ interface PredProbsTableProps {
 }
 const PredProbsTable = (props: PredProbsTableProps) => {
   const { data, classes, setActiveImageId } = props
-  const dummyPredProbs = {
+  const dummyDataEntry = {
     id: null,
-    src: null,
+    src: 'https://via.placeholder.com/150',
     givenLabel: null,
     probabilities: [],
   }
@@ -47,13 +47,22 @@ const PredProbsTable = (props: PredProbsTableProps) => {
           </Tr>
         </Thead>
         <Tbody>
-          {Object.values(data).map((datapoint) => (
-            <PredProbsTableRow
-              key={datapoint.id}
-              datapoint={datapoint}
-              setActiveImageId={setActiveImageId}
-            />
-          ))}
+          {Object.values(data).length > 0 &&
+            Object.values(data).map((datapoint) => (
+              <PredProbsTableRow
+                key={datapoint.id}
+                datapoint={datapoint}
+                setActiveImageId={setActiveImageId}
+              />
+            ))}
+          {Object.values(data).length === 0 &&
+            [...Array(10)].map((x) => (
+              <PredProbsTableRow
+                key={x}
+                datapoint={dummyDataEntry}
+                setActiveImageId={(str) => null}
+              />
+            ))}
         </Tbody>
       </Table>
     </TableContainer>

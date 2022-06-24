@@ -12,9 +12,9 @@ const PredProbsTableRow = (props: PredProbsTableRowProps) => {
   return (
     <Tr>
       <Td>
-        <Flex height="40px" justify={'center'} align={'center'}>
+        <Flex width={'50px'} justify={'center'} align={'center'}>
           <Box onMouseEnter={() => setActiveImageId(datapoint.id)}>
-            <Image boxSize="50px" src={datapoint.src} loading={'lazy'} fallbackSrc={placeholder} />
+            <Image height={'50px'} src={datapoint.src} loading={'lazy'} fallbackSrc={placeholder} />
           </Box>
         </Flex>
       </Td>

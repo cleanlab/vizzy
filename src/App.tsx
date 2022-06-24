@@ -40,7 +40,6 @@ export const App = () => {
   const [classPercentile, setClassPercentile] = useState(50)
   const [OODPercentile, setOODPercentile] = useState(10)
   const embeddings: Record<string, Datapoint> = require('./model/embeddings_32.json')
-  const [predProbsComputing, setPredProbsComputing] = useState(false)
 
   const updateDatasetLabel = (id, label) => {
     setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
@@ -63,7 +62,6 @@ export const App = () => {
   const populatePredProbs = async () => {
     const predProbs = await util.computePredProbs(imageDataset, CLASSES)
     setPredProbsData(predProbs)
-    setPredProbsComputing(false)
   }
 
   // compute class thresholds
@@ -129,8 +127,6 @@ export const App = () => {
                     setOODPercentile={setOODPercentile}
                     setActiveImageId={setActiveImageId}
                     populatePredProbs={populatePredProbs}
-                    predProbsComputing={predProbsComputing}
-                    setPredProbsComputing={setPredProbsComputing}
                   />
                 </Box>
                 {/*<Box height={'20%'}>*/}

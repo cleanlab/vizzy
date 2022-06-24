@@ -64,7 +64,10 @@ const Explainer = (props: ExplainerProps) => {
             <Tag colorScheme={'blue'} size={'sm'}>
               Given label
             </Tag>
-            <Text fontSize={'sm'}>{datapoint.givenLabel}</Text>
+            <Text fontSize={'sm'}>
+              Either belongs to none of the 3 classes, or is an atypical example of one of the
+              classes
+            </Text>
           </HStack>
 
           {!isOOD && (
