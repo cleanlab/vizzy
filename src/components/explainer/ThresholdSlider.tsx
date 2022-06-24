@@ -40,7 +40,7 @@ const ThresholdSlider = (props: ExplanationProps) => {
   const predictedClassOODThreshold = OODThresholds[selectedClass]
 
   return (
-    <HStack height={'100%'} width={'85%'} spacing={'1rem'}>
+    <HStack height={'100%'} width={'85%'} spacing={'1rem'} justify={'space-between'}>
       <Text fontSize="14" fontWeight={500}>
         {selectedClass}
       </Text>
@@ -48,8 +48,10 @@ const ThresholdSlider = (props: ExplanationProps) => {
         <Slider
           aria-label="slider-ex-6"
           max={1}
+          height={'1px'}
           value={predictedClassProb}
-          colorScheme="gray.600"
+          colorScheme="gray.200"
+          _hover={{ cursor: 'unset' }}
           width={'90%'}
         >
           <SliderMark value={predictedClassProb} />
@@ -63,8 +65,8 @@ const ThresholdSlider = (props: ExplanationProps) => {
             {predictedClassOODThreshold.toFixed(3)}
           </SliderMark>
           <SliderMark value={predictedClassOODThreshold} textAlign="center" mt="-2">
-            <Box height="14px" width="4px" alignItems={'center'}>
-              <Divider size="40px" orientation="vertical" bg={'gray.800'} />
+            <Box height="14px" width="2px" alignItems={'center'}>
+              <Divider size="40px" orientation="vertical" bg={'black'} />
             </Box>
           </SliderMark>
 
@@ -88,7 +90,7 @@ const ThresholdSlider = (props: ExplanationProps) => {
           </SliderMark>
 
           <SliderMark value={predictedClassThreshold} textAlign="center" mt="-2">
-            <Box height="14px" width="4px">
+            <Box height="14px" width="2px">
               <Divider size="40px" orientation="vertical" bg={'gray.800'} />
             </Box>
           </SliderMark>
@@ -101,7 +103,7 @@ const ThresholdSlider = (props: ExplanationProps) => {
           >
             class
           </SliderMark>
-          <SliderTrack bg="gray.500">
+          <SliderTrack bg="gray.400" height={'2px'}>
             <SliderFilledTrack />
           </SliderTrack>
           <Tooltip
@@ -110,7 +112,7 @@ const ThresholdSlider = (props: ExplanationProps) => {
             color="white"
             placement="top"
             fontSize="10"
-            isOpen={true}
+            // isOpen={tru}
             label={predictedClassProb.toFixed(3)}
           >
             <SliderThumb />

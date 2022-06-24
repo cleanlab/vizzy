@@ -28,8 +28,8 @@ const PredProbsTable = (props: PredProbsTableProps) => {
   const { data, classes, setActiveImageId } = props
   const dummyDataEntry = {
     id: null,
-    src: 'https://via.placeholder.com/150',
-    // src: 'https://placem.at/things?w=150&h=150&txt=0&random=1&overlay_blend=difference',
+    // src: 'https://via.placeholder.com/150',
+    src: 'https://placem.at/things?w=150&h=150&txt=0&random=2022&overlay_blend=difference',
     givenLabel: null,
     probabilities: [],
   }
