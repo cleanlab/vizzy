@@ -35,21 +35,33 @@ const Explanation = (props: ExplanationProps) => {
   if (aboveClassThreshold) {
     if (givenEqualsSuggested) {
       return (
-        <Text fontSize={'sm'}>
-          This exceeds the <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>{' '}
-          percentile class threshold for{' '}
-          <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>, so Cleanlab is confident in
-          the given label.
-        </Text>
+        <>
+          <Text fontSize={'sm'}>
+            This exceeds the <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>{' '}
+            percentile class threshold for{' '}
+            <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>.
+          </Text>
+          <Text fontSize={'sm'}>
+            As such, Cleanlab is confident that the given label of{' '}
+            <chakra.span fontWeight={600}>{datapoint.givenLabel}</chakra.span> is{' '}
+            <chakra.span fontWeight={600}>correct</chakra.span>.
+          </Text>
+        </>
       )
     } else {
       return (
-        <Text fontSize={'sm'}>
-          This exceeds the <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>{' '}
-          percentile class threshold for{' '}
-          <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>, so Cleanlab is confident
-          that the given label is <chakra.span fontWeight={600}>incorrect</chakra.span>.
-        </Text>
+        <>
+          <Text fontSize={'sm'}>
+            This exceeds the <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>{' '}
+            percentile class threshold for{' '}
+            <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>.
+          </Text>
+          <Text fontSize={'sm'}>
+            As such, Cleanlab is confident that the given label of{' '}
+            <chakra.span fontWeight={600}>{datapoint.givenLabel}</chakra.span> is{' '}
+            <chakra.span fontWeight={600}>incorrect</chakra.span>.
+          </Text>
+        </>
       )
     }
   }
@@ -59,11 +71,12 @@ const Explanation = (props: ExplanationProps) => {
       <>
         <Text fontSize={'sm'}>
           Each predicted probability is below the respective{' '}
-          <chakra.span fontWeight={600}>{OODPercentile}th</chakra.span> percentile class thresholds.
+          <chakra.span fontWeight={600}>{OODPercentile}th</chakra.span> percentile
+          out-of-distribution thresholds.
         </Text>
         <Text fontSize={'sm'}>
-          As such, Cleanlab considers this datapoint{' '}
-          <chakra.span fontWeight={600}>out of distribution</chakra.span>.
+          As such, it is deemed <chakra.span fontWeight={600}>out of distribution</chakra.span> --
+          does not belong to any class or is an atypical example of a class.
         </Text>
       </>
     )
