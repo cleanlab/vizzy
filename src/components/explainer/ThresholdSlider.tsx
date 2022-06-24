@@ -45,7 +45,7 @@ const ThresholdSlider = (props: ExplanationProps) => {
 
   return (
     <HStack height={'100%'} width={'85%'} spacing={'1rem'} justify={'space-between'}>
-      <Text fontSize="14" fontWeight={500}>
+      <Text fontSize="14" fontWeight={500} width={'40px'}>
         {selectedClass}
       </Text>
       {selectedClass && (
@@ -54,10 +54,10 @@ const ThresholdSlider = (props: ExplanationProps) => {
           max={1}
           height={'1px'}
           value={predictedClassProb}
-          pl={'5px'} // TODO fix this: should not require padding for correct alignment
+          pl={'6px'} // TODO fix this: should not require padding for correct alignment
           colorScheme="gray.200"
           _hover={{ cursor: 'unset' }}
-          width={'90%'}
+          width={'100%'}
         >
           <SliderMark value={predictedClassProb} />
           <SliderMark
