@@ -56,7 +56,7 @@ const Explainer = (props: ExplainerProps) => {
       <VStack width={'30%'} height={'100%'}>
         <Image height={'95%'} src={datapoint.src} />
 
-        <HStack spacing={'1rem'} align={'flex-start'} width={'100%'}>
+        <HStack spacing={'0.75rem'} align={'flex-start'} width={'100%'}>
           <HStack>
             <Tag colorScheme={'blue'} size={'sm'}>
               Given
