@@ -116,15 +116,16 @@ const ThresholdSlider = (props: ExplanationProps) => {
             fontSize="10"
             label={predictedClassProb.toFixed(3)}
           >
-            <Box>
+            <Flex>
               <SliderThumb
                 as={BsTriangleFill}
                 bg={'none'}
                 boxShadow={'none'}
                 borderWidth={'0px'}
                 transform={'translateY(-20%)'}
+                borderRadius={'none'}
               />
-            </Box>
+            </Flex>
           </Tooltip>
         </Slider>
       )}
