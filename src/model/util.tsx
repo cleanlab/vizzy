@@ -11,20 +11,21 @@ const computeClassThresholds = (
   classes,
   classPercentile
 ) => {
-  let classToProbs: Record<string, number[]> = {
+  let givenClassToProbs: Record<string, number[]> = {
     bear: [],
     cat: [],
     dog: [],
   }
+  const classToIdx = classes.reduce((acc, class_, idx) => {
+    acc[class_] = idx
+    return acc
+  }, {})
+
   Object.values(predProbsData).forEach((v) => {
-    const arg_max = argMax(v.probabilities)
-    const argMaxClass = classes[arg_max]
-    classToProbs[argMaxClass].push(v.probabilities[arg_max])
+    const givenClass = v.givenLabel
+    givenClassToProbs[givenClass].push(v.probabilities[classToIdx[givenClass]])
   })
-  return Object.entries(classToProbs).reduce((acc, [className, probs]) => {
-    // console.log('probs for thresholds', probs)
-    // let mean = probs.reduce((a, b) => a + b) / probs.length
-    // acc[className] = mean
+  return Object.entries(givenClassToProbs).reduce((acc, [className, probs]) => {
     acc[className] = percentile(classPercentile, probs) || 1
     return acc
   }, {})
