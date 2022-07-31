@@ -11,37 +11,8 @@ interface ConfidentJointProps {
 }
 
 const ConfidentJointGrid = (props: ConfidentJointProps) => {
-  const { labels, issues, activeImageId, setActiveImageId } = props
-  return (
-    <HStack width={'100%'} height={'100%'} spacing={3}>
-      <Grid alignItems="center" height={'100%'} justifyItems={'flex-end'} width={'8%'}>
-        {labels.map((label) => (
-          <GridItem key={label}>
-            <Tag colorScheme={'blue'} size={'sm'} transform={'rotate(270deg)'} width={'90px'}>
-              {`given: ${label}`}
-            </Tag>
-          </GridItem>
-        ))}
-      </Grid>
-      <VStack width={'92%'} height={'100%'}>
-        <Grid templateColumns="repeat(3, 1fr)" gap={2} h="5" width={'100%'} justifyItems="center">
-          {labels.map((label) => (
-            <GridItem key={label}>
-              <Tag colorScheme={'yellow'} size={'sm'}>
-                {`suggested: ${label}`}
-              </Tag>
-            </GridItem>
-          ))}
-        </Grid>
-        <ConfidentJointMatrix
-          issues={issues}
-          activeImageId={activeImageId}
-          setActiveImageId={setActiveImageId}
-          labels={labels}
-        />
-      </VStack>
-    </HStack>
-  )
+  // const { labels, issues, activeImageId, setActiveImageId } = props
+  return <ConfidentJointMatrix {...props} />
 }
 
 export default ConfidentJointGrid

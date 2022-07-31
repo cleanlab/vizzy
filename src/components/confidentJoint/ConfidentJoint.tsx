@@ -19,7 +19,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
         CONFIDENT JOINT MATRIX
       </Heading>
       {/* <ConfidentJointHeatmap /> */}
-      <ConfidentJointGrid
+      <ConfidentJointMatrix
         labels={labels}
         issues={issues}
         activeImageId={activeImageId}
