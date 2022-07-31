@@ -2,12 +2,13 @@ import React from 'react'
 import { Box, Flex, Grid, GridItem, HStack, Tag, VStack } from '@chakra-ui/react'
 import LabelIssueImage from '../results/LabelIssueImage'
 import { LabelIssue } from '../results/types'
+import ImageGrid from './ImageGrid'
 
 interface ConfidentJointProps {
   labels: Array<string>
   issues: Record<string, LabelIssue>
   activeImageId: string
-  setActiveImageId: (string) => void
+  setActiveImageId: (imageId: string) => void
 }
 
 const ConfidentJointMatrix = (props: ConfidentJointProps) => {
@@ -15,27 +16,6 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
   const gridLength = 'calc(max(60vh, 500px))'
   const tagSizePercent = '7%'
   const cellSizePercent = '31%'
-
-  const renderImageGrid = (givenLabel, suggestedLabel) => {
-    return (
-      <Grid templateColumns="repeat(10, 1fr)" gap={1} p={1} overflowY={'auto'} maxHeight={'155px'}>
-        {Object.values(issues).map(
-          (datapoint) =>
-            datapoint['givenLabel'] === givenLabel &&
-            datapoint['suggestedLabel'] === suggestedLabel && (
-              <GridItem key={datapoint.id} height={'fit-content'}>
-                <LabelIssueImage
-                  {...datapoint}
-                  id={datapoint.id}
-                  activeImageId={activeImageId}
-                  setActiveImageId={setActiveImageId}
-                />
-              </GridItem>
-            )
-        )}
-      </Grid>
-    )
-  }
 
   return (
     <VStack spacing={0} h={gridLength}>
@@ -69,7 +49,15 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
               w={cellSizePercent}
               h={'100%'}
             >
-              {issues && renderImageGrid(labels[rowIdx], labels[columnIdx])}
+              {issues && (
+                <ImageGrid
+                  suggestedLabel={labels[columnIdx]}
+                  givenLabel={labels[rowIdx]}
+                  activeImageId={activeImageId}
+                  setActiveImageId={setActiveImageId}
+                  issues={issues}
+                />
+              )}
             </Box>
           ))}
         </HStack>

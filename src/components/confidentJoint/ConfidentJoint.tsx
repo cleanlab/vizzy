@@ -1,8 +1,7 @@
 import React from 'react'
 import { Heading, Stack } from '@chakra-ui/react'
-// import ConfidentJointHeatmap from './ConfidentJointHeatmap'
-import ConfidentJointGrid from './ConfidentJointGrid'
 import { LabelIssue } from '../results/types'
+import ConfidentJointMatrix from './ConfidentJointMatrix'
 
 interface ConfidentJointProps {
   labels: Array<string>
@@ -11,7 +10,7 @@ interface ConfidentJointProps {
   setActiveImageId: (string) => void
 }
 
-const ConfidentJointMatrix = (props: ConfidentJointProps) => {
+const ConfidentJoint = (props: ConfidentJointProps) => {
   const { labels, issues, activeImageId, setActiveImageId } = props
   return (
     <Stack align={'center'} height={'100%'} width={'100%'}>
@@ -29,4 +28,4 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
   )
 }
 
-export default ConfidentJointMatrix
+export default ConfidentJoint
