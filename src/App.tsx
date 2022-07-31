@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { Box, ChakraProvider, Divider, HStack, VStack } from '@chakra-ui/react'
+import { Box, ChakraProvider, Divider, HStack, Stack, VStack } from '@chakra-ui/react'
 import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
@@ -105,17 +105,22 @@ export const App = () => {
         <HStack justify={'flex-end'} width={'100%'}>
           <ColorModeSwitcher justifySelf="flex-end" />
         </HStack>
-        <HStack width={'95%'} height={'90vh'}>
-          <Box width={'20%'} height={'100%'}>
+        <Stack width={'95%'} height={'90vh'} direction={{ base: 'column', xl: 'row' }}>
+          <Box width={{ base: '80%', xl: '20%' }} height={{ base: '50%', xl: '100%' }}>
             <DatasetInterface
               data={imageDataset}
               classes={CLASSES}
               updateLabel={updateDatasetLabel}
             />
           </Box>
-          <VStack width={'60%'} height={'100%'}>
-            <HStack width={'100%'} height={'70%'} align={'space-between'}>
-              <VStack width={'40%'} height={'100%'} spacing={'0rem'}>
+          <VStack width={{ base: '100%', xl: '60%' }} height={{ xl: '100%' }}>
+            <Stack
+              width={'100%'}
+              height={'70%'}
+              align={{ xl: 'space-between' }}
+              direction={{ base: 'column', xl: 'row' }}
+            >
+              <VStack width={{ base: '100%', xl: '40%' }} height={{ xl: '100%' }} spacing={'0rem'}>
                 <Box height={'100%'}>
                   <PredProbs
                     data={predProbsData}
@@ -138,9 +143,9 @@ export const App = () => {
                 activeImageId={activeImageId}
                 setActiveImageId={setActiveImageId}
               />
-            </HStack>
+            </Stack>
             <Divider />
-            <Box height={'30%'} width={'100%'}>
+            <Box height={{ xl: '30%' }} width={'100%'}>
               <Explainer
                 imageDataset={imageDataset}
                 predProbsData={predProbsData}
@@ -156,7 +161,7 @@ export const App = () => {
             </Box>
           </VStack>
 
-          <VStack width={'20%'} height={'100%'}>
+          <VStack width={{ base: '100%', xl: '20%' }} height={'100%'}>
             <Box height={'60%'} width={'100%'}>
               <Results
                 issues={issues}
@@ -172,7 +177,7 @@ export const App = () => {
               />
             </Box>
           </VStack>
-        </HStack>
+        </Stack>
       </VStack>
     </ChakraProvider>
   )
