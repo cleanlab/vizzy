@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { Box, ChakraProvider, Divider, HStack, Stack, VStack } from '@chakra-ui/react'
+import { Box, Button, ChakraProvider, Divider, HStack, Stack, VStack } from '@chakra-ui/react'
 import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
@@ -101,50 +101,68 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <VStack width={'100%'} height={'100%'}>
-        <HStack justify={'flex-end'} width={'100%'}>
+      <VStack width={'100%'} height={'100%'} spacing={0}>
+        <HStack justify={'flex-end'} width={'100%'} spacing={1}>
+          <Button variant={'ghost'}>Blog</Button>
+          <Button variant={'ghost'}>Paper</Button>
+          <Button variant={'ghost'}>GitHub</Button>
           <ColorModeSwitcher justifySelf="flex-end" />
         </HStack>
-        <Stack width={'95%'} height={'90vh'} direction={{ base: 'column', xl: 'row' }}>
-          <Box width={{ base: '80%', xl: '20%' }} height={{ base: '50%', xl: '100%' }}>
+        <Stack
+          width={'95%'}
+          height={'93vh'}
+          direction={{ base: 'column', xl: 'row' }}
+          spacing={4}
+          justify={'space-between'}
+        >
+          <Box width={{ base: '80%', xl: '15%' }} height={{ base: '50%', xl: '100%' }}>
             <DatasetInterface
               data={imageDataset}
               classes={CLASSES}
               updateLabel={updateDatasetLabel}
             />
           </Box>
-          <VStack width={{ base: '100%', xl: '60%' }} height={{ xl: '100%' }}>
+          <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
             <Stack
               width={'100%'}
               height={'70%'}
               align={{ xl: 'space-between' }}
               direction={{ base: 'column', xl: 'row' }}
             >
-              <VStack width={{ base: '100%', xl: '40%' }} height={{ xl: '100%' }} spacing={'0rem'}>
-                <Box height={'100%'}>
-                  <PredProbs
-                    data={predProbsData}
-                    classes={CLASSES}
-                    classPercentile={classPercentile}
-                    setClassPercentile={setClassPercentile}
-                    OODPercentile={OODPercentile}
-                    setOODPercentile={setOODPercentile}
+              <Box height={'100%'} width={{ base: '100%', xl: '25%' }}>
+                <PredProbs
+                  data={predProbsData}
+                  classes={CLASSES}
+                  setActiveImageId={setActiveImageId}
+                  populatePredProbs={populatePredProbs}
+                />
+              </Box>
+              <Box width={'50%'}>
+                <ConfidentJoint
+                  labels={CLASSES}
+                  issues={confidentJointData}
+                  activeImageId={activeImageId}
+                  setActiveImageId={setActiveImageId}
+                />
+              </Box>
+              <VStack width={{ base: '100%', xl: '25%' }} height={'100%'} pt={5}>
+                <Box height={'50%'} width={'100%'}>
+                  <Results
+                    issues={issues}
+                    activeImageId={activeImageId}
                     setActiveImageId={setActiveImageId}
-                    populatePredProbs={populatePredProbs}
                   />
                 </Box>
-                {/*<Box height={'20%'}>*/}
-                {/*  <Thresholds thresholds={classThresholds} />*/}
-                {/*</Box>*/}
+                <Box height={'50%'} width={'100%'}>
+                  <OutOfDistribution
+                    issues={OODData}
+                    activeImageId={activeImageId}
+                    setActiveImageId={setActiveImageId}
+                  />
+                </Box>
               </VStack>
-              <ConfidentJoint
-                labels={CLASSES}
-                issues={confidentJointData}
-                activeImageId={activeImageId}
-                setActiveImageId={setActiveImageId}
-              />
             </Stack>
-            <Divider />
+
             <Box height={{ xl: '30%' }} width={'100%'}>
               <Explainer
                 imageDataset={imageDataset}
@@ -155,25 +173,10 @@ export const App = () => {
                 issues={issues}
                 OODData={OODData}
                 classPercentile={classPercentile}
+                setClassPercentile={setClassPercentile}
                 OODPercentile={OODPercentile}
+                setOODPercentile={setOODPercentile}
                 activeImageId={activeImageId}
-              />
-            </Box>
-          </VStack>
-
-          <VStack width={{ base: '100%', xl: '20%' }} height={'100%'}>
-            <Box height={'60%'} width={'100%'}>
-              <Results
-                issues={issues}
-                activeImageId={activeImageId}
-                setActiveImageId={setActiveImageId}
-              />
-            </Box>
-            <Box height={'40%'} width={'100%'}>
-              <OutOfDistribution
-                issues={OODData}
-                activeImageId={activeImageId}
-                setActiveImageId={setActiveImageId}
               />
             </Box>
           </VStack>

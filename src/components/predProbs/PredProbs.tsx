@@ -2,20 +2,10 @@ import React from 'react'
 import { VStack, Heading, Flex, Box, HStack, Tooltip, Icon } from '@chakra-ui/react'
 import { PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
-import PercentileSlider from './PercentileSlider'
 import { AiFillPlayCircle } from 'react-icons/all'
 
 const PredProbs = (props: PredProbsProps) => {
-  const {
-    data,
-    classes,
-    classPercentile,
-    setClassPercentile,
-    OODPercentile,
-    setOODPercentile,
-    setActiveImageId,
-    populatePredProbs,
-  } = props
+  const { data, classes, setActiveImageId, populatePredProbs } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
@@ -40,31 +30,11 @@ const PredProbs = (props: PredProbsProps) => {
         </Heading>
       </HStack>
 
-      <>
-        <PredProbsTable
-          data={data ? Object.values(data) : []}
-          classes={classes}
-          setActiveImageId={setActiveImageId}
-        />
-        <Box
-          width={'100%'}
-          borderWidth={'2px'}
-          borderColor={'teal.400'}
-          borderRadius={'lg'}
-          padding={'10px'}
-        >
-          <PercentileSlider
-            name={'Class percentile'}
-            percentile={classPercentile}
-            setPercentile={setClassPercentile}
-          />
-          <PercentileSlider
-            name={'Out-of-distribution percentile'}
-            percentile={OODPercentile}
-            setPercentile={setOODPercentile}
-          />
-        </Box>
-      </>
+      <PredProbsTable
+        data={data ? Object.values(data) : []}
+        classes={classes}
+        setActiveImageId={setActiveImageId}
+      />
     </VStack>
   )
 }

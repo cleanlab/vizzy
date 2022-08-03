@@ -25,7 +25,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
           DATA
         </Heading>
         <Text fontSize={'xs'} fontStyle={'italic'}>
-          tweak the image labels!
+          add label errors!
         </Text>
       </HStack>
 

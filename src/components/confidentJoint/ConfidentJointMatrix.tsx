@@ -13,17 +13,17 @@ interface ConfidentJointProps {
 
 const ConfidentJointMatrix = (props: ConfidentJointProps) => {
   const { labels, issues, activeImageId, setActiveImageId } = props
-  const gridLength = 'calc(max(60vh, 500px))'
-  const tagSizePercent = '7%'
-  const cellSizePercent = '31%'
+  const gridLength = 'calc(max(400px, min(64vh, 640px)))'
+  const tagSizePercent = '4%'
+  const cellSizePercent = '32%'
 
   return (
     <VStack spacing={0} h={gridLength}>
       <HStack w={gridLength} h={tagSizePercent} spacing={0}>
         <Box w={tagSizePercent}> </Box>
         {labels.map((label) => (
-          <Flex w={cellSizePercent} justify={'center'}>
-            <Tag colorScheme={'yellow'} size={'sm'}>
+          <Flex w={cellSizePercent} justify={'center'} mb={'2px'}>
+            <Tag colorScheme={'yellow'} size={'md'}>
               {`suggested: ${label}`}
             </Tag>
           </Flex>
@@ -36,8 +36,9 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
             justify={'center'}
             align={'flex-end'}
             transform={'rotate(270deg)'}
+            mr={'2px'}
           >
-            <Tag colorScheme={'blue'} size={'sm'} minWidth={'max-content'}>
+            <Tag colorScheme={'blue'} size={'md'} minWidth={'max-content'}>
               {`given: ${labels[rowIdx]}`}
             </Tag>
           </Flex>

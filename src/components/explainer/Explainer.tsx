@@ -1,11 +1,12 @@
 import React from 'react'
-import { chakra, Flex, HStack, Image, Tag, Text, VStack } from '@chakra-ui/react'
+import { Box, chakra, Flex, HStack, Image, Tag, Text, VStack } from '@chakra-ui/react'
 import { Datapoint } from '../dataset/types'
 import { LabelIssue } from '../results/types'
 import { PredProbsEntryProps } from '../predProbs/types'
 import util from '../../model/util'
 import PercentileThresholds from './PercentileThresholds'
 import Explanation from './Explanation'
+import PercentileSlider from '../predProbs/PercentileSlider'
 
 interface ExplainerProps {
   imageDataset: Record<string, Datapoint>
@@ -14,7 +15,9 @@ interface ExplainerProps {
   OODThresholds: Record<string, number>
   classes: Array<string>
   classPercentile: number
+  setClassPercentile: (number) => void
   OODPercentile: number
+  setOODPercentile: (number) => void
   issues: Record<string, LabelIssue>
   OODData: Record<string, LabelIssue>
   activeImageId: string
@@ -28,7 +31,9 @@ const Explainer = (props: ExplainerProps) => {
     OODThresholds,
     classes,
     classPercentile,
+    setClassPercentile,
     OODPercentile,
+    setOODPercentile,
     issues,
     OODData,
     activeImageId,
@@ -52,26 +57,19 @@ const Explainer = (props: ExplainerProps) => {
   const datapoint = imageDataset[activeImageId]
 
   return (
-    <HStack height={'100%'} width={'100%'} align={'flex-start'} spacing={'1rem'}>
-      <VStack width={'30%'} height={'100%'}>
-        <Image height={'95%'} src={datapoint.src} />
-
+    <HStack height={'100%'} width={'100%'} align={'flex-start'} spacing={'1rem'} p={3}>
+      <VStack width={'16%'} height={'100%'} align={'flex-start'}>
+        <Image w={'100%'} src={datapoint.src} />
         <HStack spacing={'0.75rem'} align={'flex-start'} width={'100%'}>
-          <HStack>
-            <Tag colorScheme={'blue'} size={'sm'}>
-              Given
-            </Tag>
-            <Text fontSize={'sm'}>{datapoint.givenLabel}</Text>
-          </HStack>
+          <Tag colorScheme={'blue'} size={'sm'}>
+            Given: {datapoint.givenLabel}
+          </Tag>
 
           {!isOOD && (
-            <HStack>
-              <Tag colorScheme={'yellow'} size={'sm'}>
-                Suggested
-              </Tag>
-              {isIssue && issueEntry && <Text fontSize={'sm'}>{issueEntry.suggestedLabel}</Text>}
-              {!isIssue && <Text fontSize={'sm'}>{datapoint.givenLabel}</Text>}
-            </HStack>
+            <Tag colorScheme={'yellow'} size={'sm'}>
+              Suggested: {isIssue && issueEntry && issueEntry.suggestedLabel}
+              {!isIssue && datapoint.givenLabel}
+            </Tag>
           )}
           {isOOD && OODEntry && (
             <Tag colorScheme={'red'} size={'sm'}>
@@ -81,7 +79,49 @@ const Explainer = (props: ExplainerProps) => {
         </HStack>
       </VStack>
 
-      <VStack align={'space-between'} justify={'space-between'} width={'100%'}>
+      <VStack height={'20%'} width={'59%'} align={'flex-start'} p={4} pt={2}>
+        <HStack width={'100%'}>
+          <Box
+            width={'50%'}
+            borderWidth={'2px'}
+            borderColor={'teal.400'}
+            borderRadius={'lg'}
+            padding={'10px'}
+          >
+            <PercentileSlider
+              name={'Class percentile'}
+              percentile={classPercentile}
+              setPercentile={setClassPercentile}
+            />
+          </Box>
+          <Box
+            width={'50%'}
+            borderWidth={'2px'}
+            borderColor={'teal.400'}
+            borderRadius={'lg'}
+            padding={'10px'}
+          >
+            <PercentileSlider
+              name={'Out-of-distribution percentile'}
+              percentile={OODPercentile}
+              setPercentile={setOODPercentile}
+            />
+          </Box>
+        </HStack>
+
+        <br />
+        <PercentileThresholds
+          datapoint={datapoint}
+          classes={classes}
+          predProbs={predProbs}
+          classPercentile={classPercentile}
+          classThresholds={classThresholds}
+          OODPercentile={OODPercentile}
+          OODThresholds={OODThresholds}
+          isOOD={isOOD}
+        />
+      </VStack>
+      <Box w={'25%'}>
         <Text fontSize={'sm'}>
           The model predicts that is a <chakra.span fontWeight={600}>{predictedClass}</chakra.span>{' '}
           with probability{' '}
@@ -97,20 +137,7 @@ const Explainer = (props: ExplainerProps) => {
           OODThresholds={OODThresholds}
           isOOD={isOOD}
         />
-        <br />
-        <VStack height={'20%'} width={'100%'} align={'flex-start'}>
-          <PercentileThresholds
-            datapoint={datapoint}
-            classes={classes}
-            predProbs={predProbs}
-            classPercentile={classPercentile}
-            classThresholds={classThresholds}
-            OODPercentile={OODPercentile}
-            OODThresholds={OODThresholds}
-            isOOD={isOOD}
-          />
-        </VStack>
-      </VStack>
+      </Box>
     </HStack>
   )
 }

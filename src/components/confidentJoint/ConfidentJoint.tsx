@@ -13,11 +13,10 @@ interface ConfidentJointProps {
 const ConfidentJoint = (props: ConfidentJointProps) => {
   const { labels, issues, activeImageId, setActiveImageId } = props
   return (
-    <Stack align={'center'} height={'100%'} width={'100%'}>
+    <Stack align={'center'} height={'100%'} width={'100%'} spacing={0}>
       <Heading size={'sm'} fontWeight={500}>
         CONFIDENT JOINT MATRIX
       </Heading>
-      {/* <ConfidentJointHeatmap /> */}
       <ConfidentJointMatrix
         labels={labels}
         issues={issues}

@@ -44,7 +44,7 @@ const ThresholdSlider = (props: ExplanationProps) => {
   const predictedClassOODThreshold = OODThresholds[selectedClass]
 
   return (
-    <HStack height={'100%'} width={'85%'} spacing={'1rem'} justify={'space-between'}>
+    <HStack height={'100%'} width={'100%'} spacing={'1rem'} justify={'space-between'}>
       <Text fontSize="14" fontWeight={500} width={'40px'}>
         {selectedClass}
       </Text>
