@@ -103,8 +103,9 @@ export const App = () => {
     <ChakraProvider theme={theme}>
       <VStack width={'100%'} height={'100%'} spacing={0}>
         <HStack justify={'flex-end'} width={'100%'} spacing={1}>
+          <Button variant={'ghost'}>Guide</Button>
           <Button variant={'ghost'}>Blog</Button>
-          <Button variant={'ghost'}>Paper</Button>
+          {/*<Button variant={'ghost'}>Cleanlab</Button>*/}
           <Button variant={'ghost'}>GitHub</Button>
           <ColorModeSwitcher justifySelf="flex-end" />
         </HStack>
