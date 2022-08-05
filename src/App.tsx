@@ -127,7 +127,7 @@ export const App = () => {
             />
           </Box>
           <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
-            <Stack width={'100%'} height={'70%'} align={'space-between'} direction={'row'}>
+            <HStack width={'100%'} height={'70%'} align={'space-between'}>
               <Box height={'100%'} width={'22%'}>
                 <PredProbs
                   data={predProbsData}
@@ -145,7 +145,7 @@ export const App = () => {
                 />
               </Box>
               <VStack
-                w={'25%'}
+                w={'28%'}
                 height={'100%'}
                 pt={5}
                 bgColor={useColorModeValue('purple.50', 'purple.900')}
@@ -167,7 +167,7 @@ export const App = () => {
                   />
                 </Box>
               </VStack>
-            </Stack>
+            </HStack>
 
             <Box height={'30%'} width={'100%'}>
               <Explainer

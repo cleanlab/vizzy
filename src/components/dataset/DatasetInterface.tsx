@@ -23,7 +23,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
     <VStack
       width={'100%'}
       height={'100%'}
-      bgColor={useColorModeValue('teal.100', 'teal.700')}
+      bgColor={useColorModeValue('teal.50', 'teal.700')}
       p={3}
       rounded={'md'}
     >

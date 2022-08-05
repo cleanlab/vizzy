@@ -65,7 +65,6 @@ const Explainer = (props: ExplainerProps) => {
   const isOOD = OODData ? Object.keys(OODData).includes(activeImageId) : false
   const OODEntry = OODData ? OODData[activeImageId] : null
   const datapoint = imageDataset[activeImageId]
-  const bgColor = useColorModeValue('green.50', 'green.900')
 
   return (
     <HStack
@@ -77,8 +76,8 @@ const Explainer = (props: ExplainerProps) => {
       bgColor={'green.50'}
       rounded={'md'}
     >
-      <VStack width={'16%'} height={'100%'} align={'flex-start'}>
-        <Image w={'100%'} src={datapoint.src} />
+      <VStack w={'16%'} height={'100%'} align={'flex-start'}>
+        <Image h={'100%'} src={datapoint.src} />
         <HStack spacing={'0.75rem'} align={'flex-start'} width={'100%'}>
           <Tag colorScheme={'blue'} size={'sm'}>
             Given: {datapoint.givenLabel}
