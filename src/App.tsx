@@ -1,6 +1,15 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { Box, Button, ChakraProvider, Divider, HStack, Stack, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  ChakraProvider,
+  Divider,
+  HStack,
+  Stack,
+  useColorModeValue,
+  VStack,
+} from '@chakra-ui/react'
 import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
@@ -119,7 +128,7 @@ export const App = () => {
           </Box>
           <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
             <Stack width={'100%'} height={'70%'} align={'space-between'} direction={'row'}>
-              <Box height={'100%'} width={'25%'}>
+              <Box height={'100%'} width={'22%'}>
                 <PredProbs
                   data={predProbsData}
                   classes={CLASSES}
@@ -135,7 +144,14 @@ export const App = () => {
                   setActiveImageId={setActiveImageId}
                 />
               </Box>
-              <VStack w={'25%'} height={'100%'} pt={5}>
+              <VStack
+                w={'25%'}
+                height={'100%'}
+                pt={5}
+                bgColor={useColorModeValue('purple.50', 'purple.900')}
+                p={2}
+                rounded={'md'}
+              >
                 <Box height={'50%'} width={'100%'}>
                   <Results
                     issues={issues}

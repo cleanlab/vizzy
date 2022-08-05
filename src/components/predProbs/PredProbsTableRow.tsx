@@ -19,7 +19,7 @@ const PredProbsTableRow = (props: PredProbsTableRowProps) => {
         </Flex>
       </Td>
       {datapoint.probabilities.map((prob, idx) => (
-        <Td isNumeric key={idx}>
+        <Td key={prob} isNumeric>
           {prob.toFixed(3)}
         </Td>
       ))}

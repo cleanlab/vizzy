@@ -10,6 +10,7 @@ import {
   Spinner,
   VStack,
   Text,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import ImageWithLabel from './ImageWithLabel/ImageWithLabel'
 import { DatasetInterfaceProps } from './types'
@@ -19,7 +20,13 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
   const { data, classes, updateLabel } = props
 
   return (
-    <VStack width={'100%'} height={'100%'}>
+    <VStack
+      width={'100%'}
+      height={'100%'}
+      bgColor={useColorModeValue('teal.100', 'teal.700')}
+      p={3}
+      rounded={'md'}
+    >
       <HStack spacing={'1rem'}>
         <Heading size={'sm'} fontWeight={500}>
           DATA

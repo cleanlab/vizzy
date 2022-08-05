@@ -1,5 +1,15 @@
 import React from 'react'
-import { Box, chakra, Flex, HStack, Image, Tag, Text, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  chakra,
+  Flex,
+  HStack,
+  Image,
+  Tag,
+  Text,
+  useColorModeValue,
+  VStack,
+} from '@chakra-ui/react'
 import { Datapoint } from '../dataset/types'
 import { LabelIssue } from '../results/types'
 import { PredProbsEntryProps } from '../predProbs/types'
@@ -55,9 +65,18 @@ const Explainer = (props: ExplainerProps) => {
   const isOOD = OODData ? Object.keys(OODData).includes(activeImageId) : false
   const OODEntry = OODData ? OODData[activeImageId] : null
   const datapoint = imageDataset[activeImageId]
+  const bgColor = useColorModeValue('green.50', 'green.900')
 
   return (
-    <HStack height={'100%'} width={'100%'} align={'flex-start'} spacing={'1rem'} p={3}>
+    <HStack
+      height={'100%'}
+      width={'100%'}
+      align={'flex-start'}
+      spacing={'1rem'}
+      p={3}
+      bgColor={'green.50'}
+      rounded={'md'}
+    >
       <VStack width={'16%'} height={'100%'} align={'flex-start'}>
         <Image w={'100%'} src={datapoint.src} />
         <HStack spacing={'0.75rem'} align={'flex-start'} width={'100%'}>

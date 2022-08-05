@@ -1,5 +1,14 @@
 import React from 'react'
-import { Box, Flex, Grid, GridItem, Heading, Tag, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+  Tag,
+  useColorModeValue,
+  VStack,
+} from '@chakra-ui/react'
 import { LabelIssue } from './types'
 import LabelIssueImage from './LabelIssueImage'
 import EmptyResults from './EmptyResults'
@@ -14,7 +23,12 @@ const Results = (props: ResultsProps) => {
   const { issues, activeImageId, setActiveImageId } = props
 
   return (
-    <VStack width={'100%'} height={'100%'}>
+    <VStack
+      width={'100%'}
+      height={'100%'}
+      bgColor={useColorModeValue('purple.50', 'purple.700')}
+      p={2}
+    >
       <Tag colorScheme={'purple'} size={'md'}>
         LABEL ISSUES
       </Tag>
