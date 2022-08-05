@@ -109,7 +109,7 @@ export const App = () => {
           <Button variant={'ghost'}>GitHub</Button>
           <ColorModeSwitcher justifySelf="flex-end" />
         </HStack>
-        <Stack minW={'95%'} height={'93vh'} direction={'row'} spacing={4} justify={'space-between'}>
+        <Stack w={'95%'} height={'93vh'} direction={'row'} spacing={4} justify={'space-between'}>
           <Box width={'15%'} height={'100%'}>
             <DatasetInterface
               data={imageDataset}
@@ -119,7 +119,7 @@ export const App = () => {
           </Box>
           <VStack minW={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
             <Stack width={'100%'} height={'70%'} align={'space-between'} direction={'row'}>
-              <Box height={'100%'} width={{ base: '100%', xl: '25%' }}>
+              <Box height={'100%'} width={'25%'}>
                 <PredProbs
                   data={predProbsData}
                   classes={CLASSES}
@@ -127,7 +127,7 @@ export const App = () => {
                   populatePredProbs={populatePredProbs}
                 />
               </Box>
-              <Box width={'50%'}>
+              <Box w={'50%'}>
                 <ConfidentJoint
                   labels={CLASSES}
                   issues={confidentJointData}
@@ -135,7 +135,7 @@ export const App = () => {
                   setActiveImageId={setActiveImageId}
                 />
               </Box>
-              <VStack minW={'25%'} height={'100%'} pt={5}>
+              <VStack w={'25%'} height={'100%'} pt={5}>
                 <Box height={'50%'} width={'100%'}>
                   <Results
                     issues={issues}
