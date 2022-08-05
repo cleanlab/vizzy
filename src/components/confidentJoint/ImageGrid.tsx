@@ -1,7 +1,7 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import LabelIssueImage from '../results/LabelIssueImage'
+import LabelIssueImage from '../issues/LabelIssueImage'
 import React from 'react'
-import { LabelIssue } from '../results/types'
+import { LabelIssue } from '../issues/types'
 
 interface ImageGridProps {
   issues: Record<string, LabelIssue>

@@ -1,7 +1,7 @@
 import { Flex, useColorModeValue, Text } from '@chakra-ui/react'
 import React from 'react'
 
-const EmptyResults = ({ text }) => {
+const EmptyIssues = ({ text }) => {
   return (
     <Flex
       width={'100%'}
@@ -16,4 +16,4 @@ const EmptyResults = ({ text }) => {
     </Flex>
   )
 }
-export default EmptyResults
+export default EmptyIssues

@@ -11,7 +11,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Datapoint } from '../dataset/types'
-import { LabelIssue } from '../results/types'
+import { LabelIssue } from '../issues/types'
 import { PredProbsEntryProps } from '../predProbs/types'
 import util from '../../model/util'
 import PercentileThresholds from './PercentileThresholds'

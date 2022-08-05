@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { LabelIssue } from './types'
 import LabelIssueImage from './LabelIssueImage'
-import EmptyResults from './EmptyResults'
+import EmptyIssues from './EmptyIssues'
 
 interface ResultsProps {
   issues: Record<string, LabelIssue>
@@ -19,7 +19,7 @@ interface ResultsProps {
   setActiveImageId: (string) => void
 }
 
-const Results = (props: ResultsProps) => {
+const Issues = (props: ResultsProps) => {
   const { issues, activeImageId, setActiveImageId } = props
 
   return (
@@ -32,8 +32,8 @@ const Results = (props: ResultsProps) => {
       <Tag colorScheme={'purple'} size={'md'}>
         LABEL ISSUES
       </Tag>
-      {issues === null && <EmptyResults text={'No results yet.'} />}
-      {issues && Object.keys(issues).length === 0 && <EmptyResults text={'No errors found.'} />}
+      {issues === null && <EmptyIssues text={'No results yet.'} />}
+      {issues && Object.keys(issues).length === 0 && <EmptyIssues text={'No errors found.'} />}
       {issues && Object.keys(issues).length && (
         <Grid templateColumns="repeat(6, 1fr)" gap={1} overflowY={'auto'}>
           {Object.values(issues).map((datapoint) => (
@@ -52,4 +52,4 @@ const Results = (props: ResultsProps) => {
   )
 }
 
-export default Results
+export default Issues

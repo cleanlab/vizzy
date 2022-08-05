@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Flex, Grid, GridItem, HStack, Tag, VStack } from '@chakra-ui/react'
-import LabelIssueImage from '../results/LabelIssueImage'
-import { LabelIssue } from '../results/types'
+import LabelIssueImage from '../issues/LabelIssueImage'
+import { LabelIssue } from '../issues/types'
 import ImageGrid from './ImageGrid'
 
 interface ConfidentJointProps {

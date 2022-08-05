@@ -1,9 +1,9 @@
 import React from 'react'
 import { Box, Flex, Grid, GridItem, Heading, Tag, VStack } from '@chakra-ui/react'
 import ImageWithLabel from '../dataset/ImageWithLabel/ImageWithLabel'
-import { LabelIssue } from '../results/types'
-import LabelIssueImage from '../results/LabelIssueImage'
-import EmptyResults from '../results/EmptyResults'
+import { LabelIssue } from '../issues/types'
+import LabelIssueImage from '../issues/LabelIssueImage'
+import EmptyIssues from '../issues/EmptyIssues'
 
 interface OODProps {
   issues: Record<string, LabelIssue>
@@ -19,9 +19,9 @@ const OutOfDistribution = (props: OODProps) => {
       <Tag colorScheme={'red'} size={'md'}>
         OUT OF DISTRIBUTION
       </Tag>
-      {issues === null && <EmptyResults text={'No results yet.'} />}
+      {issues === null && <EmptyIssues text={'No results yet.'} />}
       {issues && Object.keys(issues).length === 0 && (
-        <EmptyResults text={'No out-of-distribution examples found.'} />
+        <EmptyIssues text={'No out-of-distribution examples found.'} />
       )}
       {issues && Object.keys(issues).length && (
         <Grid templateColumns="repeat(6, 1fr)" gap={1} overflowY={'auto'}>

@@ -15,11 +15,11 @@ import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
 import PredProbs from './components/predProbs/PredProbs'
 import ConfidentJoint from './components/confidentJoint/ConfidentJoint'
-import Results from './components/results/Results'
+import Issues from './components/issues/Issues'
 import OutOfDistribution from './components/ood/OutOfDistribution'
 import { Datapoint } from './components/dataset/types'
 import Explainer from './components/explainer/Explainer'
-import { LabelIssue } from './components/results/types'
+import { LabelIssue } from './components/issues/types'
 import { PredProbsEntryProps } from './components/predProbs/types'
 
 import util from './model/util'
@@ -159,7 +159,7 @@ export const App = () => {
                 <ColorModeSwitcher justifySelf="flex-end" />
               </HStack>
               <Box height={'50%'} width={'100%'}>
-                <Results
+                <Issues
                   issues={issues}
                   activeImageId={activeImageId}
                   setActiveImageId={setActiveImageId}

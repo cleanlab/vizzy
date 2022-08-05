@@ -1,6 +1,6 @@
 import React from 'react'
 import { Heading, Stack, useColorModeValue } from '@chakra-ui/react'
-import { LabelIssue } from '../results/types'
+import { LabelIssue } from '../issues/types'
 import ConfidentJointMatrix from './ConfidentJointMatrix'
 
 interface ConfidentJointProps {
