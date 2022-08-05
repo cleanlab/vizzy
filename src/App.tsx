@@ -38,7 +38,7 @@ export const App = () => {
   const [activeImageId, setActiveImageId] = useState(null)
   const [classPercentile, setClassPercentile] = useState(50)
   const [OODPercentile, setOODPercentile] = useState(10)
-  const embeddings: Record<string, Datapoint> = require('./model/embeddings_32.json')
+  const embeddings: Record<string, Datapoint> = require('./model/output_data_embeddings_32.json')
 
   const updateDatasetLabel = (id, label) => {
     setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
