@@ -4,7 +4,7 @@ import { Flex, Text } from '@chakra-ui/react'
 const BuiltBy = () => {
   return (
     <Flex w={'100%'} justify={'flex-end'}>
-      <Text>Built with ♥ by Caleb, Luke, Yiming at Cleanlab</Text>
+      <Text fontSize={'md'}>Built with ♥ by Caleb, Luke, Yiming at Cleanlab</Text>
     </Flex>
   )
 }

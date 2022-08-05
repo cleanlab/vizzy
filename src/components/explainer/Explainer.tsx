@@ -55,6 +55,9 @@ const Explainer = (props: ExplainerProps) => {
         <Text fontSize={'sm'} fontStyle={'italic'}>
           {/*Nothing to show.*/}
         </Text>
+        <Flex align={'flex-end'} h={'100%'} justify={'flex-end'} w={'100%'}>
+          <BuiltBy />
+        </Flex>
       </Flex>
     )
   }
@@ -140,25 +143,29 @@ const Explainer = (props: ExplainerProps) => {
           isOOD={isOOD}
         />
       </VStack>
-      <Box w={'40%'} fontSize={'md'} pl={4}>
-        <Text>
-          For this image, the model predicts label{' '}
-          <chakra.span fontWeight={600}>{predictedClass}</chakra.span> with probability{' '}
-          <chakra.span fontWeight={600}>{predictedClassProb.toFixed(3)}</chakra.span>.
-        </Text>
-        <br />
-        <Explanation
-          datapoint={datapoint}
-          classes={classes}
-          predProbs={predProbs}
-          classPercentile={classPercentile}
-          classThresholds={classThresholds}
-          OODPercentile={OODPercentile}
-          OODThresholds={OODThresholds}
-          isOOD={isOOD}
-        />
-        <BuiltBy />
-      </Box>
+      <VStack w={'40%'} h={'100%'} fontSize={'md'} pl={4} align={'space-between'}>
+        <Box h={'100%'}>
+          <Text>
+            For this image, the model predicts label{' '}
+            <chakra.span fontWeight={600}>{predictedClass}</chakra.span> with probability{' '}
+            <chakra.span fontWeight={600}>{predictedClassProb.toFixed(3)}</chakra.span>.
+          </Text>
+          <br />
+          <Explanation
+            datapoint={datapoint}
+            classes={classes}
+            predProbs={predProbs}
+            classPercentile={classPercentile}
+            classThresholds={classThresholds}
+            OODPercentile={OODPercentile}
+            OODThresholds={OODThresholds}
+            isOOD={isOOD}
+          />
+        </Box>
+        <Flex>
+          <BuiltBy />
+        </Flex>
+      </VStack>
     </HStack>
   )
 }
