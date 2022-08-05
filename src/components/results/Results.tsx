@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '@chakra-ui/react'
+import { Box, useColorModeValue, VStack } from '@chakra-ui/react'
 import Issues from '../issues/Issues'
 import OutOfDistribution from '../ood/OutOfDistribution'
 import { LabelIssue } from '../issues/types'
@@ -14,7 +14,13 @@ const Results = (props: ResultsProps) => {
   const { issues, activeImageId, setActiveImageId, OODData } = props
 
   return (
-    <>
+    <VStack
+      h={'100%'}
+      w={'100%'}
+      bgColor={useColorModeValue('purple.50', 'purple.900')}
+      p={3}
+      rounded={'md'}
+    >
       <Box height={'50%'} width={'100%'}>
         <Issues issues={issues} activeImageId={activeImageId} setActiveImageId={setActiveImageId} />
       </Box>
@@ -25,7 +31,7 @@ const Results = (props: ResultsProps) => {
           setActiveImageId={setActiveImageId}
         />
       </Box>
-    </>
+    </VStack>
   )
 }
 
