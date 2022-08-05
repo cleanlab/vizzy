@@ -47,7 +47,7 @@ export const App = () => {
   const [OODData, setOODData] = useState<Record<string, LabelIssue>>(null)
   const [activeImageId, setActiveImageId] = useState(null)
   const [classPercentile, setClassPercentile] = useState(50)
-  const [OODPercentile, setOODPercentile] = useState(10)
+  const [OODPercentile, setOODPercentile] = useState(15)
   const embeddings: Record<string, Datapoint> = require('./model/output_data_embeddings_32.json')
 
   const updateDatasetLabel = (id, label) => {
@@ -118,6 +118,7 @@ export const App = () => {
         p={3}
         justify={'space-between'}
         minWidth={'1440px'}
+        minHeight={'900px'}
       >
         <Box width={'15%'} height={'100%'}>
           <DatasetInterface
