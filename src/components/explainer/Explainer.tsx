@@ -79,7 +79,7 @@ const Explainer = (props: ExplainerProps) => {
         </HStack>
       </VStack>
 
-      <VStack height={'20%'} width={'59%'} align={'flex-start'} p={4} pt={2}>
+      <VStack height={'20%'} width={'44%'} align={'flex-start'} p={4} pt={2}>
         <HStack width={'100%'}>
           <Box
             width={'50%'}
@@ -121,8 +121,8 @@ const Explainer = (props: ExplainerProps) => {
           isOOD={isOOD}
         />
       </VStack>
-      <Box w={'25%'}>
-        <Text fontSize={'sm'}>
+      <Box w={'40%'} fontSize={'md'}>
+        <Text>
           The model predicts that is a <chakra.span fontWeight={600}>{predictedClass}</chakra.span>{' '}
           with probability{' '}
           <chakra.span fontWeight={600}>{predictedClassProb.toFixed(3)}</chakra.span>.

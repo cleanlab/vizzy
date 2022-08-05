@@ -101,7 +101,7 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <VStack width={'100%'} height={'100%'} spacing={0}>
+      <VStack width={'100%'} height={'100%'} spacing={0} minWidth={'1440px'}>
         <HStack justify={'flex-end'} width={'100%'} spacing={1}>
           <Button variant={'ghost'}>Guide</Button>
           <Button variant={'ghost'}>Blog</Button>
@@ -109,27 +109,16 @@ export const App = () => {
           <Button variant={'ghost'}>GitHub</Button>
           <ColorModeSwitcher justifySelf="flex-end" />
         </HStack>
-        <Stack
-          width={'95%'}
-          height={'93vh'}
-          direction={{ base: 'column', xl: 'row' }}
-          spacing={4}
-          justify={'space-between'}
-        >
-          <Box width={{ base: '80%', xl: '15%' }} height={{ base: '50%', xl: '100%' }}>
+        <Stack minW={'95%'} height={'93vh'} direction={'row'} spacing={4} justify={'space-between'}>
+          <Box width={'15%'} height={'100%'}>
             <DatasetInterface
               data={imageDataset}
               classes={CLASSES}
               updateLabel={updateDatasetLabel}
             />
           </Box>
-          <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
-            <Stack
-              width={'100%'}
-              height={'70%'}
-              align={{ xl: 'space-between' }}
-              direction={{ base: 'column', xl: 'row' }}
-            >
+          <VStack minW={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
+            <Stack width={'100%'} height={'70%'} align={'space-between'} direction={'row'}>
               <Box height={'100%'} width={{ base: '100%', xl: '25%' }}>
                 <PredProbs
                   data={predProbsData}
@@ -146,7 +135,7 @@ export const App = () => {
                   setActiveImageId={setActiveImageId}
                 />
               </Box>
-              <VStack width={{ base: '100%', xl: '25%' }} height={'100%'} pt={5}>
+              <VStack minW={'25%'} height={'100%'} pt={5}>
                 <Box height={'50%'} width={'100%'}>
                   <Results
                     issues={issues}
@@ -164,7 +153,7 @@ export const App = () => {
               </VStack>
             </Stack>
 
-            <Box height={{ xl: '30%' }} width={'100%'}>
+            <Box height={'30%'} width={'100%'}>
               <Explainer
                 imageDataset={imageDataset}
                 predProbsData={predProbsData}
