@@ -6,7 +6,7 @@ const EmptyIssues = ({ text }) => {
     <Flex
       width={'100%'}
       height={'100%'}
-      backgroundColor={useColorModeValue('gray.50', 'gray.600')}
+      // backgroundColor={useColorModeValue('gray.50', 'gray.600')}
       justify={'center'}
       align={'center'}
     >

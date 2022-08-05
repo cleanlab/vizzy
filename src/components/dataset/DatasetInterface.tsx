@@ -11,10 +11,12 @@ import {
   VStack,
   Text,
   useColorModeValue,
+  Icon,
 } from '@chakra-ui/react'
 import ImageWithLabel from './ImageWithLabel/ImageWithLabel'
 import { DatasetInterfaceProps } from './types'
 import LoadingSpinner from '../misc/Loading'
+import { RiNumber1 } from 'react-icons/ri'
 
 const DatasetInterface = (props: DatasetInterfaceProps) => {
   const { data, classes, updateLabel } = props
@@ -27,14 +29,19 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
       p={3}
       rounded={'md'}
     >
-      <HStack spacing={'1rem'}>
-        <Heading size={'sm'} fontWeight={500}>
-          DATA
-        </Heading>
-        <Text fontSize={'xs'} fontStyle={'italic'}>
-          add label errors!
-        </Text>
-      </HStack>
+      <VStack spacing={0}>
+        <HStack>
+          <Icon as={RiNumber1} />
+          <Heading size={'sm'} fontWeight={500}>
+            CONSTRUCT DATASET
+          </Heading>
+        </HStack>
+        <Flex w={'100%'} justify={'flex-end'}>
+          <Text fontSize={'xs'} fontStyle={'italic'}>
+            add label errors!
+          </Text>
+        </Flex>
+      </VStack>
 
       {!data && <LoadingSpinner />}
       {data && (

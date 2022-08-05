@@ -1,7 +1,8 @@
 import React from 'react'
-import { Heading, Stack, useColorModeValue } from '@chakra-ui/react'
+import { Heading, HStack, Icon, Stack, useColorModeValue } from '@chakra-ui/react'
 import { LabelIssue } from '../issues/types'
 import ConfidentJointMatrix from './ConfidentJointMatrix'
+import { RiNumber3 } from 'react-icons/ri'
 
 interface ConfidentJointProps {
   labels: Array<string>
@@ -22,9 +23,12 @@ const ConfidentJoint = (props: ConfidentJointProps) => {
       p={2}
       rounded={'md'}
     >
-      <Heading size={'sm'} fontWeight={500}>
-        CONFIDENT JOINT MATRIX
-      </Heading>
+      <HStack>
+        <Icon as={RiNumber3} />
+        <Heading size={'sm'} fontWeight={500}>
+          CONFIDENT JOINT MATRIX
+        </Heading>
+      </HStack>
       <ConfidentJointMatrix
         labels={labels}
         issues={issues}

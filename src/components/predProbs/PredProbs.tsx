@@ -12,7 +12,8 @@ import {
 } from '@chakra-ui/react'
 import { PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
-import { AiFillPlayCircle } from 'react-icons/all'
+import { AiFillPlayCircle } from 'react-icons/ai'
+import { RiNumber2 } from 'react-icons/ri'
 
 const PredProbs = (props: PredProbsProps) => {
   const { data, classes, setActiveImageId, populatePredProbs } = props
@@ -43,9 +44,12 @@ const PredProbs = (props: PredProbsProps) => {
         </Tooltip>
         <Text fontSize={'md'}>Train the model in your browser!</Text>
       </HStack>
-      <Heading size={'sm'} fontWeight={500}>
-        PREDICTED PROBABILITIES
-      </Heading>
+      <HStack>
+        <Icon as={RiNumber2} />
+        <Heading size={'sm'} fontWeight={500}>
+          PREDICTED PROBABILITIES
+        </Heading>
+      </HStack>
       <PredProbsTable
         data={data ? Object.values(data) : []}
         classes={classes}
