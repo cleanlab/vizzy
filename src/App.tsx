@@ -146,7 +146,7 @@ export const App = () => {
               />
             </Box>
             <VStack w={'28%'} height={'100%'}>
-              <HStack justify={'flex-end'} width={'100%'} spacing={1}>
+              <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'5%'}>
                 <Button variant={'ghost'}>Guide</Button>
                 <Button variant={'ghost'}>Blog</Button>
                 {/*<Button variant={'ghost'}>Cleanlab</Button>*/}
