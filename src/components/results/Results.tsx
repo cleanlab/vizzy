@@ -10,7 +10,7 @@ interface ResultsProps {
   setActiveImageId: (imageId: string) => void
   OODData: Record<string, LabelIssue>
 }
-const Results = (props) => {
+const Results = (props: ResultsProps) => {
   const { issues, activeImageId, setActiveImageId, OODData } = props
 
   return (

@@ -152,7 +152,12 @@ export const App = () => {
                 <Button variant={'ghost'}>GitHub</Button>
                 <ColorModeSwitcher justifySelf="flex-end" />
               </HStack>
-              <Results />
+              <Results
+                issues={issues}
+                OODData={OODData}
+                activeImageId={activeImageId}
+                setActiveImageId={setActiveImageId}
+              />
             </VStack>
           </HStack>
 
