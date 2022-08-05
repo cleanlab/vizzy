@@ -17,6 +17,7 @@ import util from '../../model/util'
 import PercentileThresholds from './PercentileThresholds'
 import Explanation from './Explanation'
 import PercentileSlider from '../predProbs/PercentileSlider'
+import BuiltBy from '../misc/BuiltBy'
 
 interface ExplainerProps {
   imageDataset: Record<string, Datapoint>
@@ -72,9 +73,9 @@ const Explainer = (props: ExplainerProps) => {
       width={'100%'}
       align={'flex-start'}
       spacing={'1rem'}
-      p={3}
-      bgColor={'green.50'}
-      rounded={'md'}
+      // p={3}
+      // bgColor={'green.50'}
+      // rounded={'md'}
     >
       <VStack w={'16%'} height={'100%'} align={'flex-start'}>
         <Image h={'100%'} src={datapoint.src} />
@@ -97,7 +98,7 @@ const Explainer = (props: ExplainerProps) => {
         </HStack>
       </VStack>
 
-      <VStack height={'20%'} width={'44%'} align={'flex-start'} p={4} pt={2}>
+      <VStack height={'20%'} width={'44%'} align={'flex-start'}>
         <HStack width={'100%'}>
           <Box
             width={'50%'}
@@ -139,12 +140,13 @@ const Explainer = (props: ExplainerProps) => {
           isOOD={isOOD}
         />
       </VStack>
-      <Box w={'40%'} fontSize={'md'}>
+      <Box w={'40%'} fontSize={'md'} pl={4}>
         <Text>
-          The model predicts that is a <chakra.span fontWeight={600}>{predictedClass}</chakra.span>{' '}
-          with probability{' '}
+          For this image, the model predicts label{' '}
+          <chakra.span fontWeight={600}>{predictedClass}</chakra.span> with probability{' '}
           <chakra.span fontWeight={600}>{predictedClassProb.toFixed(3)}</chakra.span>.
         </Text>
+        <br />
         <Explanation
           datapoint={datapoint}
           classes={classes}
@@ -155,6 +157,7 @@ const Explainer = (props: ExplainerProps) => {
           OODThresholds={OODThresholds}
           isOOD={isOOD}
         />
+        <BuiltBy />
       </Box>
     </HStack>
   )
