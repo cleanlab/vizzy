@@ -26,7 +26,7 @@ const PredProbs = (props: PredProbsProps) => {
       p={2}
     >
       <HStack w={'100%'} justify={'center'}>
-        <Tooltip label={'Train a model on the data!'} hasArrow>
+        <Tooltip label={'Train an image classifier on your constructed dataset!'} hasArrow>
           <Flex>
             <Icon
               fontSize={'40px'}
@@ -41,7 +41,7 @@ const PredProbs = (props: PredProbsProps) => {
             />
           </Flex>
         </Tooltip>
-        <Text fontSize={'md'}>Train a model in the browser!</Text>
+        <Text fontSize={'md'}>Train the model in your browser!</Text>
       </HStack>
       <Heading size={'sm'} fontWeight={500}>
         PREDICTED PROBABILITIES
