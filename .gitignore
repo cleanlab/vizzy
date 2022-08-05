@@ -24,3 +24,5 @@ yarn-error.log*
 
 .idea
 .vercel
+
+.ipynb_checkpoints
