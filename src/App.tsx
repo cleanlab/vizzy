@@ -23,6 +23,7 @@ import { LabelIssue } from './components/issues/types'
 import { PredProbsEntryProps } from './components/predProbs/types'
 
 import util from './model/util'
+import Results from './components/results/Results'
 
 const CLASSES = ['cat', 'dog', 'bear']
 
@@ -143,14 +144,7 @@ export const App = () => {
                 setActiveImageId={setActiveImageId}
               />
             </Box>
-            <VStack
-              w={'28%'}
-              height={'100%'}
-              pt={5}
-              bgColor={useColorModeValue('purple.50', 'purple.900')}
-              p={2}
-              rounded={'md'}
-            >
+            <VStack w={'28%'} height={'100%'}>
               <HStack justify={'flex-end'} width={'100%'} spacing={1}>
                 <Button variant={'ghost'}>Guide</Button>
                 <Button variant={'ghost'}>Blog</Button>
@@ -158,20 +152,7 @@ export const App = () => {
                 <Button variant={'ghost'}>GitHub</Button>
                 <ColorModeSwitcher justifySelf="flex-end" />
               </HStack>
-              <Box height={'50%'} width={'100%'}>
-                <Issues
-                  issues={issues}
-                  activeImageId={activeImageId}
-                  setActiveImageId={setActiveImageId}
-                />
-              </Box>
-              <Box height={'50%'} width={'100%'}>
-                <OutOfDistribution
-                  issues={OODData}
-                  activeImageId={activeImageId}
-                  setActiveImageId={setActiveImageId}
-                />
-              </Box>
+              <Results />
             </VStack>
           </HStack>
 

@@ -16,19 +16,14 @@ import EmptyIssues from './EmptyIssues'
 interface ResultsProps {
   issues: Record<string, LabelIssue>
   activeImageId: string
-  setActiveImageId: (string) => void
+  setActiveImageId: (imageId: string) => void
 }
 
 const Issues = (props: ResultsProps) => {
   const { issues, activeImageId, setActiveImageId } = props
 
   return (
-    <VStack
-      width={'100%'}
-      height={'100%'}
-      bgColor={useColorModeValue('purple.50', 'purple.700')}
-      p={2}
-    >
+    <VStack width={'100%'} height={'100%'}>
       <Tag colorScheme={'purple'} size={'md'}>
         LABEL ISSUES
       </Tag>

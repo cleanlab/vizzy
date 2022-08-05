@@ -8,7 +8,7 @@ import EmptyIssues from '../issues/EmptyIssues'
 interface OODProps {
   issues: Record<string, LabelIssue>
   activeImageId: string
-  setActiveImageId: (string) => void
+  setActiveImageId: (imageId: string) => void
 }
 
 const OutOfDistribution = (props: OODProps) => {
