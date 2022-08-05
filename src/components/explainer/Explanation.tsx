@@ -39,8 +39,9 @@ const Explanation = (props: ExplanationProps) => {
           <Text>
             This is above the <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>{' '}
             percentile class threshold for{' '}
-            <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>.
+            <chakra.span fontWeight={600}>{predictedClass}</chakra.span>.
           </Text>
+          <br />
           <Text>
             As such, Cleanlab is confident that the given label of{' '}
             <chakra.span fontWeight={600}>{datapoint.givenLabel}</chakra.span> is{' '}
@@ -56,6 +57,7 @@ const Explanation = (props: ExplanationProps) => {
             percentile class threshold for{' '}
             <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>.
           </Text>
+          <br />
           <Text>
             As such, Cleanlab is confident that the given label of{' '}
             <chakra.span fontWeight={600}>{datapoint.givenLabel}</chakra.span> is{' '}
@@ -92,6 +94,7 @@ const Explanation = (props: ExplanationProps) => {
           <chakra.span fontWeight={600}>{predictedClassThreshold.toFixed(3)}</chakra.span> for{' '}
           <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>.
         </Text>
+        <br />
         <Text>
           As such, Cleanlab agrees (but is not confident) that the given label is{' '}
           <chakra.span fontWeight={600}>correct</chakra.span>.
@@ -106,8 +109,9 @@ const Explanation = (props: ExplanationProps) => {
           percentile class threshold for{' '}
           <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>
         </Text>
+        <br />
         <Text>
-          Cleanlab infers (but not is not confident) that the given label is{' '}
+          Cleanlab infers (but is not confident) that the given label is{' '}
           <chakra.span fontWeight={600}>incorrect</chakra.span>.
         </Text>
       </>
