@@ -117,7 +117,7 @@ export const App = () => {
               updateLabel={updateDatasetLabel}
             />
           </Box>
-          <VStack minW={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
+          <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
             <Stack width={'100%'} height={'70%'} align={'space-between'} direction={'row'}>
               <Box height={'100%'} width={'25%'}>
                 <PredProbs
