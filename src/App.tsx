@@ -110,84 +110,89 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <VStack width={'100%'} height={'100%'} spacing={0} minWidth={'1440px'}>
-        <HStack justify={'flex-end'} width={'100%'} spacing={1}>
-          <Button variant={'ghost'}>Guide</Button>
-          <Button variant={'ghost'}>Blog</Button>
-          {/*<Button variant={'ghost'}>Cleanlab</Button>*/}
-          <Button variant={'ghost'}>GitHub</Button>
-          <ColorModeSwitcher justifySelf="flex-end" />
-        </HStack>
-        <Stack w={'95%'} height={'93vh'} direction={'row'} spacing={4} justify={'space-between'}>
-          <Box width={'15%'} height={'100%'}>
-            <DatasetInterface
-              data={imageDataset}
-              classes={CLASSES}
-              updateLabel={updateDatasetLabel}
-            />
-          </Box>
-          <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
-            <HStack width={'100%'} height={'70%'} align={'space-between'}>
-              <Box height={'100%'} width={'22%'}>
-                <PredProbs
-                  data={predProbsData}
-                  classes={CLASSES}
-                  setActiveImageId={setActiveImageId}
-                  populatePredProbs={populatePredProbs}
-                />
-              </Box>
-              <Box w={'50%'}>
-                <ConfidentJoint
-                  labels={CLASSES}
-                  issues={confidentJointData}
+      <HStack
+        w={'100%'}
+        height={'100vh'}
+        spacing={4}
+        p={3}
+        justify={'space-between'}
+        minWidth={'1440px'}
+      >
+        <Box width={'15%'} height={'100%'}>
+          <DatasetInterface
+            data={imageDataset}
+            classes={CLASSES}
+            updateLabel={updateDatasetLabel}
+          />
+        </Box>
+        <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
+          <HStack width={'100%'} height={'69%'} align={'space-between'}>
+            <Box height={'100%'} width={'22%'}>
+              <PredProbs
+                data={predProbsData}
+                classes={CLASSES}
+                setActiveImageId={setActiveImageId}
+                populatePredProbs={populatePredProbs}
+              />
+            </Box>
+            <Box w={'50%'}>
+              <ConfidentJoint
+                labels={CLASSES}
+                issues={confidentJointData}
+                activeImageId={activeImageId}
+                setActiveImageId={setActiveImageId}
+              />
+            </Box>
+            <VStack
+              w={'28%'}
+              height={'100%'}
+              pt={5}
+              bgColor={useColorModeValue('purple.50', 'purple.900')}
+              p={2}
+              rounded={'md'}
+            >
+              <HStack justify={'flex-end'} width={'100%'} spacing={1}>
+                <Button variant={'ghost'}>Guide</Button>
+                <Button variant={'ghost'}>Blog</Button>
+                {/*<Button variant={'ghost'}>Cleanlab</Button>*/}
+                <Button variant={'ghost'}>GitHub</Button>
+                <ColorModeSwitcher justifySelf="flex-end" />
+              </HStack>
+              <Box height={'50%'} width={'100%'}>
+                <Results
+                  issues={issues}
                   activeImageId={activeImageId}
                   setActiveImageId={setActiveImageId}
                 />
               </Box>
-              <VStack
-                w={'28%'}
-                height={'100%'}
-                pt={5}
-                bgColor={useColorModeValue('purple.50', 'purple.900')}
-                p={2}
-                rounded={'md'}
-              >
-                <Box height={'50%'} width={'100%'}>
-                  <Results
-                    issues={issues}
-                    activeImageId={activeImageId}
-                    setActiveImageId={setActiveImageId}
-                  />
-                </Box>
-                <Box height={'50%'} width={'100%'}>
-                  <OutOfDistribution
-                    issues={OODData}
-                    activeImageId={activeImageId}
-                    setActiveImageId={setActiveImageId}
-                  />
-                </Box>
-              </VStack>
-            </HStack>
+              <Box height={'50%'} width={'100%'}>
+                <OutOfDistribution
+                  issues={OODData}
+                  activeImageId={activeImageId}
+                  setActiveImageId={setActiveImageId}
+                />
+              </Box>
+            </VStack>
+          </HStack>
 
-            <Box height={'30%'} width={'100%'}>
-              <Explainer
-                imageDataset={imageDataset}
-                predProbsData={predProbsData}
-                classes={CLASSES}
-                classThresholds={classThresholds}
-                OODThresholds={OODThresholds}
-                issues={issues}
-                OODData={OODData}
-                classPercentile={classPercentile}
-                setClassPercentile={setClassPercentile}
-                OODPercentile={OODPercentile}
-                setOODPercentile={setOODPercentile}
-                activeImageId={activeImageId}
-              />
-            </Box>
-          </VStack>
-        </Stack>
-      </VStack>
+          <Box height={'30%'} width={'100%'}>
+            <Explainer
+              imageDataset={imageDataset}
+              predProbsData={predProbsData}
+              classes={CLASSES}
+              classThresholds={classThresholds}
+              OODThresholds={OODThresholds}
+              issues={issues}
+              OODData={OODData}
+              classPercentile={classPercentile}
+              setClassPercentile={setClassPercentile}
+              OODPercentile={OODPercentile}
+              setOODPercentile={setOODPercentile}
+              activeImageId={activeImageId}
+            />
+          </Box>
+        </VStack>
+      </HStack>
     </ChakraProvider>
   )
 }

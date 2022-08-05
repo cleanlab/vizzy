@@ -8,6 +8,7 @@ import {
   Tooltip,
   Icon,
   useColorModeValue,
+  Text,
 } from '@chakra-ui/react'
 import { PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
@@ -24,11 +25,11 @@ const PredProbs = (props: PredProbsProps) => {
       bgColor={useColorModeValue('gray.100', 'gray.700')}
       p={2}
     >
-      <HStack w={'100%'}>
+      <HStack w={'100%'} justify={'center'}>
         <Tooltip label={'Train a model on the data!'} hasArrow>
           <Flex>
             <Icon
-              fontSize={'60px'}
+              fontSize={'40px'}
               color="teal"
               aria-label={'compute pred probs'}
               as={AiFillPlayCircle}
@@ -40,11 +41,11 @@ const PredProbs = (props: PredProbsProps) => {
             />
           </Flex>
         </Tooltip>
-        <Heading size={'sm'} fontWeight={500}>
-          PREDICTED PROBABILITIES
-        </Heading>
+        <Text fontSize={'md'}>Train a model in the browser!</Text>
       </HStack>
-
+      <Heading size={'sm'} fontWeight={500}>
+        PREDICTED PROBABILITIES
+      </Heading>
       <PredProbsTable
         data={data ? Object.values(data) : []}
         classes={classes}
