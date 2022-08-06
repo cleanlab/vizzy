@@ -18,7 +18,7 @@ const ConfidentJoint = (props: ConfidentJointProps) => {
       height={'100%'}
       width={'100%'}
       spacing={0}
-      bgColor={useColorModeValue('purple.50', 'purple.900')}
+      bgColor={useColorModeValue('gray.100', 'gray.700')}
       p={2}
       pt={1}
       rounded={'md'}

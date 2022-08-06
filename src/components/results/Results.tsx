@@ -17,7 +17,7 @@ const Results = (props: ResultsProps) => {
     <VStack
       h={'95%'}
       w={'100%'}
-      bgColor={useColorModeValue('purple.50', 'purple.900')}
+      bgColor={useColorModeValue('gray.100', 'gray.700')}
       p={3}
       rounded={'md'}
     >

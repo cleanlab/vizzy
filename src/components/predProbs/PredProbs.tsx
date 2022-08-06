@@ -21,7 +21,7 @@ const PredProbs = (props: PredProbsProps) => {
       width={'100%'}
       height={'100%'}
       rounded={'md'}
-      bgColor={useColorModeValue('gray.100', 'gray.700')}
+      bgColor={useColorModeValue('blue.50', 'blue.900')}
       p={2}
     >
       <HStack w={'100%'} justify={'center'}>
