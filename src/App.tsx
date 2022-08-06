@@ -134,8 +134,8 @@ export const App = () => {
                 setActiveImageId={setActiveImageId}
               />
             </Box>
-            <VStack w={'28%'} height={'100%'}>
-              <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'5%'}>
+            <VStack w={'28%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
+              <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
                 <Button variant={'ghost'}>Guide</Button>
                 <Button variant={'ghost'}>Blog</Button>
                 {/*<Button variant={'ghost'}>Cleanlab</Button>*/}
