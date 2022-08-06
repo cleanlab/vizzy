@@ -76,9 +76,10 @@ const Explanation = (props: ExplanationProps) => {
           <chakra.span fontWeight={600}>{OODPercentile}th</chakra.span> percentile
           out-of-distribution thresholds.
         </Text>
+        <br />
         <Text>
-          As such, it is deemed <chakra.span fontWeight={600}>out of distribution</chakra.span> --
-          does not belong to any class or is an atypical example of a class.
+          As such, it is considered <chakra.span fontWeight={600}>out of distribution</chakra.span>{' '}
+          -- it does not belong to any class or is an atypical example of a class.
         </Text>
       </>
     )

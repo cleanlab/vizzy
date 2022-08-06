@@ -1,6 +1,5 @@
 import React from 'react'
-import { Box, Flex, Grid, GridItem, HStack, Tag, VStack } from '@chakra-ui/react'
-import LabelIssueImage from '../issues/LabelIssueImage'
+import { Box, Flex, HStack, Tag, VStack } from '@chakra-ui/react'
 import { LabelIssue } from '../issues/types'
 import ImageGrid from './ImageGrid'
 

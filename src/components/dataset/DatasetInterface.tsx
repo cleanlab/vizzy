@@ -1,22 +1,17 @@
 import React from 'react'
 import {
-  Box,
   Flex,
   Grid,
   GridItem,
   Heading,
   HStack,
-  SimpleGrid,
-  Spinner,
   VStack,
   Text,
   useColorModeValue,
-  Icon,
 } from '@chakra-ui/react'
 import ImageWithLabel from './ImageWithLabel/ImageWithLabel'
 import { DatasetInterfaceProps } from './types'
 import LoadingSpinner from '../misc/Loading'
-import { RiNumber1 } from 'react-icons/ri'
 
 const DatasetInterface = (props: DatasetInterfaceProps) => {
   const { data, classes, updateLabel } = props
@@ -31,7 +26,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
     >
       <VStack spacing={0}>
         <HStack>
-          <Icon as={RiNumber1} />
+          <Text>1</Text>
           <Heading size={'sm'} fontWeight={500}>
             CONSTRUCT DATASET
           </Heading>

@@ -81,7 +81,7 @@ const Explainer = (props: ExplainerProps) => {
       // rounded={'md'}
     >
       <VStack w={'16%'} height={'100%'} align={'flex-start'}>
-        <Image h={'100%'} src={datapoint.src} />
+        <Image h={'88%'} src={datapoint.src} />
         <HStack spacing={'0.75rem'} align={'flex-start'} width={'100%'}>
           <Tag colorScheme={'blue'} size={'sm'}>
             Given: {datapoint.givenLabel}

@@ -3,7 +3,6 @@ import {
   VStack,
   Heading,
   Flex,
-  Box,
   HStack,
   Tooltip,
   Icon,
@@ -13,7 +12,6 @@ import {
 import { PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
 import { AiFillPlayCircle } from 'react-icons/ai'
-import { RiNumber2 } from 'react-icons/ri'
 
 const PredProbs = (props: PredProbsProps) => {
   const { data, classes, setActiveImageId, populatePredProbs } = props
@@ -45,7 +43,7 @@ const PredProbs = (props: PredProbsProps) => {
         <Text fontSize={'md'}>Train the model in your browser!</Text>
       </HStack>
       <HStack>
-        <Icon as={RiNumber2} />
+        <Text>2</Text>
         <Heading size={'sm'} fontWeight={500}>
           PREDICTED PROBABILITIES
         </Heading>

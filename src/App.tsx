@@ -1,22 +1,11 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import {
-  Box,
-  Button,
-  ChakraProvider,
-  Divider,
-  HStack,
-  Stack,
-  useColorModeValue,
-  VStack,
-} from '@chakra-ui/react'
+import { Box, Button, ChakraProvider, HStack, VStack } from '@chakra-ui/react'
 import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
 import DatasetInterface from './components/dataset/DatasetInterface'
 import PredProbs from './components/predProbs/PredProbs'
 import ConfidentJoint from './components/confidentJoint/ConfidentJoint'
-import Issues from './components/issues/Issues'
-import OutOfDistribution from './components/ood/OutOfDistribution'
 import { Datapoint } from './components/dataset/types'
 import Explainer from './components/explainer/Explainer'
 import { LabelIssue } from './components/issues/types'
@@ -127,8 +116,8 @@ export const App = () => {
             updateLabel={updateDatasetLabel}
           />
         </Box>
-        <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'}>
-          <HStack width={'100%'} height={'69%'} align={'space-between'}>
+        <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'} spacing={0}>
+          <HStack width={'100%'} height={'70%'} align={'space-between'}>
             <Box height={'100%'} width={'22%'}>
               <PredProbs
                 data={predProbsData}
@@ -162,7 +151,7 @@ export const App = () => {
             </VStack>
           </HStack>
 
-          <Box height={'30%'} width={'100%'}>
+          <Box height={'29%'} width={'100%'}>
             <Explainer
               imageDataset={imageDataset}
               predProbsData={predProbsData}
