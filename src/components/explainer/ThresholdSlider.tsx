@@ -11,6 +11,7 @@ import {
   Divider,
   HStack,
   Flex,
+  useColorModeValue,
 } from '@chakra-ui/react'
 
 import { PredProbsEntryProps } from '../predProbs/types'
@@ -42,97 +43,120 @@ const ThresholdSlider = (props: ExplanationProps) => {
   const predictedClassProb = predProbs.probabilities[predProbsClassMapping[selectedClass]]
   const predictedClassThreshold = classThresholds[selectedClass]
   const predictedClassOODThreshold = OODThresholds[selectedClass]
+  const OODColor = useColorModeValue('red.400', 'red.200')
+  const confidentColor = useColorModeValue('blue.400', 'blue.200')
 
+  console.log('predictedClassThreshold', { predictedClassThreshold, predictedClassOODThreshold })
   return (
     <HStack height={'100%'} width={'100%'} spacing={'1rem'} justify={'space-between'}>
-      <Text fontSize="14" fontWeight={500} width={'40px'}>
+      <Text fontSize={'sm'} fontWeight={500} width={'40px'}>
         {selectedClass}
       </Text>
-      {selectedClass && (
-        <Slider
-          aria-label="slider-ex-6"
-          max={1}
-          height={'1px'}
-          value={predictedClassProb}
-          pl={'6px'} // TODO fix this: should not require padding for correct alignment
-          colorScheme="gray.200"
-          _hover={{ cursor: 'unset' }}
-          width={'100%'}
+      <Slider
+        aria-label="slider-ex-6"
+        max={1}
+        height={'1px'}
+        value={predictedClassProb}
+        pl={'6px'}
+        colorScheme="gray.200"
+        _hover={{ cursor: 'unset' }}
+        width={'100%'}
+      >
+        {/*<SliderMark*/}
+        {/*  value={predictedClassOODThreshold}*/}
+        {/*  textAlign="center"*/}
+        {/*  mt="-6"*/}
+        {/*  ml="-3"*/}
+        {/*  fontSize={'xs'}*/}
+        {/*>*/}
+        {/*  {predictedClassOODThreshold.toFixed(3)}*/}
+        {/*</SliderMark>*/}
+        {/*<SliderMark value={predictedClassOODThreshold} textAlign="center" mt="-2">*/}
+        {/*  <Box height="14px" width="2px" alignItems={'center'}>*/}
+        {/*    <Divider size="40px" orientation="vertical" bg={'black'} />*/}
+        {/*  </Box>*/}
+        {/*</SliderMark>*/}
+
+        <SliderMark
+          value={predictedClassOODThreshold / 2}
+          textColor={OODColor}
+          fontWeight={700}
+          textAlign="center"
+          fontSize="xs"
+          ml="-2"
+          mt="2"
         >
-          <SliderMark value={predictedClassProb} />
-          <SliderMark
-            value={predictedClassOODThreshold}
-            textAlign="center"
-            mt="-6"
-            ml="-3"
-            fontSize={'xs'}
-          >
-            {predictedClassOODThreshold.toFixed(3)}
-          </SliderMark>
-          <SliderMark value={predictedClassOODThreshold} textAlign="center" mt="-2">
-            <Box height="14px" width="2px" alignItems={'center'}>
-              <Divider size="40px" orientation="vertical" bg={'black'} />
-            </Box>
-          </SliderMark>
+          OOD
+        </SliderMark>
+        <SliderMark
+          value={predictedClassThreshold + (1 - predictedClassThreshold) / 2}
+          textColor={confidentColor}
+          fontWeight={700}
+          textAlign="center"
+          fontSize="xs"
+          ml="-6"
+          mt="2"
+        >
+          confident
+        </SliderMark>
 
-          <SliderMark
-            value={predictedClassOODThreshold}
-            textAlign="center"
-            fontSize="xs"
-            ml="-2"
-            mt="2.5"
-          >
-            OOD
-          </SliderMark>
-          <SliderMark
-            value={predictedClassThreshold}
-            textAlign="center"
-            mt="-6"
-            ml="-3"
-            fontSize={'xs'}
-          >
-            {predictedClassThreshold.toFixed(3)}
-          </SliderMark>
+        <SliderMark
+          value={predictedClassThreshold}
+          textAlign="center"
+          mt="-5"
+          ml="-3"
+          fontSize={'xs'}
+          fontWeight={700}
+          textColor={confidentColor}
+        >
+          {predictedClassThreshold.toFixed(3)}
+        </SliderMark>
+        <SliderMark
+          value={predictedClassOODThreshold}
+          textAlign="center"
+          mt="-5"
+          ml="-3"
+          fontSize={'xs'}
+          fontWeight={700}
+          textColor={OODColor}
+        >
+          {predictedClassOODThreshold.toFixed(3)}
+        </SliderMark>
 
-          <SliderMark value={predictedClassThreshold} textAlign="center" mt="-2">
-            <Box height="14px" width="2px">
-              <Divider size="40px" orientation="vertical" bg={'gray.800'} />
-            </Box>
-          </SliderMark>
-          <SliderMark
-            value={predictedClassThreshold}
-            textAlign="center"
-            fontSize={'xs'}
-            ml="-2.5"
-            mt="1.5"
-          >
-            class
-          </SliderMark>
-          <SliderTrack bg="gray.400" height={'2px'}>
-            <SliderFilledTrack />
-          </SliderTrack>
-          <Tooltip
-            hasArrow
-            bg="teal.400"
-            color="white"
-            placement="top"
-            fontSize="10"
-            isOpen={showTooltip}
-            label={predictedClassProb.toFixed(3)}
-          >
-            <SliderMark value={predictedClassProb} fontSize={'xs'} ml="2" />
-          </Tooltip>
-          <Flex>
-            <SliderThumb
-              as={BsTriangleFill}
-              bg={'none'}
-              boxShadow={'none'}
-              transform={'translateY(-20%)'}
-              borderRadius={'none'}
-            />
-          </Flex>
-        </Slider>
-      )}
+        <SliderTrack bg="gray.400" height={'6px'}>
+          <SliderFilledTrack
+            width={`${predictedClassOODThreshold * 100}% !important`}
+            bg={OODColor}
+          />
+          <SliderFilledTrack
+            width={`${(1 - predictedClassThreshold) * 100}% !important`}
+            left={'unset !important'}
+            right={'0% !important'}
+            bg={confidentColor}
+          />
+        </SliderTrack>
+
+        <Tooltip
+          hasArrow
+          bg="teal.400"
+          color="white"
+          placement="top"
+          fontSize="10"
+          isOpen={showTooltip}
+          label={predictedClassProb.toFixed(3)}
+        >
+          <SliderMark value={predictedClassProb} fontSize={'xs'} ml="2" />
+        </Tooltip>
+        <Flex>
+          <SliderThumb
+            as={BsTriangleFill}
+            bg={'none'}
+            boxShadow={'none'}
+            transform={'translateY(-20%)'}
+            borderRadius={'none'}
+          />
+        </Flex>
+      </Slider>
     </HStack>
   )
 }
