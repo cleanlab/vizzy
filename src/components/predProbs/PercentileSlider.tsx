@@ -7,6 +7,8 @@ import {
   SliderThumb,
   SliderTrack,
   Text,
+  useColorModeValue,
+  HStack,
 } from '@chakra-ui/react'
 
 interface PercentileSliderProps {
@@ -17,12 +19,15 @@ interface PercentileSliderProps {
 
 const PercentileSlider = (props: PercentileSliderProps) => {
   const { name, percentile, setPercentile } = props
+  const OODColor = useColorModeValue('red.400', 'red.200')
+  const confidentColor = useColorModeValue('blue.400', 'blue.200')
 
   return (
     <VStack align={'flex-start'} width={'100%'}>
-      <Text fontSize={'sm'}>
-        {name}: {percentile}
-      </Text>
+      <HStack w={'100%'} fontSize={'sm'} justify={'space-between'}>
+        <Text>{name}</Text>
+        <Text>{percentile}</Text>
+      </HStack>
       <Slider
         value={percentile}
         min={0}
@@ -30,11 +35,15 @@ const PercentileSlider = (props: PercentileSliderProps) => {
         step={5}
         onChange={(value) => setPercentile(value)}
       >
-        <SliderTrack>
-          <Box position="relative" right={10} />
-          <SliderFilledTrack bgColor={'teal'} />
+        <SliderTrack h={'4px'}>
+          <SliderFilledTrack
+            bgColor={name === 'Out-of-distribution percentile' ? OODColor : confidentColor}
+          />
         </SliderTrack>
-        <SliderThumb boxSize={4} color={'black'} bgColor={'teal'} />
+        <SliderThumb
+          boxSize={3}
+          bgColor={name === 'Out-of-distribution percentile' ? OODColor : confidentColor}
+        />
       </Slider>
     </VStack>
   )

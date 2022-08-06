@@ -94,10 +94,10 @@ const ThresholdSlider = (props: ExplanationProps) => {
           fontWeight={700}
           textAlign="center"
           fontSize="xs"
-          ml="-6"
+          ml="-2.5"
           mt="2"
         >
-          confident
+          class
         </SliderMark>
 
         <SliderMark

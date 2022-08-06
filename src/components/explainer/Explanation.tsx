@@ -37,9 +37,9 @@ const Explanation = (props: ExplanationProps) => {
       return (
         <>
           <Text>
-            This is above the <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>{' '}
-            percentile class threshold for{' '}
-            <chakra.span fontWeight={600}>{predictedClass}</chakra.span>.
+            This probability is above the{' '}
+            <chakra.span fontWeight={600}>{classPercentile}th</chakra.span> percentile class
+            threshold for <chakra.span fontWeight={600}>{predictedClass}</chakra.span>.
           </Text>
           <br />
           <Text>
@@ -53,9 +53,9 @@ const Explanation = (props: ExplanationProps) => {
       return (
         <>
           <Text>
-            This is above the <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>{' '}
-            percentile class threshold for{' '}
-            <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>.
+            This probability is above the{' '}
+            <chakra.span fontWeight={600}>{classPercentile}th</chakra.span> percentile class
+            threshold for <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>.
           </Text>
           <br />
           <Text>

@@ -49,6 +49,10 @@ const Explainer = (props: ExplainerProps) => {
     OODData,
     activeImageId,
   } = props
+
+  const OODColor = useColorModeValue('red.400', 'red.200')
+  const confidentColor = useColorModeValue('blue.400', 'blue.200')
+
   if (!activeImageId) {
     return (
       <Flex height={'100%'} width={'100%'} justify={'center'} align={'center'}>
@@ -105,8 +109,8 @@ const Explainer = (props: ExplainerProps) => {
         <HStack width={'100%'}>
           <Box
             width={'50%'}
-            borderWidth={'2px'}
-            borderColor={'teal.400'}
+            borderWidth={'1px'}
+            borderColor={OODColor}
             borderRadius={'lg'}
             padding={'10px'}
           >
@@ -118,8 +122,8 @@ const Explainer = (props: ExplainerProps) => {
           </Box>
           <Box
             width={'50%'}
-            borderWidth={'2px'}
-            borderColor={'teal.400'}
+            borderWidth={'1px'}
+            borderColor={confidentColor}
             borderRadius={'lg'}
             padding={'10px'}
           >
