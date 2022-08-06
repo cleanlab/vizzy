@@ -137,9 +137,18 @@ export const App = () => {
             <VStack w={'28%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
               <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
                 <Button variant={'ghost'}>Guide</Button>
-                <Button variant={'ghost'}>Blog</Button>
-                {/*<Button variant={'ghost'}>Cleanlab</Button>*/}
-                <Button variant={'ghost'}>GitHub</Button>
+                <Button
+                  variant={'ghost'}
+                  onClick={() => window.location.assign('https://github.com/cleanlab/vizzy')}
+                >
+                  Blog
+                </Button>
+                <Button
+                  variant={'ghost'}
+                  onClick={() => window.location.assign('https://github.com/cleanlab/vizzy')}
+                >
+                  GitHub
+                </Button>
                 <ColorModeSwitcher justifySelf="flex-end" />
               </HStack>
               <Results
