@@ -6,11 +6,7 @@ const argMax = (array) => {
   return [].reduce.call(array, (m, c, i, arr) => (c > arr[m] ? i : m), 0)
 }
 
-const computeClassThresholds = (
-  predProbsData: Record<string, PredProbsEntryProps>,
-  classes,
-  classPercentile
-) => {
+const computePercentiles = (predProbsData: Record<string, PredProbsEntryProps>, classes) => {
   let givenClassToProbs: Record<string, number[]> = {
     bear: [],
     cat: [],
@@ -26,7 +22,10 @@ const computeClassThresholds = (
     givenClassToProbs[givenClass].push(v.probabilities[classToIdx[givenClass]])
   })
   return Object.entries(givenClassToProbs).reduce((acc, [className, probs]) => {
-    acc[className] = percentile(classPercentile, probs) || 1
+    acc[className] = {}
+    for (let percentileValue = 0; percentileValue <= 100; percentileValue++) {
+      acc[className][percentileValue] = percentile(percentileValue, probs) || 1
+    }
     return acc
   }, {})
 }
@@ -147,7 +146,7 @@ const computePredProbs = async (
 }
 const exports = {
   argMax,
-  computeClassThresholds,
+  computePercentiles,
   constructConfidentJoint,
   computePredProbs,
 }

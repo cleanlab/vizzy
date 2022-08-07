@@ -38,11 +38,11 @@ export const App = () => {
   const [classPercentile, setClassPercentile] = useState(50)
   const [OODPercentile, setOODPercentile] = useState(15)
   const embeddings: Record<string, Datapoint> = require('./model/output_data_embeddings_32.json')
+  const [percentiles, setPercentiles] = useState(null)
 
   const updateDatasetLabel = (id, label) => {
     setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
   }
-
   // load all data
   useEffect(() => {
     if (embeddings) {
@@ -60,15 +60,22 @@ export const App = () => {
   const populatePredProbs = async () => {
     const predProbs = await util.computePredProbs(imageDataset, CLASSES)
     setPredProbsData(predProbs)
+    setPercentiles(util.computePercentiles(predProbs, CLASSES))
   }
 
-  // compute class thresholds
   useEffect(() => {
-    if (predProbsData) {
-      const classThresholds_ = util.computeClassThresholds(predProbsData, CLASSES, classPercentile)
+    if (percentiles) {
+      const classThresholds_ = CLASSES.reduce((acc, className) => {
+        acc[className] = percentiles[className][classPercentile]
+        return acc
+      }, {})
       setClassThresholds(classThresholds_)
 
-      const OODThresholds_ = util.computeClassThresholds(predProbsData, CLASSES, OODPercentile)
+      const OODThresholds_ = CLASSES.reduce((acc, className) => {
+        acc[className] = percentiles[className][OODPercentile]
+        return acc
+      }, {})
+
       setOODThresholds(OODThresholds_)
       const cjData = util.constructConfidentJoint(
         predProbsData,
@@ -77,6 +84,7 @@ export const App = () => {
         OODThresholds_
       )
       setConfidentJointData(cjData)
+
       setIssues(
         Object.keys(cjData).reduce((acc, id) => {
           const datapoint = cjData[id]
@@ -86,6 +94,7 @@ export const App = () => {
           return acc
         }, {})
       )
+
       setOODData(
         Object.keys(cjData).reduce((acc, id) => {
           const datapoint = cjData[id]
@@ -96,7 +105,7 @@ export const App = () => {
         }, {})
       )
     }
-  }, [predProbsData, classPercentile, setClassThresholds, OODPercentile, setOODThresholds])
+  }, [percentiles, classPercentile, setClassThresholds, OODPercentile, setOODThresholds])
 
   return (
     <ChakraProvider theme={theme}>

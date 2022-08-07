@@ -46,7 +46,6 @@ const ThresholdSlider = (props: ExplanationProps) => {
   const OODColor = useColorModeValue('red.400', 'red.200')
   const confidentColor = useColorModeValue('blue.400', 'blue.200')
 
-  console.log('predictedClassThreshold', { predictedClassThreshold, predictedClassOODThreshold })
   return (
     <HStack height={'100%'} width={'100%'} spacing={'1rem'} justify={'space-between'}>
       <Text fontSize={'sm'} fontWeight={500} width={'40px'}>
