@@ -2,7 +2,7 @@ export interface PredProbsProps {
   data: Record<string, PredProbsEntryProps>
   classes: Array<string>
   setActiveImageId: (string) => void
-  populatePredProbs: () => void
+  populatePredProbs: () => Promise<void>
 }
 
 export interface PredProbsEntryProps {
