@@ -8,13 +8,23 @@ import {
   Icon,
   useColorModeValue,
   Text,
+  keyframes,
 } from '@chakra-ui/react'
 import { PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
 import { AiFillPlayCircle } from 'react-icons/ai'
+import { FaSpinner } from 'react-icons/fa'
 
 const PredProbs = (props: PredProbsProps) => {
   const { data, classes, setActiveImageId, populatePredProbs } = props
+
+  const [isTraining, setIsTraining] = React.useState(false)
+
+  const spin = keyframes`
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg)}
+  `;
+  const spinAnimation = `${spin} infinite 1s linear`;
 
   return (
     <VStack
@@ -31,11 +41,20 @@ const PredProbs = (props: PredProbsProps) => {
               fontSize={'40px'}
               color="teal"
               aria-label={'compute pred probs'}
-              as={AiFillPlayCircle}
+              as={isTraining ? FaSpinner : AiFillPlayCircle }
+              animation={isTraining ? spinAnimation : null}
               // variant={'unstyled'}
               _hover={{ cursor: 'pointer' }}
               onClick={() => {
-                populatePredProbs()
+                if (!isTraining) {
+                  setIsTraining(true)
+                  // yield to re-render before doing compute-bound work,
+                  // otherwise the spinner won't display
+                  setTimeout(async () => {
+                    await populatePredProbs()
+                    setIsTraining(false)
+                  }, 0)
+                }
               }}
             />
           </Flex>
