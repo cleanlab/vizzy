@@ -43,7 +43,7 @@ const PredProbs = (props: PredProbsProps) => {
         <Text fontSize={'md'}>Train the model in your browser!</Text>
       </HStack>
       <HStack>
-        <Text>2</Text>
+        <Text>2.</Text>
         <Heading size={'sm'} fontWeight={500}>
           PREDICTED PROBABILITIES
         </Heading>

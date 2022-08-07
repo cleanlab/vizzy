@@ -24,7 +24,7 @@ const ConfidentJoint = (props: ConfidentJointProps) => {
       rounded={'md'}
     >
       <HStack>
-        <Text>3</Text>
+        <Text>3.</Text>
         <Heading size={'sm'} fontWeight={500}>
           CONFIDENT JOINT MATRIX
         </Heading>

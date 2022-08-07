@@ -26,7 +26,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
     >
       <VStack spacing={0}>
         <HStack>
-          <Text>1</Text>
+          <Text>1.</Text>
           <Heading size={'sm'} fontWeight={500}>
             CONSTRUCT DATASET
           </Heading>
