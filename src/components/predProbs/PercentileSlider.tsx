@@ -28,7 +28,7 @@ const PercentileSlider = (props: PercentileSliderProps) => {
         <Text>{name}</Text>
         <Text>{percentile}</Text>
       </HStack>
-      <Slider min={0} max={100} step={5} onChangeEnd={(value) => setPercentile(value)}>
+      <Slider min={0} max={100} step={5} onChange={(value) => setPercentile(value)}>
         <SliderTrack h={'4px'}>
           <SliderFilledTrack
             bgColor={name === 'Out-of-distribution percentile' ? OODColor : confidentColor}
