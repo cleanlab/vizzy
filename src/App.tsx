@@ -138,14 +138,16 @@ export const App = () => {
               <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
                 <Button variant={'ghost'}>Guide</Button>
                 <Button
+                  as="a"
                   variant={'ghost'}
-                  onClick={() => window.location.assign('https://github.com/cleanlab/vizzy')}
+                  href="https://cleanlab.ai/blog/cleanlab-vizzy/"
                 >
                   Blog
                 </Button>
                 <Button
+                  as="a"
                   variant={'ghost'}
-                  onClick={() => window.location.assign('https://github.com/cleanlab/vizzy')}
+                  href="https://github.com/cleanlab/vizzy"
                 >
                   GitHub
                 </Button>
