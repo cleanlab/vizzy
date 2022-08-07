@@ -137,18 +137,10 @@ export const App = () => {
             <VStack w={'28%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
               <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
                 <Button variant={'ghost'}>Guide</Button>
-                <Button
-                  as="a"
-                  variant={'ghost'}
-                  href="https://cleanlab.ai/blog/cleanlab-vizzy/"
-                >
+                <Button as="a" variant={'ghost'} href="https://cleanlab.ai/blog/cleanlab-vizzy/">
                   Blog
                 </Button>
-                <Button
-                  as="a"
-                  variant={'ghost'}
-                  href="https://github.com/cleanlab/vizzy"
-                >
+                <Button as="a" variant={'ghost'} href="https://github.com/cleanlab/vizzy">
                   GitHub
                 </Button>
                 <ColorModeSwitcher justifySelf="flex-end" />

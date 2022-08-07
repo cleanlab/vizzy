@@ -77,37 +77,29 @@ const Explainer = (props: ExplainerProps) => {
   const datapoint = imageDataset[activeImageId]
 
   return (
-    <HStack
-      height={'100%'}
-      width={'100%'}
-      align={'flex-start'}
-      spacing={'1rem'}
-      // p={3}
-      // bgColor={'green.50'}
-      // rounded={'md'}
-    >
-      <VStack w={'16%'} height={'100%'} align={'flex-start'}>
-        <Image h={'88%'} src={datapoint.src} />
-        <HStack spacing={'0.75rem'} align={'flex-start'} width={'100%'}>
-          <Tag colorScheme={'blue'} size={'sm'}>
+    <HStack height={'100%'} width={'100%'} align={'space-between'} spacing={'1rem'}>
+      <VStack w={'20%'} height={'100%'} align={'center'} spacing={1}>
+        <Image h={'90%'} src={datapoint.src} />
+        <HStack spacing={'0.75rem'} justify={'center'} width={'100%'}>
+          <Tag colorScheme={'blue'} size={'md'}>
             Given: {datapoint.givenLabel}
           </Tag>
 
           {!isOOD && (
-            <Tag colorScheme={'yellow'} size={'sm'}>
+            <Tag colorScheme={'yellow'} size={'md'}>
               Suggested: {isIssue && issueEntry && issueEntry.suggestedLabel}
               {!isIssue && datapoint.givenLabel}
             </Tag>
           )}
           {isOOD && OODEntry && (
-            <Tag colorScheme={'red'} size={'sm'}>
+            <Tag colorScheme={'red'} size={'md'}>
               Out of distribution
             </Tag>
           )}
         </HStack>
       </VStack>
 
-      <VStack height={'20%'} width={'44%'} align={'flex-start'}>
+      <VStack height={'20%'} width={'42%'} align={'flex-start'}>
         <HStack width={'100%'}>
           <Box
             width={'50%'}
@@ -149,7 +141,7 @@ const Explainer = (props: ExplainerProps) => {
           isOOD={isOOD}
         />
       </VStack>
-      <VStack w={'40%'} h={'100%'} fontSize={'md'} pl={4} align={'space-between'}>
+      <VStack w={'36%'} h={'100%'} fontSize={'md'} pl={4} align={'space-between'}>
         <Box h={'100%'}>
           <Text>
             For this image, the model predicts label{' '}

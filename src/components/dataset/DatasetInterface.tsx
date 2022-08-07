@@ -24,11 +24,11 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
       p={3}
       rounded={'md'}
     >
-      <VStack spacing={0}>
+      <HStack spacing={2}>
         <HStack>
           <Text>1.</Text>
           <Heading size={'sm'} fontWeight={500}>
-            CONSTRUCT DATASET
+            DATASET
           </Heading>
         </HStack>
         <Flex w={'100%'} justify={'flex-end'}>
@@ -36,7 +36,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
             add label errors!
           </Text>
         </Flex>
-      </VStack>
+      </HStack>
 
       {!data && <LoadingSpinner />}
       {data && (
