@@ -41,25 +41,38 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
               {`given: ${labels[rowIdx]}`}
             </Tag>
           </Flex>
-          {[0, 1, 2].map((columnIdx) => (
-            <Box
-              borderWidth={'0.5px'}
-              m={0}
-              borderColor={'gray.500'}
-              w={cellSizePercent}
-              h={'100%'}
-            >
-              {issues && (
-                <ImageGrid
-                  suggestedLabel={labels[columnIdx]}
-                  givenLabel={labels[rowIdx]}
-                  activeImageId={activeImageId}
-                  setActiveImageId={setActiveImageId}
-                  issues={issues}
-                />
-              )}
-            </Box>
-          ))}
+          {[0, 1, 2].map((columnIdx) => {
+            const suggestedLabel = labels[columnIdx]
+            const givenLabel = labels[rowIdx]
+            const activeIssue = activeImageId && issues[activeImageId]
+            // if the active image ID doesn't fall within this grid, it doesn't
+            // need to know about it, improving memoization
+            const localActiveImageId =
+              activeImageId &&
+              activeIssue.givenLabel === givenLabel &&
+              activeIssue.suggestedLabel === suggestedLabel
+                ? activeImageId
+                : null
+            return (
+              <Box
+                borderWidth={'0.5px'}
+                m={0}
+                borderColor={'gray.500'}
+                w={cellSizePercent}
+                h={'100%'}
+              >
+                {issues && (
+                  <ImageGrid
+                    suggestedLabel={suggestedLabel}
+                    givenLabel={givenLabel}
+                    activeImageId={localActiveImageId}
+                    setActiveImageId={setActiveImageId}
+                    issues={issues}
+                  />
+                )}
+              </Box>
+            )
+          })}
         </HStack>
       ))}
     </VStack>

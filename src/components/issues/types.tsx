@@ -11,6 +11,6 @@ export interface LabelIssueImageProps extends ImageProps {
   id: string
   givenLabel: string
   suggestedLabel: string
-  activeImageId?: string
+  isActive: boolean
   setActiveImageId: (string) => void
 }

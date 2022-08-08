@@ -3,8 +3,8 @@ import { Box, Image, Tag, VStack } from '@chakra-ui/react'
 import { LabelIssueImageProps } from './types'
 
 const LabelIssueImage = (props: LabelIssueImageProps) => {
-  const { id, givenLabel, suggestedLabel, activeImageId, setActiveImageId, ...imageProps } = props
-  if (id === activeImageId) {
+  const { id, givenLabel, suggestedLabel, isActive, setActiveImageId, ...imageProps } = props
+  if (isActive) {
     return (
       <Box position={'relative'} opacity={'85%'} onMouseEnter={() => setActiveImageId(id)}>
         <Image {...imageProps} rounded={'md'} />
@@ -19,4 +19,4 @@ const LabelIssueImage = (props: LabelIssueImageProps) => {
   }
 }
 
-export default LabelIssueImage
+export default React.memo(LabelIssueImage)
