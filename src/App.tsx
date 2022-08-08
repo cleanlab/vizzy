@@ -133,7 +133,7 @@ export const App = () => {
         </Box>
         <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'} spacing={0}>
           <HStack width={'100%'} height={'70%'} align={'space-between'}>
-            <Box height={'100%'} width={'22%'}>
+            <Box height={'100%'} width={'25%'}>
               <PredProbs
                 data={predProbsData}
                 classes={CLASSES}
@@ -141,7 +141,7 @@ export const App = () => {
                 populatePredProbs={populatePredProbs}
               />
             </Box>
-            <Box w={'50%'}>
+            <Box w={'47%'}>
               <ConfidentJoint
                 labels={CLASSES}
                 issues={confidentJointData}

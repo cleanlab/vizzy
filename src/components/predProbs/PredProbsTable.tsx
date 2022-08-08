@@ -8,6 +8,7 @@ interface PredProbsTableProps {
   classes: Array<string>
   setActiveImageId: (string) => void
 }
+
 const PredProbsTable = (props: PredProbsTableProps) => {
   const { data, classes, setActiveImageId } = props
   const dummyDataEntry = {
@@ -23,9 +24,9 @@ const PredProbsTable = (props: PredProbsTableProps) => {
       <Table variant="simple" size="sm">
         <Thead position="sticky" top="0" backgroundColor={useColorModeValue('white', 'gray.900')}>
           <Tr>
-            <Th isNumeric>Image</Th>
+            <Th textAlign={'center'}>Image</Th>
             {classes.map((c) => (
-              <Th isNumeric key={c}>
+              <Th key={c} textAlign={'center'}>
                 {c}
               </Th>
             ))}
