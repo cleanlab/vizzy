@@ -55,7 +55,6 @@ const ThresholdSlider = (props: ExplanationProps) => {
         max={1}
         height={'1px'}
         value={predictedClassProb}
-        pl={'6px'}
         colorScheme="gray.200"
         _hover={{ cursor: 'unset' }}
         width={'100%'}
