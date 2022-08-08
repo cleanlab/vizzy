@@ -23,7 +23,7 @@ const ImageGrid = (props: ImageGridProps) => {
               <LabelIssueImage
                 {...datapoint}
                 id={datapoint.id}
-                activeImageId={activeImageId}
+                isActive={datapoint.id === activeImageId}
                 setActiveImageId={setActiveImageId}
               />
             </GridItem>
@@ -33,4 +33,4 @@ const ImageGrid = (props: ImageGridProps) => {
   )
 }
 
-export default ImageGrid
+export default React.memo(ImageGrid)

@@ -30,7 +30,7 @@ const OutOfDistribution = (props: OODProps) => {
               <LabelIssueImage
                 {...datapoint}
                 id={datapoint.id}
-                activeImageId={activeImageId}
+                isActive={datapoint.id === activeImageId}
                 setActiveImageId={setActiveImageId}
               />
             </GridItem>
