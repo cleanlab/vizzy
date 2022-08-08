@@ -55,6 +55,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
                 : null
             return (
               <Box
+                key={columnIdx}
                 borderWidth={'0.5px'}
                 m={0}
                 borderColor={'gray.500'}
