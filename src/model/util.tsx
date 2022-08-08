@@ -1,6 +1,7 @@
 import percentile from 'percentile'
 import { PredProbsEntryProps } from '../components/predProbs/types'
 import { Datapoint } from '../components/dataset/types'
+import { LabelIssue } from '../components/issues/types'
 
 const argMax = (array) => {
   return [].reduce.call(array, (m, c, i, arr) => (c > arr[m] ? i : m), 0)
@@ -35,7 +36,7 @@ const constructConfidentJoint = (
   classes,
   classThresholds,
   OODThresholds
-) => {
+): Record<string, LabelIssue> => {
   const data = Object.values(predProbsData).reduce((acc, elt, idx) => {
     const predProbs = elt.probabilities
     const maxPredProbs = Math.max(...predProbs)
