@@ -1,16 +1,15 @@
 import React from 'react'
 import {
   Box,
-  Slider,
-  SliderMark,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  Tooltip,
-  Text,
-  Divider,
-  HStack,
   Flex,
+  HStack,
+  Slider,
+  SliderFilledTrack,
+  SliderMark,
+  SliderThumb,
+  SliderTrack,
+  Text,
+  Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react'
 
@@ -148,12 +147,13 @@ const ThresholdSlider = (props: ExplanationProps) => {
         </Tooltip>
         <Flex>
           <SliderThumb
-            as={BsTriangleFill}
             bg={'none'}
             boxShadow={'none'}
             transform={'translateY(-20%)'}
             borderRadius={'none'}
-          />
+          >
+            <Box as={BsTriangleFill} />
+          </SliderThumb>
         </Flex>
       </Slider>
     </HStack>

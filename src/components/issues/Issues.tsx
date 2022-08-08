@@ -1,14 +1,5 @@
 import React from 'react'
-import {
-  Box,
-  Flex,
-  Grid,
-  GridItem,
-  Heading,
-  Tag,
-  useColorModeValue,
-  VStack,
-} from '@chakra-ui/react'
+import { Grid, GridItem, Tag, VStack } from '@chakra-ui/react'
 import { LabelIssue } from './types'
 import LabelIssueImage from './LabelIssueImage'
 import EmptyIssues from './EmptyIssues'

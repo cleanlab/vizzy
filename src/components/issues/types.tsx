@@ -5,12 +5,14 @@ export interface LabelIssue {
   src: string
   givenLabel: string
   suggestedLabel: string
+  OOD: boolean
 }
 
 export interface LabelIssueImageProps extends ImageProps {
   id: string
   givenLabel: string
   suggestedLabel: string
+  OOD: boolean
   isActive: boolean
   setActiveImageId: (string) => void
 }

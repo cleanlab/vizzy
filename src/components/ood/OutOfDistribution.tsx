@@ -1,9 +1,9 @@
 import React from 'react'
-import { Box, Flex, Grid, GridItem, Heading, Tag, VStack } from '@chakra-ui/react'
-import ImageWithLabel from '../dataset/ImageWithLabel/ImageWithLabel'
+import { Grid, GridItem, Tag, VStack } from '@chakra-ui/react'
 import { LabelIssue } from '../issues/types'
 import LabelIssueImage from '../issues/LabelIssueImage'
 import EmptyIssues from '../issues/EmptyIssues'
+import deepEqual from 'deep-equal'
 
 interface OODProps {
   issues: Record<string, LabelIssue>
@@ -42,12 +42,7 @@ const OutOfDistribution = (props: OODProps) => {
 }
 
 const propsAreEqual = (prevProps, nextProps) => {
-  if (!prevProps) {
-    return false
-  }
-  return (
-    JSON.stringify(Object.keys(prevProps).sort()) === JSON.stringify(Object.keys(nextProps).sort())
-  )
+  return deepEqual(prevProps, nextProps)
 }
 
 export default React.memo(OutOfDistribution, propsAreEqual)

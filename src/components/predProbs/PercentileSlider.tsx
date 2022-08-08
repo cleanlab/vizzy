@@ -1,14 +1,13 @@
 import React from 'react'
 import {
-  Box,
-  VStack,
+  HStack,
   Slider,
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
   Text,
   useColorModeValue,
-  HStack,
+  VStack,
 } from '@chakra-ui/react'
 
 interface PercentileSliderProps {

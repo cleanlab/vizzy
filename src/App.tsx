@@ -60,7 +60,6 @@ export const App = () => {
     setPredProbsData(predProbs)
     setPercentiles(util.computePercentiles(predProbs, CLASSES))
   }
-
   useEffect(() => {
     if (percentiles) {
       const classThresholds_ = CLASSES.reduce((acc, className) => {
@@ -105,7 +104,14 @@ export const App = () => {
         }, {})
       )
     }
-  }, [percentiles, classPercentile, setClassThresholds, OODPercentile, setOODThresholds])
+  }, [
+    percentiles,
+    predProbsData,
+    classPercentile,
+    setClassThresholds,
+    OODPercentile,
+    setOODThresholds,
+  ])
 
   return (
     <ChakraProvider theme={theme}>
