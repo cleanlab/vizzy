@@ -14,7 +14,7 @@ interface ImageGridProps {
 const ImageGrid = (props: ImageGridProps) => {
   const { issues, givenLabel, suggestedLabel, activeImageId, setActiveImageId } = props
   return (
-    <Grid templateColumns="repeat(10, 1fr)" gap={1} p={1} overflowY={'auto'} maxHeight={'155px'}>
+    <Grid templateColumns="repeat(10, 1fr)" gap={1} p={1} overflowY={'auto'}>
       {Object.values(issues).map(
         (datapoint) =>
           datapoint['givenLabel'] === givenLabel &&
