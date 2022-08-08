@@ -17,7 +17,6 @@ import { FaSpinner } from 'react-icons/fa'
 
 const PredProbs = (props: PredProbsProps) => {
   const { data, classes, setActiveImageId, populatePredProbs } = props
-  console.log('pred probs re-render')
   const [isTraining, setIsTraining] = React.useState(false)
 
   const spin = keyframes`
