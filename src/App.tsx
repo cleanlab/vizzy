@@ -15,9 +15,20 @@ import util from './model/util'
 import Results from './components/results/Results'
 
 const CLASSES = ['cat', 'dog', 'bear']
+const Embeddings: Record<string, Datapoint> = require('./model/output_data_embeddings_32.json')
+const Dataset: Record<string, Datapoint> = Object.entries(Embeddings).reduce(
+  (acc, [id, datapoint]) => {
+    acc[id] = {
+      ...datapoint,
+      src: `https://labelerrors.com/static/imagenet/val/${datapoint.src}`,
+    }
+    return acc
+  },
+  {}
+)
 
 export const App = () => {
-  const [imageDataset, setImageDataset] = useState<Record<string, Datapoint>>(null)
+  const [imageDataset, setImageDataset] = useState<Record<string, Datapoint>>(Dataset)
   const [predProbsData, setPredProbsData] = useState<Record<string, PredProbsEntryProps>>(null)
   const [classThresholds, setClassThresholds] = useState<Record<string, number>>(
     CLASSES.reduce((acc, elt) => {
@@ -37,25 +48,12 @@ export const App = () => {
   const [activeImageId, setActiveImageId] = useState(null)
   const [classPercentile, setClassPercentile] = useState(50)
   const [OODPercentile, setOODPercentile] = useState(15)
-  const embeddings: Record<string, Datapoint> = require('./model/output_data_embeddings_32.json')
   const [percentiles, setPercentiles] = useState(null)
 
   const updateDatasetLabel = (id, label) => {
     setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
   }
   // load all data
-  useEffect(() => {
-    if (embeddings) {
-      const dataset = Object.entries(embeddings).reduce((acc, [id, datapoint]) => {
-        acc[id] = {
-          ...datapoint,
-          src: `https://labelerrors.com/static/imagenet/val/${datapoint.src}`,
-        }
-        return acc
-      }, {})
-      setImageDataset(dataset)
-    }
-  }, [embeddings])
 
   const populatePredProbs = async () => {
     const predProbs = await util.computePredProbs(imageDataset, CLASSES)
@@ -69,6 +67,7 @@ export const App = () => {
         acc[className] = percentiles[className][classPercentile]
         return acc
       }, {})
+
       setClassThresholds(classThresholds_)
 
       const OODThresholds_ = CLASSES.reduce((acc, className) => {
@@ -77,6 +76,7 @@ export const App = () => {
       }, {})
 
       setOODThresholds(OODThresholds_)
+
       const cjData = util.constructConfidentJoint(
         predProbsData,
         CLASSES,
