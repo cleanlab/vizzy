@@ -1,15 +1,5 @@
 import React from 'react'
-import {
-  Box,
-  chakra,
-  Flex,
-  HStack,
-  Image,
-  Tag,
-  Text,
-  useColorModeValue,
-  VStack,
-} from '@chakra-ui/react'
+import { Box, Flex, HStack, Image, Tag, Text, useColorModeValue, VStack } from '@chakra-ui/react'
 import { Datapoint } from '../dataset/types'
 import { LabelIssue } from '../issues/types'
 import { PredProbsEntryProps } from '../predProbs/types'
@@ -62,7 +52,7 @@ const Explainer = (props: ExplainerProps) => {
           </Text>
         </Flex>
         <Flex align={'flex-end'} h={'20%'} justify={'flex-end'} w={'100%'}>
-          <BuiltBy />
+          <BuiltBy/>
         </Flex>
       </VStack>
     )
@@ -79,7 +69,7 @@ const Explainer = (props: ExplainerProps) => {
   return (
     <HStack height={'100%'} width={'100%'} align={'space-between'} spacing={'1rem'}>
       <VStack w={'20%'} height={'100%'} align={'center'} spacing={1}>
-        <Image h={'90%'} src={datapoint.src} />
+        <Image h={'90%'} src={datapoint.src}/>
         <HStack spacing={'0.75rem'} justify={'center'} width={'100%'}>
           <Tag colorScheme={'blue'} size={'md'}>
             Given: {datapoint.givenLabel}
@@ -129,7 +119,7 @@ const Explainer = (props: ExplainerProps) => {
           </Box>
         </HStack>
 
-        <br />
+        <br/>
         <PercentileThresholds
           datapoint={datapoint}
           classes={classes}
@@ -145,10 +135,10 @@ const Explainer = (props: ExplainerProps) => {
         <Box h={'100%'}>
           <Text>
             For this image, the model predicts label{' '}
-            <chakra.span fontWeight={600}>{predictedClass}</chakra.span> with probability{' '}
-            <chakra.span fontWeight={600}>{predictedClassProb.toFixed(3)}</chakra.span>.
+            <strong>{predictedClass}</strong> with probability{' '}
+            <strong>{predictedClassProb.toFixed(3)}</strong>.
           </Text>
-          <br />
+          <br/>
           <Explanation
             datapoint={datapoint}
             classes={classes}
@@ -161,7 +151,7 @@ const Explainer = (props: ExplainerProps) => {
           />
         </Box>
         <Flex>
-          <BuiltBy />
+          <BuiltBy/>
         </Flex>
       </VStack>
     </HStack>

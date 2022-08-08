@@ -1,5 +1,5 @@
 import React from 'react'
-import { chakra, Text } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import { PredProbsEntryProps } from '../predProbs/types'
 import { Datapoint } from '../dataset/types'
 import util from '../../model/util'
@@ -30,16 +30,13 @@ const Explanation = (props: ExplanationProps) => {
       return (
         <>
           <Text>
-            This probability is above the{' '}
-            <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>
-            percentile class threshold for{' '}
-            <chakra.span fontWeight={600}>{predictedClass}</chakra.span>.
+            This probability is above the <strong>{classPercentile}th</strong> percentile class
+            threshold for <strong>{predictedClass}</strong>.
           </Text>
           <br />
           <Text>
             As such, Cleanlab is confident that the given label of{' '}
-            <chakra.span fontWeight={600}>{datapoint.givenLabel}</chakra.span>
-            is <chakra.span fontWeight={600}>correct</chakra.span>.
+            <strong>{datapoint.givenLabel}</strong> is <strong>correct</strong>.
           </Text>
         </>
       )
@@ -47,16 +44,13 @@ const Explanation = (props: ExplanationProps) => {
       return (
         <>
           <Text>
-            This probability is above the{' '}
-            <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>
-            percentile class threshold for{' '}
-            <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>.
+            This probability is above the <strong>{classPercentile}th</strong> percentile class
+            threshold for <strong>{predictedClass}s</strong>.
           </Text>
           <br />
           <Text>
             As such, Cleanlab is confident that the given label of{' '}
-            <chakra.span fontWeight={600}>{datapoint.givenLabel}</chakra.span>
-            is <chakra.span fontWeight={600}>incorrect</chakra.span>.
+            <strong>{datapoint.givenLabel}</strong> is <strong>incorrect</strong>.
           </Text>
         </>
       )
@@ -67,14 +61,13 @@ const Explanation = (props: ExplanationProps) => {
     return (
       <>
         <Text>
-          Each predicted probability is below the respective{' '}
-          <chakra.span fontWeight={600}>{OODPercentile}th</chakra.span>
+          Each predicted probability is below the respective <strong>{OODPercentile}th</strong>{' '}
           percentile out-of-distribution thresholds.
         </Text>
         <br />
         <Text>
-          As such, it is considered <chakra.span fontWeight={600}>out of distribution</chakra.span>{' '}
-          -- it does not belong to any class or is an atypical example of a class.
+          As such, it is considered <strong>out of distribution</strong> -- it does not belong to
+          any class or is an atypical example of a class.
         </Text>
       </>
     )
@@ -85,15 +78,14 @@ const Explanation = (props: ExplanationProps) => {
     return (
       <>
         <Text>
-          This is below the <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>{' '}
-          percentile class threshold of{' '}
-          <chakra.span fontWeight={600}>{predictedClassThreshold.toFixed(3)}</chakra.span>
-          for <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>.
+          This is below the <strong>{classPercentile}th</strong> percentile class threshold of{' '}
+          <strong>{predictedClassThreshold.toFixed(3)}</strong>
+          for <strong>{predictedClass}s</strong>.
         </Text>
         <br />
         <Text>
           As such, Cleanlab agrees (but is not confident) that the given label is{' '}
-          <chakra.span fontWeight={600}>correct</chakra.span>.
+          <strong>correct</strong>.
         </Text>
       </>
     )
@@ -101,14 +93,12 @@ const Explanation = (props: ExplanationProps) => {
     return (
       <>
         <Text>
-          This is below the <chakra.span fontWeight={600}>{classPercentile}th</chakra.span>{' '}
-          percentile class threshold for{' '}
-          <chakra.span fontWeight={600}>{predictedClass}s</chakra.span>
+          This is below the <strong>{classPercentile}th</strong> percentile class threshold for{' '}
+          <strong>{predictedClass}s</strong>
         </Text>
         <br />
         <Text>
-          Cleanlab infers (but is not confident) that the given label is{' '}
-          <chakra.span fontWeight={600}>incorrect</chakra.span>.
+          Cleanlab infers (but is not confident) that the given label is <strong>incorrect</strong>.
         </Text>
       </>
     )
