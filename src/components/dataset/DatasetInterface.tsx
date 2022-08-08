@@ -5,9 +5,9 @@ import {
   GridItem,
   Heading,
   HStack,
-  VStack,
   Text,
   useColorModeValue,
+  VStack,
 } from '@chakra-ui/react'
 import ImageWithLabel from './ImageWithLabel/ImageWithLabel'
 import { DatasetInterfaceProps } from './types'
@@ -21,7 +21,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
       width={'100%'}
       height={'100%'}
       bgColor={useColorModeValue('teal.50', 'teal.700')}
-      p={3}
+      p={2}
       rounded={'md'}
     >
       <HStack spacing={2}>

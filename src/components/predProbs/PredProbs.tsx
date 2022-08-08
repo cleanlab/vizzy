@@ -37,12 +37,18 @@ const PredProbs = (props: PredProbsProps) => {
       bgColor={useColorModeValue('blue.50', 'blue.900')}
       p={2}
     >
+      <HStack>
+        <Text>2.</Text>
+        <Heading size={'sm'} fontWeight={500}>
+          PREDICTED PROBABILITIES
+        </Heading>
+      </HStack>
       <HStack w={'100%'} justify={'center'}>
         <Tooltip label={'Train an image classifier on your constructed dataset!'} hasArrow>
           <Flex>
             <Icon
-              fontSize={'40px'}
-              color="teal"
+              fontSize={'60px'}
+              color={useColorModeValue('teal.400', 'teal.200')}
               aria-label={'compute pred probs'}
               as={isTraining ? FaSpinner : AiFillPlayCircle}
               animation={isTraining ? spinAnimation : null}
@@ -64,12 +70,7 @@ const PredProbs = (props: PredProbsProps) => {
         </Tooltip>
         <Text fontSize={'md'}>Train the model in your browser!</Text>
       </HStack>
-      <HStack>
-        <Text>2.</Text>
-        <Heading size={'sm'} fontWeight={500}>
-          PREDICTED PROBABILITIES
-        </Heading>
-      </HStack>
+
       <PredProbsTable
         data={data ? Object.values(data) : []}
         classes={classes}
