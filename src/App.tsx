@@ -27,6 +27,8 @@ const Dataset: Record<string, Datapoint> = Object.entries(Embeddings).reduce(
   {}
 )
 
+const doNothing = (id: string) => null
+
 export const App = () => {
   const [imageDataset, setImageDataset] = useState<Record<string, Datapoint>>(Dataset)
   const [predProbsData, setPredProbsData] = useState<Record<string, PredProbsEntryProps>>(null)
@@ -129,6 +131,7 @@ export const App = () => {
             data={imageDataset}
             classes={CLASSES}
             updateLabel={updateDatasetLabel}
+            setActiveImageId={issues ? setActiveImageId : doNothing}
           />
         </Box>
         <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'} spacing={0}>

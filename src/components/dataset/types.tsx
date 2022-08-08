@@ -12,6 +12,7 @@ export interface DatasetInterfaceProps {
   data: Record<string, Datapoint>
   classes: Array<string>
   updateLabel: (string, label) => void
+  setActiveImageId: (imageId: string) => void
 }
 
 export interface ImageWithLabelProps extends ImageProps {
@@ -19,4 +20,5 @@ export interface ImageWithLabelProps extends ImageProps {
   givenLabel: string
   classes: string[]
   updateLabel: (string, Datapoint) => void
+  setActiveImageId: (imageId: string) => void
 }

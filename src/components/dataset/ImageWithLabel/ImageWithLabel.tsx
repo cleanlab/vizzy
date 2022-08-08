@@ -5,9 +5,9 @@ import './ImageWithLabel.css'
 import placeholder from '../../../assets/placeholder.png'
 
 const ImageWithLabel = (props: ImageWithLabelProps) => {
-  const { id, givenLabel, classes, updateLabel, ...imageProps } = props
+  const { id, givenLabel, classes, updateLabel, setActiveImageId, ...imageProps } = props
   return (
-    <Box position={'relative'}>
+    <Box position={'relative'} onMouseEnter={() => setActiveImageId(id)}>
       <Select
         // colorScheme={useColorModeValue('blackAlpha', 'blackAlpha')}
         backgroundColor={'white'}

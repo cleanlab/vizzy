@@ -14,7 +14,7 @@ import { DatasetInterfaceProps } from './types'
 import LoadingSpinner from '../misc/Loading'
 
 const DatasetInterface = (props: DatasetInterfaceProps) => {
-  const { data, classes, updateLabel } = props
+  const { data, classes, updateLabel, setActiveImageId } = props
 
   return (
     <VStack
@@ -43,7 +43,12 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
         <Grid templateColumns="repeat(1, 1fr)" gap={2} overflowY={'auto'}>
           {Object.values(data).map((datapoint) => (
             <GridItem key={datapoint.id}>
-              <ImageWithLabel {...datapoint} classes={classes} updateLabel={updateLabel} />
+              <ImageWithLabel
+                {...datapoint}
+                classes={classes}
+                updateLabel={updateLabel}
+                setActiveImageId={setActiveImageId}
+              />
             </GridItem>
           ))}
         </Grid>
@@ -55,6 +60,10 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
 const propsAreEqual = (prevProps: DatasetInterfaceProps, nextProps: DatasetInterfaceProps) => {
   const prevData = prevProps.data
   const nextData = nextProps.data
+  if (prevProps.setActiveImageId !== nextProps.setActiveImageId) {
+    return false
+  }
+  // if (prevData.)
   return Object.entries(prevData).every((entry) => {
     const id = entry[0]
     const datapoint = entry[1]
