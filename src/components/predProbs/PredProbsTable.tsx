@@ -41,9 +41,9 @@ const PredProbsTable = (props: PredProbsTableProps) => {
               />
             ))}
           {Object.values(data).length === 0 &&
-            [...Array(10)].map((x) => (
+            [...Array(10)].map((_, i) => (
               <PredProbsTableRow
-                key={x}
+                key={i}
                 datapoint={dummyDataEntry}
                 setActiveImageId={(str) => null}
               />

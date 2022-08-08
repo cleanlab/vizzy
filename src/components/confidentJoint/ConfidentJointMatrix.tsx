@@ -21,7 +21,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
       <HStack w={gridLength} h={tagSizePercent} spacing={0}>
         <Box w={tagSizePercent}> </Box>
         {labels.map((label) => (
-          <Flex w={cellSizePercent} justify={'center'} mb={'2px'}>
+          <Flex key={label} w={cellSizePercent} justify={'center'} mb={'2px'}>
             <Tag colorScheme={'yellow'} size={'md'}>
               {`suggested: ${label}`}
             </Tag>
@@ -43,6 +43,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
           </Flex>
           {[0, 1, 2].map((columnIdx) => (
             <Box
+              key={columnIdx}
               borderWidth={'0.5px'}
               m={0}
               borderColor={'gray.500'}
