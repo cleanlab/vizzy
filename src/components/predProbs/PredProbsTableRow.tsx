@@ -12,14 +12,20 @@ const PredProbsTableRow = (props: PredProbsTableRowProps) => {
   const { datapoint, setActiveImageId } = props
   return (
     <Tr>
-      <Td w={'50px'} textAlign={'center'}>
+      <Td w={'50px'} textAlign={'center'} p={'8px'}>
         <Flex
           width={'100%'}
           justify={'center'}
           align={'center'}
           onMouseEnter={() => setActiveImageId(datapoint.id)}
         >
-          <Image height={'50px'} src={datapoint.src} loading={'lazy'} fallbackSrc={placeholder} />
+          <Image
+            height={'50px'}
+            width={'50px'}
+            src={datapoint.src}
+            loading={'lazy'}
+            fallbackSrc={placeholder}
+          />
           {/*<Box>hi</Box>*/}
         </Flex>
       </Td>

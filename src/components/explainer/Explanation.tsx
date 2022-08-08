@@ -79,8 +79,8 @@ const Explanation = (props: ExplanationProps) => {
       <>
         <Text>
           This is below the <strong>{classPercentile}th</strong> percentile class threshold of{' '}
-          <strong>{predictedClassThreshold.toFixed(3)}</strong>
-          for <strong>{predictedClass}s</strong>.
+          <strong>{predictedClassThreshold.toFixed(3)}</strong> for{' '}
+          <strong>{predictedClass}s</strong>.
         </Text>
         <br />
         <Text>
