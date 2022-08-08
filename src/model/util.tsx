@@ -33,8 +33,7 @@ const computePercentiles = (predProbsData: Record<string, PredProbsEntryProps>, 
 const constructConfidentJoint = (
   predProbsData: Record<string, PredProbsEntryProps>,
   classes,
-  classThresholds,
-  OODThresholds
+  classThresholds
 ) => {
   const data = Object.values(predProbsData).reduce((acc, elt, idx) => {
     const predProbs = elt.probabilities
@@ -47,13 +46,7 @@ const constructConfidentJoint = (
     if (maxPredProbs >= classThreshold) {
       suggestedLabel = argMaxClass
     }
-    let OOD = true
-    predProbs.forEach((prob, idx) => {
-      if (prob >= OODThresholds[classes[idx]]) {
-        OOD = false
-      }
-    })
-    acc[elt.id] = { ...elt, suggestedLabel, OOD }
+    acc[elt.id] = { ...elt, suggestedLabel }
     return acc
   }, {})
   return data
