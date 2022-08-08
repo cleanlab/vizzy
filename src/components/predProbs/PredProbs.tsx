@@ -1,14 +1,14 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import {
-  VStack,
-  Heading,
   Flex,
+  Heading,
   HStack,
-  Tooltip,
   Icon,
-  useColorModeValue,
-  Text,
   keyframes,
+  Text,
+  Tooltip,
+  useColorModeValue,
+  VStack,
 } from '@chakra-ui/react'
 import { PredProbsProps } from './types'
 import PredProbsTable from './PredProbsTable'
@@ -20,8 +20,12 @@ const PredProbs = (props: PredProbsProps) => {
   const [isTraining, setIsTraining] = React.useState(false)
 
   const spin = keyframes`
-    from {transform: rotate(0deg);}
-    to {transform: rotate(360deg)}
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg)
+    }
   `
   const spinAnimation = `${spin} infinite 1s linear`
 
