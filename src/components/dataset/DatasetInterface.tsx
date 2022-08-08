@@ -55,14 +55,11 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
 const propsAreEqual = (prevProps: DatasetInterfaceProps, nextProps: DatasetInterfaceProps) => {
   const prevData = prevProps.data
   const nextData = nextProps.data
-  Object.entries(prevData).forEach((entry) => {
+  return Object.entries(prevData).every((entry) => {
     const id = entry[0]
     const datapoint = entry[1]
-    if (datapoint.givenLabel !== nextData[id].givenLabel) {
-      return false
-    }
+    return datapoint.givenLabel === nextData[id].givenLabel
   })
-  return true
 }
 
 export default React.memo(DatasetInterface, propsAreEqual)
