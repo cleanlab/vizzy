@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import {
   VStack,
   Heading,
@@ -17,14 +17,14 @@ import { FaSpinner } from 'react-icons/fa'
 
 const PredProbs = (props: PredProbsProps) => {
   const { data, classes, setActiveImageId, populatePredProbs } = props
-
+  console.log('pred probs re-render')
   const [isTraining, setIsTraining] = React.useState(false)
 
   const spin = keyframes`
     from {transform: rotate(0deg);}
     to {transform: rotate(360deg)}
-  `;
-  const spinAnimation = `${spin} infinite 1s linear`;
+  `
+  const spinAnimation = `${spin} infinite 1s linear`
 
   return (
     <VStack
@@ -41,7 +41,7 @@ const PredProbs = (props: PredProbsProps) => {
               fontSize={'40px'}
               color="teal"
               aria-label={'compute pred probs'}
-              as={isTraining ? FaSpinner : AiFillPlayCircle }
+              as={isTraining ? FaSpinner : AiFillPlayCircle}
               animation={isTraining ? spinAnimation : null}
               // variant={'unstyled'}
               _hover={{ cursor: 'pointer' }}
@@ -76,4 +76,17 @@ const PredProbs = (props: PredProbsProps) => {
   )
 }
 
-export default PredProbs
+const propsAreEqual = (prevProps: PredProbsProps, nextProps: PredProbsProps) => {
+  const prevData = prevProps.data
+  if (!prevData) {
+    return false
+  }
+  const nextData = nextProps.data
+  return Object.entries(nextData).every((entry) => {
+    const id = entry[0]
+    const datapoint = entry[1]
+    return datapoint.probabilities === prevData[id].probabilities
+  })
+}
+
+export default React.memo(PredProbs, propsAreEqual)
