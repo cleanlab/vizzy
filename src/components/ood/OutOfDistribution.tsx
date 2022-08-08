@@ -41,4 +41,13 @@ const OutOfDistribution = (props: OODProps) => {
   )
 }
 
-export default OutOfDistribution
+const propsAreEqual = (prevProps, nextProps) => {
+  if (!prevProps) {
+    return false
+  }
+  return (
+    JSON.stringify(Object.keys(prevProps).sort()) === JSON.stringify(Object.keys(nextProps).sort())
+  )
+}
+
+export default React.memo(OutOfDistribution, propsAreEqual)
