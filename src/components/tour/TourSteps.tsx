@@ -153,4 +153,14 @@ export const tourSteps: Step[] = [
     title: 'Explanation',
     placement: 'left',
   },
+  {
+    content: (
+      <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
+        <Text>You can access this tutorial again by clicking this button.</Text>
+      </VStack>
+    ),
+    target: '.tour-guide-button',
+    title: 'Guide',
+    placement: 'bottom',
+  },
 ]

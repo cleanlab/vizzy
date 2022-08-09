@@ -163,7 +163,11 @@ export const App = () => {
               </Box>
               <VStack w={'25%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
                 <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
-                  <Button variant={'ghost'} onClick={() => setTourEnabled(true)}>
+                  <Button
+                    variant={'ghost'}
+                    onClick={() => setTourEnabled(true)}
+                    className={'tour-guide-button'}
+                  >
                     Guide
                   </Button>
                   <Button as="a" variant={'ghost'} href="https://cleanlab.ai/blog/cleanlab-vizzy/">
