@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, HStack, Text, Stack, useColorModeValue } from '@chakra-ui/react'
+import { Heading, HStack, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 import { LabelIssue } from '../issues/types'
 import ConfidentJointMatrix from './ConfidentJointMatrix'
 
@@ -22,6 +22,7 @@ const ConfidentJoint = (props: ConfidentJointProps) => {
       p={2}
       pt={1}
       rounded={'md'}
+      className={'tour-confident-joint'}
     >
       <HStack>
         <Text>3.</Text>

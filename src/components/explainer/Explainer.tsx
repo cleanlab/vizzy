@@ -48,11 +48,11 @@ const Explainer = (props: ExplainerProps) => {
       <VStack height={'100%'} width={'100%'}>
         <Flex height={'80%'} justify={'center'} align={'center'}>
           <Text fontSize={'sm'} fontStyle={'italic'}>
-            Train the model and hover over an image for more details!
+            Train the model and mouse over an image for more details!
           </Text>
         </Flex>
         <Flex align={'flex-end'} h={'20%'} justify={'flex-end'} w={'100%'}>
-          <BuiltBy/>
+          <BuiltBy />
         </Flex>
       </VStack>
     )
@@ -69,7 +69,7 @@ const Explainer = (props: ExplainerProps) => {
   return (
     <HStack height={'100%'} width={'100%'} align={'space-between'} spacing={'1rem'}>
       <VStack w={'20%'} height={'100%'} align={'center'} spacing={1}>
-        <Image h={'90%'} src={datapoint.src}/>
+        <Image h={'90%'} src={datapoint.src} />
         <HStack spacing={'0.75rem'} justify={'center'} width={'100%'}>
           <Tag colorScheme={'blue'} size={'md'}>
             Given: {datapoint.givenLabel}
@@ -119,7 +119,7 @@ const Explainer = (props: ExplainerProps) => {
           </Box>
         </HStack>
 
-        <br/>
+        <br />
         <PercentileThresholds
           datapoint={datapoint}
           classes={classes}
@@ -134,11 +134,10 @@ const Explainer = (props: ExplainerProps) => {
       <VStack w={'36%'} h={'100%'} fontSize={'md'} pl={4} align={'space-between'}>
         <Box h={'100%'}>
           <Text>
-            For this image, the model predicts label{' '}
-            <strong>{predictedClass}</strong> with probability{' '}
-            <strong>{predictedClassProb.toFixed(3)}</strong>.
+            For this image, the model predicts label <strong>{predictedClass}</strong> with
+            probability <strong>{predictedClassProb.toFixed(3)}</strong>.
           </Text>
-          <br/>
+          <br />
           <Explanation
             datapoint={datapoint}
             classes={classes}
@@ -151,7 +150,7 @@ const Explainer = (props: ExplainerProps) => {
           />
         </Box>
         <Flex>
-          <BuiltBy/>
+          <BuiltBy />
         </Flex>
       </VStack>
     </HStack>

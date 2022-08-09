@@ -18,6 +18,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
 
   return (
     <VStack
+      className={'tour-dataset-interface'}
       width={'100%'}
       height={'100%'}
       bgColor={useColorModeValue('teal.50', 'teal.700')}

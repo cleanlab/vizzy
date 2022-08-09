@@ -36,6 +36,7 @@ const PredProbs = (props: PredProbsProps) => {
       rounded={'md'}
       bgColor={useColorModeValue('blue.50', 'blue.900')}
       p={2}
+      className={'tour-pred-probs'}
     >
       <HStack>
         <Text>2.</Text>

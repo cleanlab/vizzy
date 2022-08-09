@@ -13,6 +13,7 @@ import { PredProbsEntryProps } from './components/predProbs/types'
 
 import util from './model/util'
 import Results from './components/results/Results'
+import TourWrapper from './components/tour/TourWrapper'
 
 const CLASSES = ['cat', 'dog', 'bear']
 const Embeddings: Record<string, Datapoint> = require('./model/output_data_embeddings_32.json')
@@ -51,6 +52,7 @@ export const App = () => {
   const [classPercentile, setClassPercentile] = useState(50)
   const [OODPercentile, setOODPercentile] = useState(15)
   const [percentiles, setPercentiles] = useState(null)
+  const [tourEnabled, setTourEnabled] = useState<boolean>(false)
 
   const updateDatasetLabel = (id, label) => {
     setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
@@ -117,79 +119,89 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <HStack
-        w={'100%'}
-        height={'100vh'}
-        spacing={4}
-        p={3}
-        justify={'space-between'}
-        minWidth={'1440px'}
-        minHeight={'900px'}
-      >
-        <Box width={'15%'} height={'100%'}>
-          <DatasetInterface
-            data={imageDataset}
-            classes={CLASSES}
-            updateLabel={updateDatasetLabel}
-            setActiveImageId={issues ? setActiveImageId : doNothing}
-          />
-        </Box>
-        <VStack w={'85%'} justify={'space-between'} align={'space-between'} h={'100%'} spacing={0}>
-          <HStack width={'100%'} height={'70%'} align={'space-between'}>
-            <Box height={'100%'} width={'25%'}>
-              <PredProbs
-                data={predProbsData}
-                classes={CLASSES}
-                setActiveImageId={setActiveImageId}
-                populatePredProbs={populatePredProbs}
-              />
-            </Box>
-            <Box w={'50%'}>
-              <ConfidentJoint
-                labels={CLASSES}
-                issues={confidentJointData}
-                activeImageId={activeImageId}
-                setActiveImageId={setActiveImageId}
-              />
-            </Box>
-            <VStack w={'25%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
-              <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
-                <Button variant={'ghost'}>Guide</Button>
-                <Button as="a" variant={'ghost'} href="https://cleanlab.ai/blog/cleanlab-vizzy/">
-                  Blog
-                </Button>
-                <Button as="a" variant={'ghost'} href="https://github.com/cleanlab/vizzy">
-                  GitHub
-                </Button>
-                <ColorModeSwitcher justifySelf="flex-end" />
-              </HStack>
-              <Results
-                issues={issues}
-                OODData={OODData}
-                activeImageId={activeImageId}
-                setActiveImageId={setActiveImageId}
-              />
-            </VStack>
-          </HStack>
-
-          <Box height={'29%'} width={'100%'}>
-            <Explainer
-              imageDataset={imageDataset}
-              predProbsData={predProbsData}
+      <TourWrapper setTourEnabled={setTourEnabled} tourEnabled={tourEnabled}>
+        <HStack
+          w={'100%'}
+          height={'100vh'}
+          spacing={4}
+          p={3}
+          justify={'space-between'}
+          minWidth={'1440px'}
+          minHeight={'900px'}
+        >
+          <Box width={'15%'} height={'100%'}>
+            <DatasetInterface
+              data={imageDataset}
               classes={CLASSES}
-              classThresholds={classThresholds}
-              OODThresholds={OODThresholds}
-              issues={issues}
-              OODData={OODData}
-              classPercentile={classPercentile}
-              setClassPercentile={setClassPercentile}
-              OODPercentile={OODPercentile}
-              setOODPercentile={setOODPercentile}
-              activeImageId={activeImageId}
+              updateLabel={updateDatasetLabel}
+              setActiveImageId={issues ? setActiveImageId : doNothing}
             />
           </Box>
-        </VStack>
-      </HStack>
+          <VStack
+            w={'85%'}
+            justify={'space-between'}
+            align={'space-between'}
+            h={'100%'}
+            spacing={0}
+          >
+            <HStack width={'100%'} height={'70%'} align={'space-between'}>
+              <Box height={'100%'} width={'25%'}>
+                <PredProbs
+                  data={predProbsData}
+                  classes={CLASSES}
+                  setActiveImageId={setActiveImageId}
+                  populatePredProbs={populatePredProbs}
+                />
+              </Box>
+              <Box w={'50%'}>
+                <ConfidentJoint
+                  labels={CLASSES}
+                  issues={confidentJointData}
+                  activeImageId={activeImageId}
+                  setActiveImageId={setActiveImageId}
+                />
+              </Box>
+              <VStack w={'25%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
+                <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
+                  <Button variant={'ghost'} onClick={() => setTourEnabled(true)}>
+                    Guide
+                  </Button>
+                  <Button as="a" variant={'ghost'} href="https://cleanlab.ai/blog/cleanlab-vizzy/">
+                    Blog
+                  </Button>
+                  <Button as="a" variant={'ghost'} href="https://github.com/cleanlab/vizzy">
+                    GitHub
+                  </Button>
+                  <ColorModeSwitcher justifySelf="flex-end" />
+                </HStack>
+                <Results
+                  issues={issues}
+                  OODData={OODData}
+                  activeImageId={activeImageId}
+                  setActiveImageId={setActiveImageId}
+                />
+              </VStack>
+            </HStack>
+
+            <Box height={'29%'} width={'100%'}>
+              <Explainer
+                imageDataset={imageDataset}
+                predProbsData={predProbsData}
+                classes={CLASSES}
+                classThresholds={classThresholds}
+                OODThresholds={OODThresholds}
+                issues={issues}
+                OODData={OODData}
+                classPercentile={classPercentile}
+                setClassPercentile={setClassPercentile}
+                OODPercentile={OODPercentile}
+                setOODPercentile={setOODPercentile}
+                activeImageId={activeImageId}
+              />
+            </Box>
+          </VStack>
+        </HStack>
+      </TourWrapper>
     </ChakraProvider>
   )
 }
