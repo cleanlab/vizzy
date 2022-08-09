@@ -38,7 +38,7 @@ const PredProbsTable = (props: PredProbsTableProps) => {
             ))}
           {Object.values(data).length === 0 &&
             Object.values(dataset).map((datapoint, i) => (
-              <EmptyPredProbsTableRow datapoint={datapoint} />
+              <EmptyPredProbsTableRow key={i} datapoint={datapoint} />
             ))}
         </Tbody>
       </Table>
