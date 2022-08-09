@@ -12,7 +12,7 @@ interface ConfidentJointProps {
 
 const ConfidentJointMatrix = (props: ConfidentJointProps) => {
   const { labels, issues, activeImageId, setActiveImageId } = props
-  const gridLength = 'calc(max(400px, min(64vh, 640px)))'
+  const gridLength = 'calc(max(575px, min(34vw, 640px)))'
   const tagSizePercent = '4%'
   const cellSizePercent = '32%'
 
