@@ -101,7 +101,12 @@ const Explainer = (props: ExplainerProps) => {
             <PercentileSlider
               name={'Out-of-distribution percentile'}
               percentile={OODPercentile}
-              setPercentile={setOODPercentile}
+              setPercentile={(value) => {
+                setOODPercentile(value)
+                if (value > classPercentile) {
+                  setClassPercentile(value)
+                }
+              }}
             />
           </Box>
           <Box
@@ -114,7 +119,12 @@ const Explainer = (props: ExplainerProps) => {
             <PercentileSlider
               name={'Class percentile'}
               percentile={classPercentile}
-              setPercentile={setClassPercentile}
+              setPercentile={(value) => {
+                setClassPercentile(value)
+                if (value < OODPercentile) {
+                  setOODPercentile(value)
+                }
+              }}
             />
           </Box>
         </HStack>
