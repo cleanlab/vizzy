@@ -1,23 +1,18 @@
 import { Table, TableContainer, Tbody, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
 import { PredProbsEntryProps } from './types'
-import PredProbsTableRow from './PredProbsTableRow'
+import { EmptyPredProbsTableRow, PredProbsTableRow } from './PredProbsTableRow'
+import { Datapoint } from '../dataset/types'
 
 interface PredProbsTableProps {
   data: Array<PredProbsEntryProps>
   classes: Array<string>
+  dataset: Record<string, Datapoint>
   setActiveImageId: (string) => void
 }
 
 const PredProbsTable = (props: PredProbsTableProps) => {
-  const { data, classes, setActiveImageId } = props
-  const dummyDataEntry = {
-    id: null,
-    // src: 'https://via.placeholder.com/150',
-    src: 'https://placem.at/things?w=150&h=150&txt=0&random=2022&overlay_blend=difference',
-    givenLabel: null,
-    probabilities: [],
-  }
+  const { data, classes, setActiveImageId, dataset } = props
 
   return (
     <TableContainer overflowY={'auto'} height={'100%'} w={'100%'}>
@@ -42,12 +37,8 @@ const PredProbsTable = (props: PredProbsTableProps) => {
               />
             ))}
           {Object.values(data).length === 0 &&
-            [...Array(10)].map((_, i) => (
-              <PredProbsTableRow
-                key={i}
-                datapoint={dummyDataEntry}
-                setActiveImageId={(str) => null}
-              />
+            Object.values(dataset).map((datapoint, i) => (
+              <EmptyPredProbsTableRow datapoint={datapoint} />
             ))}
         </Tbody>
       </Table>

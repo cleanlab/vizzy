@@ -16,8 +16,15 @@ import { AiFillPlayCircle } from 'react-icons/ai'
 import { FaSpinner } from 'react-icons/fa'
 
 const PredProbs = (props: PredProbsProps) => {
-  const { data, classes, setActiveImageId, populatePredProbs, labelsChanged, setLabelsChanged } =
-    props
+  const {
+    data,
+    classes,
+    setActiveImageId,
+    populatePredProbs,
+    labelsChanged,
+    setLabelsChanged,
+    dataset,
+  } = props
   const [isTraining, setIsTraining] = React.useState(false)
   const buttonColor = useColorModeValue('teal.400', 'teal.200')
 
@@ -87,6 +94,7 @@ const PredProbs = (props: PredProbsProps) => {
 
       <PredProbsTable
         data={data ? Object.values(data) : []}
+        dataset={dataset}
         classes={classes}
         setActiveImageId={setActiveImageId}
       />

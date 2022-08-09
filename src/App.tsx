@@ -58,7 +58,7 @@ export const App = () => {
   const [labelsChanged, setLabelsChanged] = useState(true)
 
   const updateDatasetLabel = (id, label) => {
-    setImageDataset({...imageDataset, [id]: {...imageDataset[id], givenLabel: label}})
+    setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
     setLabelsChanged(true)
   }
   // load all data
@@ -159,6 +159,7 @@ export const App = () => {
                   populatePredProbs={populatePredProbs}
                   labelsChanged={labelsChanged}
                   setLabelsChanged={setLabelsChanged}
+                  dataset={imageDataset}
                 />
               </Box>
               <Box w={'50%'}>
@@ -184,7 +185,7 @@ export const App = () => {
                   <Button as="a" variant={'ghost'} href="https://github.com/cleanlab/vizzy">
                     GitHub
                   </Button>
-                  <ColorModeSwitcher justifySelf="flex-end"/>
+                  <ColorModeSwitcher justifySelf="flex-end" />
                 </HStack>
                 <Results
                   issues={issues}
