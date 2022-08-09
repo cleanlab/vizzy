@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Joyride, { CallBackProps, STATUS } from 'react-joyride'
 import { tourSteps } from './TourSteps'
 import { useColorModeValue } from '@chakra-ui/react'
@@ -7,12 +7,18 @@ const TourWrapper = ({ tourEnabled, setTourEnabled, children }) => {
   const bgColor = useColorModeValue('#FFFFFF', '#4A5568')
   const textColor = useColorModeValue('#000000', '#FFFFFF')
 
+  useEffect(() => {
+    if (window.localStorage.getItem('vizzyTourTaken') !== 'true') {
+      setTourEnabled(true)
+    }
+  }, [setTourEnabled])
+
   const handleJoyrideCallback = (data: CallBackProps) => {
-    const { status, step, index } = data
-    console.log('index', index)
+    const { status } = data
     const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED]
 
     if (finishedStatuses.includes(status)) {
+      window.localStorage.setItem('vizzyTourTaken', 'true')
       setTourEnabled(false)
     }
   }
