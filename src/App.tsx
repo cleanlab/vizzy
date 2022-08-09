@@ -144,7 +144,7 @@ export const App = () => {
                 populatePredProbs={populatePredProbs}
               />
             </Box>
-            <Box w={'47%'}>
+            <Box w={'50%'}>
               <ConfidentJoint
                 labels={CLASSES}
                 issues={confidentJointData}
@@ -152,7 +152,7 @@ export const App = () => {
                 setActiveImageId={setActiveImageId}
               />
             </Box>
-            <VStack w={'28%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
+            <VStack w={'25%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
               <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
                 <Button variant={'ghost'}>Guide</Button>
                 <Button as="a" variant={'ghost'} href="https://cleanlab.ai/blog/cleanlab-vizzy/">
