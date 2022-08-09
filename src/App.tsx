@@ -54,9 +54,12 @@ export const App = () => {
   const [OODPercentile, setOODPercentile] = useState(15)
   const [percentiles, setPercentiles] = useState(null)
   const [tourEnabled, setTourEnabled] = useState<boolean>(false)
+  // track whether labels have changed since training
+  const [labelsChanged, setLabelsChanged] = useState(true)
 
   const updateDatasetLabel = (id, label) => {
-    setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
+    setImageDataset({...imageDataset, [id]: {...imageDataset[id], givenLabel: label}})
+    setLabelsChanged(true)
   }
   // load all data
 
@@ -154,6 +157,8 @@ export const App = () => {
                   classes={CLASSES}
                   setActiveImageId={setActiveImageId}
                   populatePredProbs={populatePredProbs}
+                  labelsChanged={labelsChanged}
+                  setLabelsChanged={setLabelsChanged}
                 />
               </Box>
               <Box w={'50%'}>
@@ -179,7 +184,7 @@ export const App = () => {
                   <Button as="a" variant={'ghost'} href="https://github.com/cleanlab/vizzy">
                     GitHub
                   </Button>
-                  <ColorModeSwitcher justifySelf="flex-end" />
+                  <ColorModeSwitcher justifySelf="flex-end"/>
                 </HStack>
                 <Results
                   issues={issues}

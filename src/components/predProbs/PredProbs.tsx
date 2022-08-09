@@ -1,9 +1,9 @@
 import React from 'react'
 import {
+  Button,
   Flex,
   Heading,
   HStack,
-  Icon,
   keyframes,
   Text,
   Tooltip,
@@ -16,8 +16,10 @@ import { AiFillPlayCircle } from 'react-icons/ai'
 import { FaSpinner } from 'react-icons/fa'
 
 const PredProbs = (props: PredProbsProps) => {
-  const { data, classes, setActiveImageId, populatePredProbs } = props
+  const { data, classes, setActiveImageId, populatePredProbs, labelsChanged, setLabelsChanged } =
+    props
   const [isTraining, setIsTraining] = React.useState(false)
+  const buttonColor = useColorModeValue('teal.400', 'teal.200')
 
   const spin = keyframes`
     from {
@@ -45,25 +47,35 @@ const PredProbs = (props: PredProbsProps) => {
         </Heading>
       </HStack>
       <HStack w={'100%'} justify={'center'}>
-        <Tooltip label={'Train an image classifier on your constructed dataset!'} hasArrow>
+        <Tooltip
+          label={
+            labelsChanged
+              ? 'Train an image classifier on your constructed dataset!'
+              : 'Change dataset labels before training again!'
+          }
+          hasArrow
+        >
           <Flex>
-            <Icon
-              className={'tour-play-button'}
-              fontSize={'60px'}
-              color={useColorModeValue('teal.400', 'teal.200')}
-              aria-label={'compute pred probs'}
+            <Button
               as={isTraining ? FaSpinner : AiFillPlayCircle}
               animation={isTraining ? spinAnimation : null}
-              // variant={'unstyled'}
-              _hover={{ cursor: 'pointer' }}
+              variant={'unstyled'}
+              // size={'60px'}
+              isLoading={isTraining}
+              className={'tour-play-button'}
+              isDisabled={!labelsChanged}
+              color={buttonColor}
+              aria-label={'compute pred probs'}
+              _hover={{ cursor: labelsChanged ? 'pointer' : 'auto' }}
               onClick={() => {
-                if (!isTraining) {
+                if (labelsChanged && !isTraining) {
                   setIsTraining(true)
                   // yield to re-render before doing compute-bound work,
                   // otherwise the spinner won't display
                   setTimeout(async () => {
                     await populatePredProbs()
                     setIsTraining(false)
+                    setLabelsChanged(false)
                   }, 0)
                 }
               }}
@@ -88,6 +100,9 @@ const propsAreEqual = (prevProps: PredProbsProps, nextProps: PredProbsProps) => 
     return false
   }
   const nextData = nextProps.data
+  if (prevProps.labelsChanged !== nextProps.labelsChanged) {
+    return false
+  }
   return Object.entries(nextData).every((entry) => {
     const id = entry[0]
     const datapoint = entry[1]
