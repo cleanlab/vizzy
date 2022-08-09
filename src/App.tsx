@@ -32,6 +32,7 @@ const doNothing = (id: string) => null
 
 export const App = () => {
   const [imageDataset, setImageDataset] = useState<Record<string, Datapoint>>(Dataset)
+  const [submittedDataset, setSubmittedDataset] = useState<Record<string, Datapoint>>(Dataset)
   const [predProbsData, setPredProbsData] = useState<Record<string, PredProbsEntryProps>>(null)
   const [classThresholds, setClassThresholds] = useState<Record<string, number>>(
     CLASSES.reduce((acc, elt) => {
@@ -60,10 +61,12 @@ export const App = () => {
   // load all data
 
   const populatePredProbs = async () => {
+    setSubmittedDataset(imageDataset)
     const predProbs = await util.computePredProbs(imageDataset, CLASSES)
     setPredProbsData(predProbs)
     setPercentiles(util.computePercentiles(predProbs, CLASSES))
   }
+
   useEffect(() => {
     if (percentiles) {
       const classThresholds_ = CLASSES.reduce((acc, className) => {
@@ -189,7 +192,7 @@ export const App = () => {
 
             <Box height={'29%'} width={'100%'} className={'tour-explainer'}>
               <Explainer
-                imageDataset={imageDataset}
+                imageDataset={submittedDataset}
                 predProbsData={predProbsData}
                 classes={CLASSES}
                 classThresholds={classThresholds}
