@@ -52,8 +52,8 @@ export const tourSteps: Step[] = [
     content: (
       <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
         <Text>
-          We train a simple image classifier on your dataset to generate out-of-sample predicted
-          probabilities.
+          We train a simple <strong>image classifier</strong> on the dataset to generate
+          out-of-sample predicted probabilities.
         </Text>
         <Text>
           Cleanlab does not rely on a classifier's predictions being perfect. Rather, the predicted
@@ -61,6 +61,15 @@ export const tourSteps: Step[] = [
           a label, especially when compared to other images in that class. Cleanlab uses this to
           identify label errors.
         </Text>
+      </VStack>
+    ),
+    target: '.tour-pred-probs',
+    title: 'Predicted probabilities',
+    placement: 'right',
+  },
+  {
+    content: (
+      <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
         <Text>
           Click the <strong>Play</strong> button to train the image classifier in your browser.
         </Text>
@@ -70,8 +79,8 @@ export const tourSteps: Step[] = [
         </Text>
       </VStack>
     ),
-    target: '.tour-pred-probs',
-    title: 'Predicted probabilities',
+    target: '.tour-play-button',
+    title: 'Train the model',
     placement: 'right',
   },
   {
@@ -107,6 +116,41 @@ export const tourSteps: Step[] = [
     ),
     target: '.tour-confident-joint',
     title: 'Confident Joint',
+    placement: 'left',
+  },
+  {
+    content: (
+      <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
+        <Text>
+          Images with given labels that do not match Cleanlab's suggested label are considered{' '}
+          <strong>label issues</strong>.
+        </Text>
+        <Text>
+          Images with probabilities that fall below the out-of-distribution thresholds for all
+          classes are considered to be <strong>out of distribution</strong>.
+        </Text>
+      </VStack>
+    ),
+    target: '.tour-results',
+    title: 'Results',
+    placement: 'left',
+  },
+  {
+    content: (
+      <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
+        <Text>
+          <strong>Mouse over any image</strong> to get an explanation of how it was categorized by
+          Cleanlab.
+        </Text>
+        <Text>
+          You can also <strong>drag the sliders</strong> to change the percentile thresholds used by
+          Cleanlab to determine the suggested label of an image, or whether it is out of
+          distribution.
+        </Text>
+      </VStack>
+    ),
+    target: '.tour-explainer',
+    title: 'Explanation',
     placement: 'left',
   },
 ]

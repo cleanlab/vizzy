@@ -8,7 +8,8 @@ const TourWrapper = ({ tourEnabled, setTourEnabled, children }) => {
   const textColor = useColorModeValue('#000000', '#FFFFFF')
 
   const handleJoyrideCallback = (data: CallBackProps) => {
-    const { status } = data
+    const { status, step, index } = data
+    console.log('index', index)
     const finishedStatuses: string[] = [STATUS.FINISHED, STATUS.SKIPPED]
 
     if (finishedStatuses.includes(status)) {

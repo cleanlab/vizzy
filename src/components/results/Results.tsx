@@ -10,6 +10,7 @@ interface ResultsProps {
   setActiveImageId: (imageId: string) => void
   OODData: Record<string, LabelIssue>
 }
+
 const Results = (props: ResultsProps) => {
   const { issues, activeImageId, setActiveImageId, OODData } = props
 
@@ -20,6 +21,7 @@ const Results = (props: ResultsProps) => {
       bgColor={useColorModeValue('gray.100', 'gray.700')}
       p={3}
       rounded={'md'}
+      className={'tour-results'}
     >
       <Box height={'50%'} width={'100%'}>
         <Issues issues={issues} activeImageId={activeImageId} setActiveImageId={setActiveImageId} />

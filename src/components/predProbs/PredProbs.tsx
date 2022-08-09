@@ -48,6 +48,7 @@ const PredProbs = (props: PredProbsProps) => {
         <Tooltip label={'Train an image classifier on your constructed dataset!'} hasArrow>
           <Flex>
             <Icon
+              className={'tour-play-button'}
               fontSize={'60px'}
               color={useColorModeValue('teal.400', 'teal.200')}
               aria-label={'compute pred probs'}

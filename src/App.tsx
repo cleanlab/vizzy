@@ -183,7 +183,7 @@ export const App = () => {
               </VStack>
             </HStack>
 
-            <Box height={'29%'} width={'100%'}>
+            <Box height={'29%'} width={'100%'} className={'tour-explainer'}>
               <Explainer
                 imageDataset={imageDataset}
                 predProbsData={predProbsData}
