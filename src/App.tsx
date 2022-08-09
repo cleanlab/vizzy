@@ -128,7 +128,8 @@ export const App = () => {
       <TourWrapper setTourEnabled={setTourEnabled} tourEnabled={tourEnabled}>
         <HStack
           w={'100%'}
-          height={'100vh'}
+          height={'53vw'}
+          width={'100vw'}
           spacing={4}
           p={3}
           justify={'space-between'}
