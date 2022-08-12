@@ -178,7 +178,7 @@ export const App = () => {
                     onClick={() => setTourEnabled(true)}
                     className={'tour-guide-button'}
                   >
-                    Guide
+                    Learn
                   </Button>
                   <Button as="a" variant={'ghost'} href="https://cleanlab.ai/blog/cleanlab-vizzy/">
                     Blog
