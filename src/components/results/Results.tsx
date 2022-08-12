@@ -16,10 +16,10 @@ const Results = (props: ResultsProps) => {
 
   return (
     <VStack
-      h={'95%'}
       w={'100%'}
+      h={'100%'}
       bgColor={useColorModeValue('gray.100', 'gray.700')}
-      p={3}
+      p={2}
       rounded={'md'}
       className={'tour-results'}
     >

@@ -14,6 +14,8 @@ import util from './model/util'
 import Results from './components/results/Results'
 import TourWrapper from './components/tour/TourWrapper'
 import PercentileThresholds from './components/thresholds/PercentileThresholds'
+import BuiltBy from './components/misc/BuiltBy'
+import Explainer from './components/explainer/Explainer'
 
 const CLASSES = ['cat', 'dog', 'bear']
 const Embeddings: Record<string, Datapoint> = require('./model/output_data_embeddings_32.json')
@@ -131,7 +133,7 @@ export const App = () => {
           height={'calc(min(100vh,53vw))'}
           width={'100vw'}
           spacing={2}
-          p={3}
+          p={1}
           justify={'space-between'}
           minWidth={'1440px'}
           minHeight={'900px'}
@@ -163,7 +165,7 @@ export const App = () => {
                   dataset={imageDataset}
                 />
               </Box>
-              <VStack w={'54%'} justify={'space-between'}>
+              <VStack w={'49%'} justify={'space-between'}>
                 <ConfidentJoint
                   labels={CLASSES}
                   issues={confidentJointData}
@@ -185,7 +187,7 @@ export const App = () => {
                   />
                 </Box>
               </VStack>
-              <VStack w={'26%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
+              <VStack w={'31%'} height={'100%'} spacing={0} justify={'space-between'}>
                 <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
                   <Button
                     variant={'ghost'}
@@ -202,31 +204,31 @@ export const App = () => {
                   </Button>
                   <ColorModeSwitcher justifySelf="flex-end" />
                 </HStack>
-                <Results
-                  issues={issues}
-                  OODData={OODData}
-                  activeImageId={activeImageId}
-                  setActiveImageId={setActiveImageId}
-                />
+                <Box h={'45%'}>
+                  <Explainer
+                    imageDataset={submittedDataset}
+                    predProbsData={predProbsData}
+                    classThresholds={classThresholds}
+                    OODThresholds={OODThresholds}
+                    classes={CLASSES}
+                    classPercentile={classPercentile}
+                    OODPercentile={OODPercentile}
+                    issues={issues}
+                    OODData={OODData}
+                    activeImageId={activeImageId}
+                  />
+                </Box>
+                <Box h={'45%'} w={'100%'}>
+                  <Results
+                    issues={issues}
+                    OODData={OODData}
+                    activeImageId={activeImageId}
+                    setActiveImageId={setActiveImageId}
+                  />
+                </Box>
+                <BuiltBy />
               </VStack>
             </HStack>
-
-            {/*<Box height={'29%'} width={'100%'} className={'tour-explainer'}>*/}
-            {/*  <Explainer*/}
-            {/*    imageDataset={submittedDataset}*/}
-            {/*    predProbsData={predProbsData}*/}
-            {/*    classes={CLASSES}*/}
-            {/*    classThresholds={classThresholds}*/}
-            {/*    OODThresholds={OODThresholds}*/}
-            {/*    issues={issues}*/}
-            {/*    OODData={OODData}*/}
-            {/*    classPercentile={classPercentile}*/}
-            {/*    setClassPercentile={setClassPercentile}*/}
-            {/*    OODPercentile={OODPercentile}*/}
-            {/*    setOODPercentile={setOODPercentile}*/}
-            {/*    activeImageId={activeImageId}*/}
-            {/*  />*/}
-            {/*</Box>*/}
           </VStack>
         </HStack>
       </TourWrapper>

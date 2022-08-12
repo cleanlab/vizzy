@@ -33,7 +33,6 @@ const Explanation = (props: ExplanationProps) => {
             This probability is above the <strong>{classPercentile}th</strong> percentile class
             threshold for <strong>{predictedClass}</strong>.
           </Text>
-          <br />
           <Text>
             As such, Cleanlab is confident that the given label of{' '}
             <strong>{datapoint.givenLabel}</strong> is <strong>correct</strong>.
@@ -47,7 +46,6 @@ const Explanation = (props: ExplanationProps) => {
             This probability is above the <strong>{classPercentile}th</strong> percentile class
             threshold for <strong>{predictedClass}s</strong>.
           </Text>
-          <br />
           <Text>
             As such, Cleanlab is confident that the given label of{' '}
             <strong>{datapoint.givenLabel}</strong> is <strong>incorrect</strong>.
@@ -64,7 +62,6 @@ const Explanation = (props: ExplanationProps) => {
           Each predicted probability is below the respective <strong>{OODPercentile}th</strong>{' '}
           percentile out-of-distribution thresholds.
         </Text>
-        <br />
         <Text>
           As such, it is considered <strong>out of distribution</strong> -- it does not belong to
           any class or is an atypical example of a class.
@@ -82,7 +79,6 @@ const Explanation = (props: ExplanationProps) => {
           <strong>{predictedClassThreshold.toFixed(3)}</strong> for{' '}
           <strong>{predictedClass}s</strong>.
         </Text>
-        <br />
         <Text>
           As such, Cleanlab agrees (but is not confident) that the given label is{' '}
           <strong>correct</strong>.
@@ -96,7 +92,6 @@ const Explanation = (props: ExplanationProps) => {
           This is below the <strong>{classPercentile}th</strong> percentile class threshold for{' '}
           <strong>{predictedClass}s</strong>
         </Text>
-        <br />
         <Text>
           Cleanlab infers (but is not confident) that the given label is <strong>incorrect</strong>.
         </Text>

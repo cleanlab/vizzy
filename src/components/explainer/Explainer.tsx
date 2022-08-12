@@ -1,11 +1,10 @@
 import React from 'react'
-import { Box, Flex, HStack, Image, Tag, Text, VStack } from '@chakra-ui/react'
+import { Flex, HStack, Image, Tag, Text, VStack } from '@chakra-ui/react'
 import { Datapoint } from '../dataset/types'
 import { LabelIssue } from '../issues/types'
 import { PredProbsEntryProps } from '../predProbs/types'
 import util from '../../model/util'
 import Explanation from './Explanation'
-import BuiltBy from '../misc/BuiltBy'
 
 interface ExplainerProps {
   imageDataset: Record<string, Datapoint>
@@ -36,14 +35,11 @@ const Explainer = (props: ExplainerProps) => {
 
   if (!activeImageId) {
     return (
-      <VStack height={'100%'} width={'100%'}>
+      <VStack h={'100%'} width={'100%'}>
         <Flex height={'80%'} justify={'center'} align={'center'}>
           <Text fontSize={'sm'} fontStyle={'italic'}>
             Train the model and mouse over an image for more details!
           </Text>
-        </Flex>
-        <Flex align={'flex-end'} h={'20%'} justify={'flex-end'} w={'100%'}>
-          <BuiltBy />
         </Flex>
       </VStack>
     )
@@ -58,9 +54,9 @@ const Explainer = (props: ExplainerProps) => {
   const datapoint = imageDataset[activeImageId]
 
   return (
-    <VStack height={'100%'} width={'100%'} align={'space-between'} spacing={'1rem'}>
-      <VStack w={'20%'} height={'100%'} align={'center'} spacing={1}>
-        <Image h={'90%'} src={datapoint.src} />
+    <VStack height={'fit-content'} width={'100%'} align={'space-between'} px={1}>
+      <VStack w={'100%'} align={'center'} spacing={1}>
+        <Image src={datapoint.src} />
         <HStack spacing={'0.75rem'} justify={'center'} width={'100%'}>
           <Tag colorScheme={'blue'} size={'md'}>
             Given: {datapoint.givenLabel}
@@ -79,24 +75,21 @@ const Explainer = (props: ExplainerProps) => {
           )}
         </HStack>
       </VStack>
-      <VStack w={'36%'} h={'100%'} fontSize={'md'} pl={4} align={'space-between'}>
-        <Box h={'100%'}>
-          <Text>
-            For this image, the model predicts label <strong>{predictedClass}</strong> with
-            probability <strong>{predictedClassProb.toFixed(3)}</strong>.
-          </Text>
-          <br />
-          <Explanation
-            datapoint={datapoint}
-            classes={classes}
-            predProbs={predProbs}
-            classPercentile={classPercentile}
-            classThresholds={classThresholds}
-            OODPercentile={OODPercentile}
-            OODThresholds={OODThresholds}
-            isOOD={isOOD}
-          />
-        </Box>
+      <VStack w={'100%'} fontSize={'sm'} px={2} align={'space-between'}>
+        <Text>
+          Model predicts <strong>{predictedClass}</strong> with p ={' '}
+          <strong>{predictedClassProb.toFixed(3)}</strong>.
+        </Text>
+        <Explanation
+          datapoint={datapoint}
+          classes={classes}
+          predProbs={predProbs}
+          classPercentile={classPercentile}
+          classThresholds={classThresholds}
+          OODPercentile={OODPercentile}
+          OODThresholds={OODThresholds}
+          isOOD={isOOD}
+        />
       </VStack>
     </VStack>
   )
