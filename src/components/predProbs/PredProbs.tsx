@@ -64,10 +64,10 @@ const PredProbs = (props: PredProbsProps) => {
         >
           <Flex>
             <Button
+              size={'lg'}
               as={isTraining ? FaSpinner : AiFillPlayCircle}
               animation={isTraining ? spinAnimation : null}
               variant={'unstyled'}
-              // size={'60px'}
               isLoading={isTraining}
               className={'tour-play-button'}
               isDisabled={!labelsChanged}
