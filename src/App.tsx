@@ -130,7 +130,7 @@ export const App = () => {
           w={'100%'}
           height={'calc(min(100vh,53vw))'}
           width={'100vw'}
-          spacing={4}
+          spacing={2}
           p={3}
           justify={'space-between'}
           minWidth={'1440px'}
