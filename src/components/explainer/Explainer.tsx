@@ -1,12 +1,10 @@
 import React from 'react'
-import { Box, Flex, HStack, Image, Tag, Text, useColorModeValue, VStack } from '@chakra-ui/react'
+import { Box, Flex, HStack, Image, Tag, Text, VStack } from '@chakra-ui/react'
 import { Datapoint } from '../dataset/types'
 import { LabelIssue } from '../issues/types'
 import { PredProbsEntryProps } from '../predProbs/types'
 import util from '../../model/util'
-import PercentileThresholds from './PercentileThresholds'
 import Explanation from './Explanation'
-import PercentileSlider from '../predProbs/PercentileSlider'
 import BuiltBy from '../misc/BuiltBy'
 
 interface ExplainerProps {
@@ -16,9 +14,7 @@ interface ExplainerProps {
   OODThresholds: Record<string, number>
   classes: Array<string>
   classPercentile: number
-  setClassPercentile: (number) => void
   OODPercentile: number
-  setOODPercentile: (number) => void
   issues: Record<string, LabelIssue>
   OODData: Record<string, LabelIssue>
   activeImageId: string
@@ -32,16 +28,11 @@ const Explainer = (props: ExplainerProps) => {
     OODThresholds,
     classes,
     classPercentile,
-    setClassPercentile,
     OODPercentile,
-    setOODPercentile,
     issues,
     OODData,
     activeImageId,
   } = props
-
-  const OODColor = useColorModeValue('red.400', 'red.200')
-  const confidentColor = useColorModeValue('blue.400', 'blue.200')
 
   if (!activeImageId) {
     return (
@@ -67,7 +58,7 @@ const Explainer = (props: ExplainerProps) => {
   const datapoint = imageDataset[activeImageId]
 
   return (
-    <HStack height={'100%'} width={'100%'} align={'space-between'} spacing={'1rem'}>
+    <VStack height={'100%'} width={'100%'} align={'space-between'} spacing={'1rem'}>
       <VStack w={'20%'} height={'100%'} align={'center'} spacing={1}>
         <Image h={'90%'} src={datapoint.src} />
         <HStack spacing={'0.75rem'} justify={'center'} width={'100%'}>
@@ -88,59 +79,6 @@ const Explainer = (props: ExplainerProps) => {
           )}
         </HStack>
       </VStack>
-
-      <VStack height={'20%'} width={'42%'} align={'flex-start'}>
-        <HStack width={'100%'}>
-          <Box
-            width={'50%'}
-            borderWidth={'1px'}
-            borderColor={OODColor}
-            borderRadius={'lg'}
-            padding={'10px'}
-          >
-            <PercentileSlider
-              name={'Out-of-distribution percentile'}
-              percentile={OODPercentile}
-              setPercentile={(value) => {
-                setOODPercentile(value)
-                if (value > classPercentile) {
-                  setClassPercentile(value)
-                }
-              }}
-            />
-          </Box>
-          <Box
-            width={'50%'}
-            borderWidth={'1px'}
-            borderColor={confidentColor}
-            borderRadius={'lg'}
-            padding={'10px'}
-          >
-            <PercentileSlider
-              name={'Class percentile'}
-              percentile={classPercentile}
-              setPercentile={(value) => {
-                setClassPercentile(value)
-                if (value < OODPercentile) {
-                  setOODPercentile(value)
-                }
-              }}
-            />
-          </Box>
-        </HStack>
-
-        <br />
-        <PercentileThresholds
-          datapoint={datapoint}
-          classes={classes}
-          predProbs={predProbs}
-          classPercentile={classPercentile}
-          classThresholds={classThresholds}
-          OODPercentile={OODPercentile}
-          OODThresholds={OODThresholds}
-          isOOD={isOOD}
-        />
-      </VStack>
       <VStack w={'36%'} h={'100%'} fontSize={'md'} pl={4} align={'space-between'}>
         <Box h={'100%'}>
           <Text>
@@ -159,11 +97,8 @@ const Explainer = (props: ExplainerProps) => {
             isOOD={isOOD}
           />
         </Box>
-        <Flex>
-          <BuiltBy />
-        </Flex>
       </VStack>
-    </HStack>
+    </VStack>
   )
 }
 

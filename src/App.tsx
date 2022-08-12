@@ -7,13 +7,13 @@ import DatasetInterface from './components/dataset/DatasetInterface'
 import PredProbs from './components/predProbs/PredProbs'
 import ConfidentJoint from './components/confidentJoint/ConfidentJoint'
 import { Datapoint } from './components/dataset/types'
-import Explainer from './components/explainer/Explainer'
 import { LabelIssue } from './components/issues/types'
 import { PredProbsEntryProps } from './components/predProbs/types'
 
 import util from './model/util'
 import Results from './components/results/Results'
 import TourWrapper from './components/tour/TourWrapper'
+import PercentileThresholds from './components/thresholds/PercentileThresholds'
 
 const CLASSES = ['cat', 'dog', 'bear']
 const Embeddings: Record<string, Datapoint> = require('./model/output_data_embeddings_32.json')
@@ -151,8 +151,8 @@ export const App = () => {
             h={'100%'}
             spacing={0}
           >
-            <HStack width={'100%'} height={'70%'} align={'space-between'}>
-              <Box height={'100%'} width={'17%'}>
+            <HStack width={'100%'} height={'100%'} align={'space-between'}>
+              <Box height={'100%'} width={'20%'}>
                 <PredProbs
                   data={predProbsData}
                   classes={CLASSES}
@@ -163,15 +163,29 @@ export const App = () => {
                   dataset={imageDataset}
                 />
               </Box>
-              <Box w={'50%'}>
+              <VStack w={'54%'} justify={'space-between'}>
                 <ConfidentJoint
                   labels={CLASSES}
                   issues={confidentJointData}
                   activeImageId={activeImageId}
                   setActiveImageId={setActiveImageId}
                 />
-              </Box>
-              <VStack w={'25%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
+                <Box w={'100%'} px={6} py={4}>
+                  <PercentileThresholds
+                    dataset={submittedDataset}
+                    classes={CLASSES}
+                    predProbsData={predProbsData}
+                    activeImageId={activeImageId}
+                    classPercentile={classPercentile}
+                    setClassPercentile={setClassPercentile}
+                    classThresholds={classThresholds}
+                    OODPercentile={OODPercentile}
+                    setOODPercentile={setOODPercentile}
+                    OODThresholds={OODThresholds}
+                  />
+                </Box>
+              </VStack>
+              <VStack w={'26%'} height={'100%'} spacing={'0.5rem'} justify={'space-between'}>
                 <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
                   <Button
                     variant={'ghost'}
@@ -197,22 +211,22 @@ export const App = () => {
               </VStack>
             </HStack>
 
-            <Box height={'29%'} width={'100%'} className={'tour-explainer'}>
-              <Explainer
-                imageDataset={submittedDataset}
-                predProbsData={predProbsData}
-                classes={CLASSES}
-                classThresholds={classThresholds}
-                OODThresholds={OODThresholds}
-                issues={issues}
-                OODData={OODData}
-                classPercentile={classPercentile}
-                setClassPercentile={setClassPercentile}
-                OODPercentile={OODPercentile}
-                setOODPercentile={setOODPercentile}
-                activeImageId={activeImageId}
-              />
-            </Box>
+            {/*<Box height={'29%'} width={'100%'} className={'tour-explainer'}>*/}
+            {/*  <Explainer*/}
+            {/*    imageDataset={submittedDataset}*/}
+            {/*    predProbsData={predProbsData}*/}
+            {/*    classes={CLASSES}*/}
+            {/*    classThresholds={classThresholds}*/}
+            {/*    OODThresholds={OODThresholds}*/}
+            {/*    issues={issues}*/}
+            {/*    OODData={OODData}*/}
+            {/*    classPercentile={classPercentile}*/}
+            {/*    setClassPercentile={setClassPercentile}*/}
+            {/*    OODPercentile={OODPercentile}*/}
+            {/*    setOODPercentile={setOODPercentile}*/}
+            {/*    activeImageId={activeImageId}*/}
+            {/*  />*/}
+            {/*</Box>*/}
           </VStack>
         </HStack>
       </TourWrapper>

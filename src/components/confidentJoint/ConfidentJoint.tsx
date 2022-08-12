@@ -15,7 +15,6 @@ const ConfidentJoint = (props: ConfidentJointProps) => {
   return (
     <Stack
       align={'center'}
-      height={'100%'}
       width={'100%'}
       spacing={0}
       bgColor={useColorModeValue('gray.100', 'gray.700')}
