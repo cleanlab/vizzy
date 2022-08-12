@@ -24,7 +24,7 @@ const OutOfDistribution = (props: OODProps) => {
         <EmptyIssues text={'No out-of-distribution examples found.'} />
       )}
       {issues && Object.keys(issues).length && (
-        <Grid templateColumns="repeat(6, 1fr)" gap={1} overflowY={'auto'}>
+        <Grid templateColumns="repeat(4, 1fr)" gap={1} overflowY={'auto'}>
           {Object.values(issues).map((datapoint) => (
             <GridItem key={datapoint.id}>
               <LabelIssueImage
