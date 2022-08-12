@@ -48,8 +48,8 @@ const PredProbs = (props: PredProbsProps) => {
       className={'tour-pred-probs'}
     >
       <HStack>
-        <Text>2.</Text>
-        <Heading size={'sm'} fontWeight={500}>
+        <Text fontSize={'lg'}>2.</Text>
+        <Heading size={'xs'} fontWeight={500}>
           PREDICTED PROBABILITIES
         </Heading>
       </HStack>
@@ -89,7 +89,7 @@ const PredProbs = (props: PredProbsProps) => {
             />
           </Flex>
         </Tooltip>
-        <Text fontSize={'md'}>Train the model in your browser!</Text>
+        <Text fontSize={'md'}>Train the model!</Text>
       </HStack>
 
       <PredProbsTable

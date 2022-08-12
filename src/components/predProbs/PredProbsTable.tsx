@@ -15,16 +15,12 @@ const PredProbsTable = (props: PredProbsTableProps) => {
   const { data, classes, setActiveImageId, dataset } = props
 
   return (
-    <TableContainer overflowY={'auto'} height={'100%'} w={'100%'}>
+    <TableContainer overflowY={'auto'} height={'100%'}>
       <Table variant="simple" size="sm">
         <Thead position="sticky" top="0" backgroundColor={useColorModeValue('white', 'gray.900')}>
           <Tr>
             <Th textAlign={'center'}>Image</Th>
-            {classes.map((c) => (
-              <Th key={c} textAlign={'center'}>
-                {c}
-              </Th>
-            ))}
+            <Th textAlign={'center'}>Probabilities</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -32,6 +28,7 @@ const PredProbsTable = (props: PredProbsTableProps) => {
             Object.values(data).map((datapoint) => (
               <PredProbsTableRow
                 key={datapoint.id}
+                classes={classes}
                 datapoint={datapoint}
                 setActiveImageId={setActiveImageId}
               />

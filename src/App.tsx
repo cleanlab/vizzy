@@ -152,7 +152,7 @@ export const App = () => {
             spacing={0}
           >
             <HStack width={'100%'} height={'70%'} align={'space-between'}>
-              <Box height={'100%'} width={'25%'}>
+              <Box height={'100%'} width={'17%'}>
                 <PredProbs
                   data={predProbsData}
                   classes={CLASSES}
