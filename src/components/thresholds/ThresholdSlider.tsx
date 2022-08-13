@@ -41,9 +41,7 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
     showTooltip,
   } = props
 
-  console.log('threshold props', props)
   const thresholdsReady = Object.values(classThresholds).reduce((a, b) => a + b) !== 0
-
   const predProbsClassMapping = classes.reduce((acc, class_, idx) => {
     acc[class_] = idx
     return acc
@@ -66,7 +64,7 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
         aria-label="slider-ex-6"
         max={1}
         height={'1px'}
-        // value={predictedClassProb}
+        value={predictedClassProb}
         colorScheme="gray.200"
         _hover={{ cursor: 'unset' }}
         width={'100%'}
