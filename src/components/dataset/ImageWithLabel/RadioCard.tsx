@@ -16,7 +16,7 @@ export const RadioCard = (props) => {
         cursor="pointer"
         borderRadius="md"
         border="1px"
-        borderColor={'gray.300'}
+        borderColor={'gray.500'}
         color={'gray.600'}
         boxShadow="lg"
         _checked={{
@@ -26,6 +26,9 @@ export const RadioCard = (props) => {
         }}
         _focus={{
           boxShadow: 'outline',
+        }}
+        _hover={{
+          backgroundColor: 'gray.400',
         }}
         px={3}
         py={0.5}
