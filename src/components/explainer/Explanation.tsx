@@ -30,8 +30,8 @@ const Explanation = (props: ExplanationProps) => {
       return (
         <>
           <Text>
-            This probability is above the <strong>{classPercentile}th</strong> percentile class
-            threshold for <strong>{predictedClass}</strong>.
+            This is above the <strong>{classPercentile}th</strong> percentile class threshold for{' '}
+            <strong>{predictedClass}</strong>.
           </Text>
           <Text>
             As such, Cleanlab is confident that the given label of{' '}
@@ -43,8 +43,8 @@ const Explanation = (props: ExplanationProps) => {
       return (
         <>
           <Text>
-            This probability is above the <strong>{classPercentile}th</strong> percentile class
-            threshold for <strong>{predictedClass}s</strong>.
+            This is above the <strong>{classPercentile}th</strong> percentile class threshold for{' '}
+            <strong>{predictedClass}s</strong>.
           </Text>
           <Text>
             As such, Cleanlab is confident that the given label of{' '}
@@ -75,8 +75,7 @@ const Explanation = (props: ExplanationProps) => {
     return (
       <>
         <Text>
-          This is below the <strong>{classPercentile}th</strong> percentile class threshold of{' '}
-          <strong>{predictedClassThreshold.toFixed(3)}</strong> for{' '}
+          This is below the <strong>{classPercentile}th</strong> percentile class threshold for{' '}
           <strong>{predictedClass}s</strong>.
         </Text>
         <Text>
