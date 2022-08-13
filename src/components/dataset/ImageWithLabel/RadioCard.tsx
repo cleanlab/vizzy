@@ -22,7 +22,7 @@ export const RadioCard = (props) => {
         _checked={{
           bg: 'teal.400',
           color: 'black',
-          borderColor: 'teal.100',
+          borderColor: 'gray.800',
         }}
         _focus={{
           boxShadow: 'outline',
