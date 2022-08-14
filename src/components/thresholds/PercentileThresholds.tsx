@@ -39,8 +39,8 @@ const PercentileThresholds = (props: PercentileThresholdsProps) => {
   const confidentColor = useColorModeValue('blue.400', 'blue.200')
 
   return (
-    <VStack align={'flex-start'}>
-      <HStack width={'100%'}>
+    <VStack align={'space-between'} justify={'space-between'} h={'100%'}>
+      <HStack width={'100%'} pt={2}>
         <Box
           width={'50%'}
           borderWidth={'1px'}
@@ -80,10 +80,10 @@ const PercentileThresholds = (props: PercentileThresholdsProps) => {
       </HStack>
       <VStack
         width={'100%'}
-        height={'100%'}
         spacing={'2rem'}
+        pb={3}
         align={'flex-start'}
-        pl={'4px'}
+        justify={'flex-start'}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >

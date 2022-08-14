@@ -172,7 +172,7 @@ export const App = () => {
                   activeImageId={activeImageId}
                   setActiveImageId={setActiveImageId}
                 />
-                <Box w={'100%'} py={4}>
+                <Box w={'100%'} h={'100%'}>
                   <PercentileThresholds
                     dataset={submittedDataset}
                     classes={CLASSES}

@@ -35,13 +35,11 @@ const Explainer = (props: ExplainerProps) => {
 
   if (!activeImageId) {
     return (
-      <VStack h={'100%'} width={'100%'}>
-        <Flex height={'80%'} justify={'center'} align={'center'}>
-          <Text fontSize={'sm'} fontStyle={'italic'}>
-            Train the model and mouse over an image for more details!
-          </Text>
-        </Flex>
-      </VStack>
+      <Flex h={'100%'} width={'100%'} justify={'center'} align={'center'} p={6}>
+        <Text fontSize={'lg'} fontStyle={'italic'} textAlign={'center'}>
+          Train the model and mouse over an image for more details!
+        </Text>
+      </Flex>
     )
   }
   const predProbs = predProbsData[activeImageId]
