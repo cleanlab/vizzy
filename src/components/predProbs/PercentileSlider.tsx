@@ -40,6 +40,8 @@ const PercentileSlider = (props: PercentileSliderProps) => {
           />
         </SliderTrack>
         <SliderThumb
+          outline={'none !important'}
+          boxShadow={'none !important'}
           boxSize={3}
           bgColor={name === 'Out-of-distribution percentile' ? OODColor : confidentColor}
         />

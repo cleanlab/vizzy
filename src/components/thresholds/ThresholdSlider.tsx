@@ -149,7 +149,8 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
               <Flex>
                 <SliderThumb
                   bg={'none'}
-                  boxShadow={'none'}
+                  boxShadow={'none !important'}
+                  outline={'none !important'}
                   transform={'translateY(-20%)'}
                   borderRadius={'none'}
                 >
