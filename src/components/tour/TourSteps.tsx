@@ -144,8 +144,8 @@ export const tourSteps: Step[] = [
         </Text>
         <Text>
           You can also <strong>drag the sliders</strong> to change the percentile thresholds used by
-          Cleanlab to determine the suggested label of an image, or whether it is out of
-          distribution.
+          Cleanlab to determine the suggested label of an image, or whether it is
+          out-of-distribution.
         </Text>
       </VStack>
     ),
