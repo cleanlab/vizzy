@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, HStack, Tag, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, HStack, Tag, Text, useColorModeValue, VStack } from '@chakra-ui/react'
 import { LabelIssue } from '../issues/types'
 import ImageGrid from './ImageGrid'
 
@@ -14,6 +14,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
   const { labels, issues, activeImageId, setActiveImageId } = props
   const gridLength = 'calc(max(33.5rem, 34vw))'
   const cellSizePercent = '33%'
+  const badCellColor = useColorModeValue('red.50', 'red.900')
 
   return (
     <VStack spacing={0} align={'flex-end'}>
@@ -56,6 +57,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
                     borderWidth={'0.5px'}
                     m={0}
                     borderColor={'gray.500'}
+                    bgColor={issues && rowIdx !== columnIdx ? badCellColor : null}
                     w={cellSizePercent}
                     h={'100%'}
                   >
