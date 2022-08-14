@@ -17,7 +17,7 @@ const OutOfDistribution = (props: OODProps) => {
   return (
     <VStack width={'100%'} height={'100%'}>
       <Tag colorScheme={'red'} size={'md'}>
-        OUT OF DISTRIBUTION
+        OUT-OF-DISTRIBUTION
       </Tag>
       {issues === null && <EmptyIssues text={'No results yet.'} />}
       {issues && Object.keys(issues).length === 0 && (

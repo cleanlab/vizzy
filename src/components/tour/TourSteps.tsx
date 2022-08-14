@@ -127,7 +127,7 @@ export const tourSteps: Step[] = [
         </Text>
         <Text>
           Images with probabilities that fall below the out-of-distribution thresholds for all
-          classes are considered to be <strong>out of distribution</strong>.
+          classes are deemed to be <strong>out-of-distribution</strong>.
         </Text>
       </VStack>
     ),
@@ -156,11 +156,11 @@ export const tourSteps: Step[] = [
   {
     content: (
       <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
-        <Text>You can access this tutorial again by clicking this button.</Text>
+        <Text>You can open this tutorial again by clicking this button.</Text>
       </VStack>
     ),
     target: '.tour-guide-button',
-    title: 'Guide',
+    title: 'Learn',
     placement: 'bottom',
   },
 ]

@@ -172,7 +172,7 @@ export const App = () => {
                   activeImageId={activeImageId}
                   setActiveImageId={setActiveImageId}
                 />
-                <Box w={'100%'} px={6} py={4}>
+                <Box w={'100%'} py={4}>
                   <PercentileThresholds
                     dataset={submittedDataset}
                     classes={CLASSES}
@@ -188,7 +188,7 @@ export const App = () => {
                 </Box>
               </VStack>
               <VStack w={'31%'} height={'100%'} spacing={0} justify={'space-between'}>
-                <HStack justify={'flex-end'} width={'100%'} spacing={1} height={'3%'}>
+                <HStack justify={'flex-end'} width={'100%'} spacing={1} pt={2} height={'3%'}>
                   <Button
                     variant={'ghost'}
                     onClick={() => setTourEnabled(true)}
@@ -204,7 +204,7 @@ export const App = () => {
                   </Button>
                   <ColorModeSwitcher justifySelf="flex-end" />
                 </HStack>
-                <Box h={'45%'}>
+                <Box h={'44%'}>
                   <Explainer
                     imageDataset={submittedDataset}
                     predProbsData={predProbsData}
@@ -218,7 +218,7 @@ export const App = () => {
                     activeImageId={activeImageId}
                   />
                 </Box>
-                <Box h={'45%'} w={'100%'}>
+                <Box h={'47%'} w={'100%'}>
                   <Results
                     issues={issues}
                     OODData={OODData}
