@@ -56,13 +56,13 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
   const confidentColor = useColorModeValue('blue.400', 'blue.200')
 
   return (
-    <HStack height={'100%'} width={'100%'} spacing={'1rem'} justify={'space-between'}>
-      <Flex w={'5%'} h={'100%'} align={'center'}>
-        <Text fontSize={'sm'} fontWeight={500} width={'40px'}>
-          {selectedClass}
-        </Text>
-      </Flex>
-      <Flex w={'95%'} h={'100%'} align={'center'}>
+    <HStack height={'100%'} w={'100%'} spacing={'1rem'} justify={'space-between'}>
+      {/*<Flex w={'5%'} h={'100%'} align={'center'}>*/}
+      <Text fontSize={'sm'} fontWeight={500} width={'40px'}>
+        {selectedClass}
+      </Text>
+      {/*</Flex>*/}
+      <Flex w={'90%'} h={'100%'} align={'center'}>
         <Slider
           aria-label="slider-ex-6"
           max={1}
@@ -143,20 +143,19 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
                   isOpen={showTooltip}
                   label={predictedClassProb.toFixed(3)}
                 >
-                  <SliderMark value={predictedClassProb} fontSize={'xs'} ml="2" />
+                  <SliderMark value={predictedClassProb} fontSize={'xs'} />
                 </Tooltip>
               )}
-              <Flex>
-                <SliderThumb
-                  bg={'none'}
-                  boxShadow={'none !important'}
-                  outline={'none !important'}
-                  transform={'translateY(-20%)'}
-                  borderRadius={'none'}
-                >
-                  <Box as={BsTriangleFill} />
-                </SliderThumb>
-              </Flex>
+              <SliderThumb
+                bg={'none'}
+                boxShadow={'none !important'}
+                outline={'none !important'}
+                transform={'translateY(-20%)'}
+                borderRadius={'none'}
+                ml={'-2'} // TODO hacky
+              >
+                <Box as={BsTriangleFill} />
+              </SliderThumb>
             </>
           )}
         </Slider>
