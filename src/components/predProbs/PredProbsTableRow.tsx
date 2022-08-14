@@ -57,9 +57,9 @@ export const PredProbsTableRow = (props: PredProbsTableRowProps) => {
       <Td textAlign={'center'}>
         <VStack spacing={0} align={'flex-start'}>
           {datapoint.probabilities.map((prob, idx) => (
-            <HStack justify={'space-between'} w={'100%'}>
-              <Text key={idx}>{classes[idx]}</Text>
-              <Text key={idx}>{prob.toFixed(3)}</Text>
+            <HStack justify={'space-between'} w={'100%'} key={idx}>
+              <Text>{classes[idx]}</Text>
+              <Text>{prob.toFixed(3)}</Text>
             </HStack>
           ))}
         </VStack>
