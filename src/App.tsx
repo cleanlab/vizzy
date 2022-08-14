@@ -188,7 +188,13 @@ export const App = () => {
                 </Box>
               </VStack>
               <VStack w={'31%'} height={'100%'} spacing={0} justify={'space-between'}>
-                <HStack justify={'flex-end'} width={'100%'} spacing={1} pt={2} height={'3%'}>
+                <HStack
+                  justify={'flex-end'}
+                  width={'100%'}
+                  spacing={1}
+                  height={'4%'}
+                  align={'center'}
+                >
                   <Button
                     variant={'ghost'}
                     onClick={() => setTourEnabled(true)}

@@ -7,7 +7,8 @@ const BuiltBy = () => {
       <Text fontSize={'sm'}>
         Built with ♥ by <Link href={'https://github.com/calebchiam'}>Caleb</Link>,{' '}
         <Link href={'https://github.com/LukeMainwaring'}>Luke</Link>,{' '}
-        <Link href={'https://github.com/yimingc9'}>Yiming</Link> at Cleanlab
+        <Link href={'https://github.com/yimingc9'}>Yiming</Link> at{' '}
+        <Link href={'https://cleanlab.ai'}>Cleanlab</Link>
       </Text>
     </Flex>
   )
