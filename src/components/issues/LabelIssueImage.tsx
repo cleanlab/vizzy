@@ -14,7 +14,7 @@ const LabelIssueImage = (props: LabelIssueImageProps) => {
     ...imageProps
   } = props
 
-  const activeBorderColor = useColorModeValue('gray.800', 'gray.100')
+  const activeBorderColor = useColorModeValue('gray.700', 'gray.200')
 
   const renderImage = () => {
     if (showGivenLabel) {
