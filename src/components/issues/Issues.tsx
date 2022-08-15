@@ -29,6 +29,7 @@ const Issues = (props: ResultsProps) => {
                 id={datapoint.id}
                 isActive={datapoint.id === activeImageId}
                 setActiveImageId={setActiveImageId}
+                showGivenLabel
               />
             </GridItem>
           ))}

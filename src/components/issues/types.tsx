@@ -11,6 +11,7 @@ export interface LabelIssue {
 export interface LabelIssueImageProps extends ImageProps {
   id: string
   givenLabel: string
+  showGivenLabel?: boolean
   suggestedLabel: string
   OOD: boolean
   isActive: boolean
