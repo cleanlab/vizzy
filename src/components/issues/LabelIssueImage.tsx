@@ -33,11 +33,7 @@ const LabelIssueImage = (props: LabelIssueImageProps) => {
         </Flex>
       )
     }
-    return (
-      <>
-        <Image {...imageProps} rounded={'md'} />
-      </>
-    )
+    return <Image {...imageProps} rounded={'md'} />
   }
   if (isActive) {
     return (

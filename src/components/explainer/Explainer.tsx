@@ -5,6 +5,7 @@ import { LabelIssue } from '../issues/types'
 import { PredProbsEntryProps } from '../predProbs/types'
 import util from '../../model/util'
 import Explanation from './Explanation'
+import ExplainerImage from './ExplainerImage'
 
 interface ExplainerProps {
   imageDataset: Record<string, Datapoint>
@@ -57,7 +58,12 @@ const Explainer = (props: ExplainerProps) => {
   return (
     <VStack height={'fit-content'} width={'100%'} align={'space-between'} px={1}>
       <VStack w={'100%'} align={'center'} spacing={1}>
-        <Image src={datapoint.src} />
+        <ExplainerImage
+          src={datapoint.src}
+          givenLabel={datapoint.givenLabel}
+          suggestedLabel={predictedClass}
+          isOOD={isOOD}
+        />
         {/*<HStack spacing={'0.75rem'} justify={'center'} width={'100%'}>*/}
         {/*  <Tag colorScheme={'blue'} size={'md'}>*/}
         {/*    Given: {datapoint.givenLabel}*/}
