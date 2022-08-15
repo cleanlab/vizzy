@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, HStack, Image, RadioGroup, useRadioGroup } from '@chakra-ui/react'
 import { RadioCard } from './RadioCard'
 import { ImageWithLabelProps } from '../types'
-import './ImageWithLabel.css'
+import './DatasetImage.css'
 import placeholder from '../../../assets/placeholder.png'
 
 const DatasetImage = (props: ImageWithLabelProps) => {
@@ -18,7 +18,6 @@ const DatasetImage = (props: ImageWithLabelProps) => {
   })
 
   const group = getRootProps()
-
   return (
     <Box
       position={'relative'}

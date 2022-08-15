@@ -9,7 +9,7 @@ import {
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react'
-import DatasetImage from './ImageWithLabel/DatasetImage'
+import DatasetImage from './DatasetImage/DatasetImage'
 import { DatasetInterfaceProps } from './types'
 import LoadingSpinner from '../misc/Loading'
 
