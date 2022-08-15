@@ -12,8 +12,9 @@ export const tourSteps: Step[] = [
           Cleanlab algorithm.
         </Text>
         <Text>
-          This is an in-depth tutorial that explains how the Cleanlab algorithm automatically
-          identifies and corrects label errors in datasets.
+          This is an <strong>in-depth tutorial</strong> that explains how the Cleanlab algorithm
+          automatically identifies and corrects label errors in datasets. You can{' '}
+          <strong>skip</strong> this at any time.
         </Text>
       </VStack>
     ),
@@ -134,6 +135,24 @@ export const tourSteps: Step[] = [
     target: '.tour-results',
     title: 'Results',
     placement: 'left',
+  },
+  {
+    content: (
+      <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
+        <Text>
+          You can also <strong>drag the sliders</strong> to change the percentile thresholds used by
+          Cleanlab to determine the suggested label of an image, or whether it is
+          out-of-distribution.
+        </Text>
+        <Text>
+          <strong>Hover over any image</strong> and the ranges below show how the image's predicted
+          probabilities compare against these threshold values.
+        </Text>
+      </VStack>
+    ),
+    target: '.tour-explainer',
+    title: 'Thresholds',
+    placement: 'top',
   },
   {
     content: (
