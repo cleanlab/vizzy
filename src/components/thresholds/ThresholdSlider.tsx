@@ -3,6 +3,7 @@ import {
   Box,
   Flex,
   HStack,
+  Image,
   Slider,
   SliderFilledTrack,
   SliderMark,
@@ -146,16 +147,21 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
                   <SliderMark value={predictedClassProb} fontSize={'xs'} />
                 </Tooltip>
               )}
-              <SliderThumb
-                bg={'none'}
-                boxShadow={'none !important'}
-                outline={'none !important'}
-                transform={'translateY(-20%)'}
-                borderRadius={'none'}
-                ml={'-2'} // TODO hacky
-              >
-                <Box as={BsTriangleFill} />
-              </SliderThumb>
+              {datapoint && (
+                <SliderThumb
+                  bg={'none'}
+                  boxShadow={'none !important'}
+                  outline={'none !important'}
+                  transform={'translateY(50%)'}
+                  borderRadius={'none'}
+                  ml={'-2'} // TODO hacky
+                >
+                  <Box>
+                    <Box as={BsTriangleFill} fontSize="0.8em" />
+                    <Image src={datapoint.src} rounded="md" />
+                  </Box>
+                </SliderThumb>
+              )}
             </>
           )}
         </Slider>
