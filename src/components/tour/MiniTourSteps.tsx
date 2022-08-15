@@ -54,7 +54,7 @@ export const miniTourSteps: Step[] = [
     ),
     target: '.tour-sliders',
     title: 'Adjust threshold sliders',
-    placement: 'left',
+    placement: 'top',
   },
   {
     content: (
