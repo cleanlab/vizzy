@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Image, Tag, Flex } from '@chakra-ui/react'
+import { Box, Flex, Image, Tag, useColorModeValue } from '@chakra-ui/react'
 import { LabelIssueImageProps } from './types'
 
 const LabelIssueImage = (props: LabelIssueImageProps) => {
@@ -13,6 +13,8 @@ const LabelIssueImage = (props: LabelIssueImageProps) => {
     OOD,
     ...imageProps
   } = props
+
+  const activeBorderColor = useColorModeValue('gray.700', 'gray.200')
 
   const renderImage = () => {
     if (showGivenLabel) {
@@ -37,7 +39,15 @@ const LabelIssueImage = (props: LabelIssueImageProps) => {
   }
   if (isActive) {
     return (
-      <Box position={'relative'} opacity={'85%'} onMouseEnter={() => setActiveImageId(id)}>
+      <Box
+        position={'relative'}
+        onMouseEnter={() => setActiveImageId(id)}
+        boxShadow={'lg'}
+        borderWidth={'2px'}
+        rounded={'md'}
+        borderStyle={'solid'}
+        borderColor={activeBorderColor}
+      >
         {renderImage()}
       </Box>
     )
