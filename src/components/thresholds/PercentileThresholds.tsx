@@ -39,7 +39,7 @@ const PercentileThresholds = (props: PercentileThresholdsProps) => {
   const confidentColor = useColorModeValue('blue.400', 'blue.200')
 
   return (
-    <VStack align={'space-between'} h={'100%'} px={6} spacing={8} className={'tour-explainer'}>
+    <VStack align={'space-between'} h={'100%'} px={6} spacing={5} className={'tour-explainer'}>
       <HStack width={'100%'} pt={2} className={'tour-sliders'}>
         <Box
           width={'50%'}
