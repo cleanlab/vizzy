@@ -55,6 +55,7 @@ export const App = () => {
   const [classPercentile, setClassPercentile] = useState(50)
   const [OODPercentile, setOODPercentile] = useState(15)
   const [percentiles, setPercentiles] = useState(null)
+  const [miniTourEnabled, setMiniTourEnabled] = useState<boolean>(false)
   const [tourEnabled, setTourEnabled] = useState<boolean>(false)
   // track whether labels have changed since training
   const [labelsChanged, setLabelsChanged] = useState(true)
@@ -127,7 +128,12 @@ export const App = () => {
 
   return (
     <ChakraProvider theme={theme}>
-      <TourWrapper setTourEnabled={setTourEnabled} tourEnabled={tourEnabled}>
+      <TourWrapper
+        miniTourEnabled={miniTourEnabled}
+        setMiniTourEnabled={setMiniTourEnabled}
+        setTourEnabled={setTourEnabled}
+        tourEnabled={tourEnabled}
+      >
         <HStack
           w={'100%'}
           height={'calc(min(100vh,53vw))'}
@@ -197,8 +203,15 @@ export const App = () => {
                 >
                   <Button
                     variant={'ghost'}
-                    onClick={() => setTourEnabled(true)}
+                    onClick={() => setMiniTourEnabled(true)}
                     className={'tour-guide-button'}
+                  >
+                    Guide
+                  </Button>
+                  <Button
+                    variant={'ghost'}
+                    onClick={() => setTourEnabled(true)}
+                    className={'tour-learn-button'}
                   >
                     Learn
                   </Button>

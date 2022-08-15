@@ -12,8 +12,8 @@ export const tourSteps: Step[] = [
           Cleanlab algorithm.
         </Text>
         <Text>
-          The Cleanlab algorithm is a method for automatically identifying and correcting label
-          errors in your datasets.
+          This is an in-depth tutorial that explains how the Cleanlab algorithm automatically
+          identifies and corrects label errors in datasets.
         </Text>
       </VStack>
     ),
@@ -24,7 +24,7 @@ export const tourSteps: Step[] = [
     content: (
       <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
         <Text>
-          This is an image dataset of <strong>300</strong> images.
+          This is a dataset with <strong>300</strong> images.
         </Text>
         <Text>
           It contains 3 classes: <strong>cats</strong>, <strong>dogs</strong>, and{' '}
@@ -139,10 +139,6 @@ export const tourSteps: Step[] = [
     content: (
       <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
         <Text>
-          <strong>Mouse over any image</strong> to get an explanation of how it was categorized by
-          Cleanlab.
-        </Text>
-        <Text>
           You can also <strong>drag the sliders</strong> to change the percentile thresholds used by
           Cleanlab to determine the suggested label of an image, or whether it is
           out-of-distribution.
@@ -159,7 +155,7 @@ export const tourSteps: Step[] = [
         <Text>You can open this tutorial again by clicking this button.</Text>
       </VStack>
     ),
-    target: '.tour-guide-button',
+    target: '.tour-learn-button',
     title: 'Learn',
     placement: 'bottom',
   },

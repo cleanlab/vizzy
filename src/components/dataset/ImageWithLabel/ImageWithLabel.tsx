@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Image, RadioGroup, useRadioGroup, HStack } from '@chakra-ui/react'
+import { Box, HStack, Image, RadioGroup, useRadioGroup } from '@chakra-ui/react'
 import { RadioCard } from './RadioCard'
 import { ImageWithLabelProps } from '../types'
 import './ImageWithLabel.css'
@@ -20,7 +20,11 @@ const ImageWithLabel = (props: ImageWithLabelProps) => {
   const group = getRootProps()
 
   return (
-    <Box position={'relative'} onMouseEnter={() => setActiveImageId(id)}>
+    <Box
+      position={'relative'}
+      onMouseEnter={() => setActiveImageId(id)}
+      className={'tour-label-selection'}
+    >
       <RadioGroup
         backgroundColor={'rgba(255,255,255,0.6)'}
         color={'black'}
