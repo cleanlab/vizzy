@@ -47,13 +47,13 @@ export const miniTourSteps: Step[] = [
     content: (
       <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
         <Text>
-          <strong>Drag the sliders</strong> to change the percentile thresholds used by Cleanlab in
-          determining the suggested label of an image, or whether it is out-of-distribution.
+          <strong>Drag the sliders</strong> to change the percentile thresholds used by Cleanlab to
+          determine the suggested label of an image, or whether it is out-of-distribution.
         </Text>
       </VStack>
     ),
-    target: '.tour-explainer',
-    title: 'Explanation',
+    target: '.tour-sliders',
+    title: 'Adjust threshold sliders',
     placement: 'left',
   },
   {

@@ -138,20 +138,6 @@ export const tourSteps: Step[] = [
   {
     content: (
       <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
-        <Text>
-          You can also <strong>drag the sliders</strong> to change the percentile thresholds used by
-          Cleanlab to determine the suggested label of an image, or whether it is
-          out-of-distribution.
-        </Text>
-      </VStack>
-    ),
-    target: '.tour-explainer',
-    title: 'Explanation',
-    placement: 'left',
-  },
-  {
-    content: (
-      <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
         <Text>You can open this tutorial again by clicking this button.</Text>
       </VStack>
     ),

@@ -46,7 +46,7 @@ const PercentileThresholds = (props: PercentileThresholdsProps) => {
       px={6}
       className={'tour-explainer'}
     >
-      <HStack width={'100%'} pt={2}>
+      <HStack width={'100%'} pt={2} className={'tour-sliders'}>
         <Box
           width={'50%'}
           borderWidth={'1px'}
