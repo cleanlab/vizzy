@@ -9,7 +9,7 @@ import {
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react'
-import ImageWithLabel from './ImageWithLabel/ImageWithLabel'
+import DatasetImage from './ImageWithLabel/DatasetImage'
 import { DatasetInterfaceProps } from './types'
 import LoadingSpinner from '../misc/Loading'
 
@@ -44,7 +44,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
         <Grid templateColumns="repeat(1, 1fr)" gap={2} overflowY={'auto'}>
           {Object.values(data).map((datapoint) => (
             <GridItem key={datapoint.id}>
-              <ImageWithLabel
+              <DatasetImage
                 {...datapoint}
                 classes={classes}
                 updateLabel={updateLabel}

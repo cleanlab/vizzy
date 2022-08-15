@@ -5,7 +5,7 @@ import { ImageWithLabelProps } from '../types'
 import './ImageWithLabel.css'
 import placeholder from '../../../assets/placeholder.png'
 
-const ImageWithLabel = (props: ImageWithLabelProps) => {
+const DatasetImage = (props: ImageWithLabelProps) => {
   const { id, givenLabel, classes, updateLabel, setActiveImageId, ...imageProps } = props
 
   const handleChange = (value) => {
@@ -52,4 +52,8 @@ const ImageWithLabel = (props: ImageWithLabelProps) => {
   )
 }
 
-export default ImageWithLabel
+const propsAreEqual = (prevProps, nextProps) => {
+  return prevProps.givenLabel === nextProps.givenLabel
+}
+
+export default React.memo(DatasetImage, propsAreEqual)
