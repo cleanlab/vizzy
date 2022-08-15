@@ -5,7 +5,7 @@
 <br />
 <p align="center">
   <a href="https://playground.cleanlab.ai/">
-    <img src="images/vizzy_screenshot.png" alt="Logo" width="1000">
+    <img src="public/static/screenshot.jpg" alt="Logo" width="1000">
   </a>
 
 <h3 align="center">Cleanlab Vizzy</h3>
