@@ -50,7 +50,7 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
 
   const predictedClassProb = predProbs
     ? predProbs.probabilities[predProbsClassMapping[selectedClass]]
-    : null
+    : undefined
   const predictedClassThreshold = classThresholds[selectedClass]
   const predictedClassOODThreshold = OODThresholds[selectedClass]
   const OODColor = useColorModeValue('red.400', 'red.200')
@@ -73,6 +73,7 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
           _hover={{ cursor: 'unset' }}
           width={'100%'}
         >
+          {/*{!thresholdsReady && <SliderThumb />}*/}
           {thresholdsReady && (
             <>
               <SliderMark
