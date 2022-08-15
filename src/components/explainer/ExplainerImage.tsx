@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Image, Tag, Flex } from '@chakra-ui/react'
+import { Box, Flex, Image, Tag } from '@chakra-ui/react'
 
 interface ExplainerImageProps {
   src: string
@@ -13,15 +13,15 @@ const ExplainerImage = (props: ExplainerImageProps) => {
 
   const renderSuggestedTag = () => {
     return (
-      <Flex justify="flex-end">
+      <Flex justify="flex-end" pr={'1.5'}>
         <Tag
           backgroundColor={'yellow.100'}
           color={'yellow.800'}
           size={'md'}
           position={'absolute'}
           bottom={'0px'}
-          marginRight={'1.5'}
           marginBottom={'1.5'}
+          minWidth={'fit-content'}
         >
           {`suggested: ${suggestedLabel}`}
         </Tag>
@@ -31,7 +31,7 @@ const ExplainerImage = (props: ExplainerImageProps) => {
 
   const renderOODTag = () => {
     return (
-      <Flex justify="flex-end">
+      <Flex justify="flex-end" pr={'1.5'}>
         <Tag
           backgroundColor={'red.100'}
           color={'red.800'}
@@ -40,6 +40,7 @@ const ExplainerImage = (props: ExplainerImageProps) => {
           bottom={'0px'}
           marginRight={'1.5'}
           marginBottom={'1.5'}
+          minWidth={'fit-content'}
         >
           out-of-distribution
         </Tag>
@@ -50,14 +51,13 @@ const ExplainerImage = (props: ExplainerImageProps) => {
   return (
     <Box position={'relative'}>
       <Image src={src} />
-      <Flex justify="flex-start">
+      <Flex justify="flex-start" pl={'1.5'}>
         <Tag
           backgroundColor={'blue.100'}
           color={'blue.800'}
           size={'md'}
           position={'absolute'}
           bottom={'0px'}
-          marginLeft={'1.5'}
           marginBottom={'1.5'}
         >
           {`given: ${givenLabel}`}
