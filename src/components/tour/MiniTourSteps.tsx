@@ -36,7 +36,7 @@ export const miniTourSteps: Step[] = [
         <Text>
           Click the <strong>Play</strong> button to train a simple image classifier on your dataset.
         </Text>
-        <Text>Cleanlab uses the model outputs to identify label errors.</Text>
+        <Text>Cleanlab uses the classifier's outputs to identify label errors.</Text>
       </VStack>
     ),
     target: '.tour-play-button',
@@ -47,13 +47,8 @@ export const miniTourSteps: Step[] = [
     content: (
       <VStack align={'flex-start'} width={'100%'} spacing={'1rem'} textAlign={'justify'}>
         <Text>
-          <strong>Mouse over any image</strong> to get an explanation of how it was categorized by
-          Cleanlab.
-        </Text>
-        <Text>
-          You can also <strong>drag the sliders</strong> to change the percentile thresholds used by
-          Cleanlab to determine the suggested label of an image, or whether it is
-          out-of-distribution.
+          <strong>Drag the sliders</strong> to change the percentile thresholds used by Cleanlab in
+          determining the suggested label of an image, or whether it is out-of-distribution.
         </Text>
       </VStack>
     ),
