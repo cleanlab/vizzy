@@ -1,19 +1,54 @@
 import React from 'react'
-import { Box, Image } from '@chakra-ui/react'
+import { Box, Image, Tag, Flex } from '@chakra-ui/react'
 import { LabelIssueImageProps } from './types'
 
 const LabelIssueImage = (props: LabelIssueImageProps) => {
-  const { id, givenLabel, suggestedLabel, isActive, setActiveImageId, OOD, ...imageProps } = props
+  const {
+    id,
+    givenLabel,
+    showGivenLabel,
+    suggestedLabel,
+    isActive,
+    setActiveImageId,
+    OOD,
+    ...imageProps
+  } = props
+
+  const renderImage = () => {
+    if (showGivenLabel) {
+      return (
+        <Flex justify="flex-start">
+          <Tag
+            backgroundColor={'blue.100'}
+            color={'blue.800'}
+            size={'sm'}
+            position={'absolute'}
+            bottom={'0px'}
+            marginLeft={'0.5'}
+            marginBottom={'0.5'}
+          >
+            {`${givenLabel}`}
+          </Tag>
+          <Image {...imageProps} rounded={'md'} />
+        </Flex>
+      )
+    }
+    return (
+      <>
+        <Image {...imageProps} rounded={'md'} />
+      </>
+    )
+  }
   if (isActive) {
     return (
       <Box position={'relative'} opacity={'85%'} onMouseEnter={() => setActiveImageId(id)}>
-        <Image {...imageProps} rounded={'md'} />
+        {renderImage()}
       </Box>
     )
   } else {
     return (
       <Box position={'relative'} onMouseEnter={() => setActiveImageId(id)}>
-        <Image {...imageProps} rounded={'md'} />
+        {renderImage()}
       </Box>
     )
   }
