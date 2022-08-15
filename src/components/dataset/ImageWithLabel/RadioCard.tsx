@@ -28,7 +28,7 @@ export const RadioCard = (props) => {
           boxShadow: 'outline',
         }}
         _hover={{
-          backgroundColor: 'teal.500',
+          backgroundColor: 'teal.300',
         }}
         px={3}
         py={0.5}
