@@ -14,7 +14,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
   const { labels, issues, activeImageId, setActiveImageId } = props
   const gridLength = 'calc(max(33.5rem, 34vw))'
   const cellSizePercent = '33%'
-  const errorCellColor = useColorModeValue('red.50', 'red.900')
+  const errorCellColor = useColorModeValue('red.100', 'red.900')
 
   return (
     <VStack spacing={0} align={'flex-end'}>
