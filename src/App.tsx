@@ -136,7 +136,7 @@ export const App = () => {
       >
         <HStack
           w={'100%'}
-          height={'calc(min(100vh,53vw))'}
+          height={'calc(min(100vh,55vw))'}
           width={'100vw'}
           spacing={2}
           p={1}
