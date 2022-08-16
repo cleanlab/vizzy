@@ -40,18 +40,21 @@ const PredProbs = (props: PredProbsProps) => {
   const pulse = keyframes`
     0% {
       transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgb(181, 255, 237);
     }
 
     60% {
       transform: scale(1.10);
+      box-shadow: 0 0 0 5px rgba(0, 0, 0, 0);
     }
 
     100% {
       transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
     }`
 
   const spinAnimation = `${spin} infinite 1s linear`
-  const pulseAnimation = `${pulse} infinite 1.5s`
+  const pulseAnimation = `${pulse} infinite 2s`
 
   return (
     <VStack
@@ -77,7 +80,11 @@ const PredProbs = (props: PredProbsProps) => {
           }
           hasArrow
         >
-          <Flex>
+          <Flex
+            rounded={'full'}
+            boxShadow={'0 0 0 0 rgba(0, 0, 0, 1)'}
+            animation={labelsChanged ? pulseAnimation : null}
+          >
             <IconButton
               className={'tour-play-button'}
               variant={'unstyled'}
@@ -86,7 +93,7 @@ const PredProbs = (props: PredProbsProps) => {
               color={buttonColor}
               isDisabled={!labelsChanged}
               as={isTraining ? FaSpinner : AiFillPlayCircle}
-              animation={isTraining ? spinAnimation : labelsChanged ? pulseAnimation : null}
+              animation={isTraining ? spinAnimation : null}
               _hover={{ cursor: labelsChanged ? 'pointer' : 'auto' }}
               onClick={() => {
                 if (labelsChanged && !isTraining) {
