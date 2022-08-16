@@ -224,7 +224,7 @@ export const App = () => {
                   <Button as="a" variant={'ghost'} href="https://cleanlab.ai/blog/cleanlab-vizzy/">
                     Blog
                   </Button>
-                  <Button as="a" variant={'ghost'} href="https://github.com/cleanlab/vizzy">
+                  <Button as="a" variant={'ghost'} href="https://github.com/cleanlab/cleanlab">
                     GitHub
                   </Button>
                   <ColorModeSwitcher justifySelf="flex-end" />
