@@ -228,11 +228,9 @@ export const App = () => {
                     imageDataset={submittedDataset}
                     predProbsData={predProbsData}
                     classThresholds={classThresholds}
-                    OODThresholds={OODThresholds}
                     classes={CLASSES}
                     classPercentile={classPercentile}
                     OODPercentile={OODPercentile}
-                    issues={issues}
                     OODData={OODData}
                     activeImageId={activeImageId}
                   />

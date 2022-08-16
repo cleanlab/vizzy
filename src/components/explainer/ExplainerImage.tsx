@@ -49,8 +49,8 @@ const ExplainerImage = (props: ExplainerImageProps) => {
   }
 
   return (
-    <Box position={'relative'}>
-      <Image src={src} />
+    <Box position={'relative'} h={'100%'} w={'fit-content'}>
+      <Image src={src} h={'100%'} />
       <Flex justify="flex-start" pl={'1.5'}>
         <Tag
           backgroundColor={'blue.100'}

@@ -1,21 +1,18 @@
 import React from 'react'
-import { Flex, Image, Text, VStack } from '@chakra-ui/react'
+import { Flex, Text, VStack } from '@chakra-ui/react'
 import { Datapoint } from '../dataset/types'
 import { LabelIssue } from '../issues/types'
 import { PredProbsEntryProps } from '../predProbs/types'
 import util from '../../model/util'
-import Explanation from './Explanation'
 import ExplainerImage from './ExplainerImage'
 
 interface ExplainerProps {
   imageDataset: Record<string, Datapoint>
   predProbsData: Record<string, PredProbsEntryProps>
   classThresholds: Record<string, number>
-  OODThresholds: Record<string, number>
   classes: Array<string>
   classPercentile: number
   OODPercentile: number
-  issues: Record<string, LabelIssue>
   OODData: Record<string, LabelIssue>
   activeImageId: string
 }
@@ -25,11 +22,9 @@ const Explainer = (props: ExplainerProps) => {
     imageDataset,
     predProbsData,
     classThresholds,
-    OODThresholds,
     classes,
     classPercentile,
     OODPercentile,
-    issues,
     OODData,
     activeImageId,
   } = props
@@ -46,88 +41,61 @@ const Explainer = (props: ExplainerProps) => {
   const predProbs = predProbsData[activeImageId]
   const predictedClass = classes[util.argMax(predProbs.probabilities)]
   const predictedClassProb = Math.max(...predProbs.probabilities)
-  const isIssue = issues ? Object.keys(issues).includes(activeImageId) : false
-  const issueEntry = issues ? issues[activeImageId] : null
   const isOOD = OODData ? Object.keys(OODData).includes(activeImageId) : false
-  const OODEntry = OODData ? OODData[activeImageId] : null
   const datapoint = imageDataset[activeImageId]
   const predictedClassThreshold = classThresholds[predictedClass]
   const aboveClassThreshold = predictedClassProb > predictedClassThreshold
   const givenEqualsSuggested = predictedClass === datapoint.givenLabel
 
   return (
-    <VStack height={'fit-content'} width={'100%'} align={'space-between'} px={1}>
-      <VStack w={'100%'} align={'center'} spacing={1}>
+    <VStack h={'100%'} width={'100%'} align={'space-between'} px={1}>
+      <VStack w={'100%'} align={'center'} h={'90%'} spacing={1}>
         <ExplainerImage
           src={datapoint.src}
           givenLabel={datapoint.givenLabel}
           suggestedLabel={predictedClass}
           isOOD={isOOD}
         />
-        {/*<HStack spacing={'0.75rem'} justify={'center'} width={'100%'}>*/}
-        {/*  <Tag colorScheme={'blue'} size={'md'}>*/}
-        {/*    Given: {datapoint.givenLabel}*/}
-        {/*  </Tag>*/}
-
-        {/*  {!isOOD && (*/}
-        {/*    <Tag colorScheme={'yellow'} size={'md'}>*/}
-        {/*      Suggested: {isIssue && issueEntry && issueEntry.suggestedLabel}*/}
-        {/*      {!isIssue && datapoint.givenLabel}*/}
-        {/*    </Tag>*/}
-        {/*  )}*/}
-        {/*  {isOOD && OODEntry && (*/}
-        {/*    <Tag colorScheme={'red'} size={'md'}>*/}
-        {/*      Out-of-distribution*/}
-        {/*    </Tag>*/}
-        {/*  )}*/}
-        {/*</HStack>*/}
       </VStack>
-      <VStack w={'100%'} fontSize={'sm'} px={2} align={'space-between'}>
-        <Text>
+      <VStack w={'100%'} maxH={'20%'} fontSize={'sm'} px={2} align={'space-between'}>
+        <Text textAlign={'justify'}>
           Model predicts <strong>{predictedClass}</strong> with p ={' '}
           <strong>{predictedClassProb.toFixed(3)}</strong>.{' '}
           {aboveClassThreshold && givenEqualsSuggested && (
             <>
-              This is above the <strong>{classPercentile}th</strong> percentile class threshold for{' '}
-              <strong>{predictedClass}</strong>.
+              This is above the {classPercentile}th class percentile for{' '}
+              <strong>{predictedClass}</strong>. Thus, Cleanlab is confident that the label is{' '}
+              <strong>{datapoint.givenLabel}</strong>.
             </>
           )}
           {aboveClassThreshold && !givenEqualsSuggested && (
             <>
-              This is above the <strong>{classPercentile}th</strong> percentile class threshold for{' '}
-              <strong>{predictedClass}s</strong>.
+              This is above the <strong>{classPercentile}th</strong> class percentile for{' '}
+              {predictedClass}. Thus, Cleanlab is confident that the label is{' '}
+              <strong>{predictedClass}</strong>.
             </>
           )}
           {isOOD && (
             <>
-              Each predicted probability is below the respective <strong>{OODPercentile}th</strong>{' '}
-              percentile out-of-distribution thresholds.
+              This is below the <strong>{OODPercentile}th</strong> percentile for all classes and is
+              considered out-of-distribution -- it is atypical and/or does not belong to any class.
             </>
           )}
           {!aboveClassThreshold && givenEqualsSuggested && !isOOD && (
             <>
               This is below the <strong>{classPercentile}th</strong> percentile class threshold for{' '}
-              <strong>{predictedClass}s</strong>.
+              <strong>{predictedClass}s</strong>. Thus, Cleanlab agrees (with low confidence) that
+              the given label is <strong>correct</strong>.
             </>
           )}
           {!aboveClassThreshold && !givenEqualsSuggested && !isOOD && (
             <>
               This is below the <strong>{classPercentile}th</strong> percentile class threshold for{' '}
-              <strong>{predictedClass}s</strong>
+              <strong>{predictedClass}s</strong>. Thus, Cleanlab infers (with low confidence) that
+              the given label is <strong>incorrect</strong>.
             </>
           )}
         </Text>
-
-        <Explanation
-          datapoint={datapoint}
-          classes={classes}
-          predProbs={predProbs}
-          classPercentile={classPercentile}
-          classThresholds={classThresholds}
-          OODPercentile={OODPercentile}
-          OODThresholds={OODThresholds}
-          isOOD={isOOD}
-        />
       </VStack>
     </VStack>
   )
