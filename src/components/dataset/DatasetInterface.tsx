@@ -61,7 +61,9 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
 const propsAreEqual = (prevProps: DatasetInterfaceProps, nextProps: DatasetInterfaceProps) => {
   const prevData = prevProps.data
   const nextData = nextProps.data
-  // if (prevData.)
+  if (prevProps.activeImageIdDispatch !== nextProps.activeImageIdDispatch) {
+    return false
+  }
   return Object.entries(prevData).every((entry) => {
     const id = entry[0]
     const datapoint = entry[1]
