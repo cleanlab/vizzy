@@ -83,7 +83,7 @@ const PredProbs = (props: PredProbsProps) => {
           <Flex
             rounded={'full'}
             boxShadow={'0 0 0 0 rgba(0, 0, 0, 1)'}
-            animation={labelsChanged ? pulseAnimation : null}
+            animation={labelsChanged && !isTraining ? pulseAnimation : null}
           >
             <IconButton
               className={'tour-play-button'}
