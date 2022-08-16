@@ -11,8 +11,9 @@
 <h3 align="center">Cleanlab Vizzy</h3>
 <p align='center'>An interactive visualization of the <a href="https://arxiv.org/abs/1911.00068">Cleanlab algorithm</a> &mdash; a
 method for automatically identifying and correcting label errors in your datasets.</p>
-<h4 align="center">Play with it: <a href="https://playground.cleanlab.ai">https://playground.cleanlab.ai</a> </h4>
-<h4 align="center">How we built it: <a href="https://cleanlab.ai/blog/cleanlab-vizzy/">https://cleanlab.ai/blog/cleanlab-vizzy/</a> </h4>
+<h4 align="center">Play with it: <a href="https://playground.cleanlab.ai">playground.cleanlab.ai</a> </h4>
+<h4 align="center">How we built it: <a href="https://cleanlab.ai/blog/cleanlab-vizzy/">cleanlab.ai/blog/cleanlab-vizzy</a> </h4>
+<h4 align="center">Clean your own datasets: <a href="https://github.com/cleanlab/cleanlab">github.com/cleanlab/cleanlab</a></h4>
 
 ## License
 
