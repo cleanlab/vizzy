@@ -42,7 +42,7 @@ const PredProbs = (props: PredProbsProps) => {
       transform: scale(0.95);
     }
 
-    70% {
+    60% {
       transform: scale(1.10);
     }
 
@@ -51,7 +51,7 @@ const PredProbs = (props: PredProbsProps) => {
     }`
 
   const spinAnimation = `${spin} infinite 1s linear`
-  const pulseAnimation = `${pulse} infinite 2s`
+  const pulseAnimation = `${pulse} infinite 1.5s`
 
   return (
     <VStack
