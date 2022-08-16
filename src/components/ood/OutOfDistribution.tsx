@@ -8,11 +8,11 @@ import deepEqual from 'deep-equal'
 interface OODProps {
   issues: Record<string, LabelIssue>
   activeImageId: string
-  setActiveImageId: (imageId: string) => void
+  activeImageIdDispatch: any
 }
 
 const OutOfDistribution = (props: OODProps) => {
-  const { issues, activeImageId, setActiveImageId } = props
+  const { issues, activeImageId, activeImageIdDispatch } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
@@ -31,7 +31,7 @@ const OutOfDistribution = (props: OODProps) => {
                 {...datapoint}
                 id={datapoint.id}
                 isActive={datapoint.id === activeImageId}
-                setActiveImageId={setActiveImageId}
+                activeImageIdDispatch={activeImageIdDispatch}
               />
             </GridItem>
           ))}

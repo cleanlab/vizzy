@@ -7,11 +7,11 @@ interface ConfidentJointProps {
   labels: Array<string>
   issues: Record<string, LabelIssue>
   activeImageId: string
-  setActiveImageId: (string) => void
+  activeImageIdDispatch: any
 }
 
 const ConfidentJoint = (props: ConfidentJointProps) => {
-  const { labels, issues, activeImageId, setActiveImageId } = props
+  const { labels, issues, activeImageId, activeImageIdDispatch } = props
   return (
     <Stack
       align={'center'}
@@ -33,7 +33,7 @@ const ConfidentJoint = (props: ConfidentJointProps) => {
         labels={labels}
         issues={issues}
         activeImageId={activeImageId}
-        setActiveImageId={setActiveImageId}
+        activeImageIdDispatch={activeImageIdDispatch}
       />
     </Stack>
   )

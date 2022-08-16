@@ -8,11 +8,11 @@ interface ImageGridProps {
   givenLabel: string
   suggestedLabel: string
   activeImageId: string
-  setActiveImageId: (imageId: string) => void
+  activeImageIdDispatch: any
 }
 
 const ImageGrid = (props: ImageGridProps) => {
-  const { issues, givenLabel, suggestedLabel, activeImageId, setActiveImageId } = props
+  const { issues, givenLabel, suggestedLabel, activeImageId, activeImageIdDispatch } = props
   return (
     <Grid templateColumns="repeat(10, 1fr)" gap={1} p={1} overflowY={'auto'}>
       {Object.values(issues).map(
@@ -24,7 +24,7 @@ const ImageGrid = (props: ImageGridProps) => {
                 {...datapoint}
                 id={datapoint.id}
                 isActive={datapoint.id === activeImageId}
-                setActiveImageId={setActiveImageId}
+                activeImageIdDispatch={activeImageIdDispatch}
               />
             </GridItem>
           )

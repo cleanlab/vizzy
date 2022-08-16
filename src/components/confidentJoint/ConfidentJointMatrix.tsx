@@ -7,11 +7,11 @@ interface ConfidentJointProps {
   labels: Array<string>
   issues: Record<string, LabelIssue>
   activeImageId: string
-  setActiveImageId: (imageId: string) => void
+  activeImageIdDispatch: any
 }
 
 const ConfidentJointMatrix = (props: ConfidentJointProps) => {
-  const { labels, issues, activeImageId, setActiveImageId } = props
+  const { labels, issues, activeImageId, activeImageIdDispatch } = props
   const gridLength = 'calc(max(33.5rem, 34vw))'
   const cellSizePercent = '33%'
   const errorCellColor = useColorModeValue('red.100', 'red.900')
@@ -66,7 +66,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
                         suggestedLabel={suggestedLabel}
                         givenLabel={givenLabel}
                         activeImageId={localActiveImageId}
-                        setActiveImageId={setActiveImageId}
+                        activeImageIdDispatch={activeImageIdDispatch}
                         issues={issues}
                       />
                     )}

@@ -19,7 +19,7 @@ const PredProbs = (props: PredProbsProps) => {
   const {
     data,
     classes,
-    setActiveImageId,
+    activeImageIdDispatch,
     populatePredProbs,
     labelsChanged,
     setLabelsChanged,
@@ -111,7 +111,7 @@ const PredProbs = (props: PredProbsProps) => {
         data={data ? Object.values(data) : []}
         dataset={dataset}
         classes={classes}
-        setActiveImageId={setActiveImageId}
+        activeImageIdDispatch={activeImageIdDispatch}
       />
     </VStack>
   )

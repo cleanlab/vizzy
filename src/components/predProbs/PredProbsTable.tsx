@@ -3,16 +3,17 @@ import React from 'react'
 import { PredProbsEntryProps } from './types'
 import { EmptyPredProbsTableRow, PredProbsTableRow } from './PredProbsTableRow'
 import { Datapoint } from '../dataset/types'
+import deepEqual from 'deep-equal'
 
 interface PredProbsTableProps {
   data: Array<PredProbsEntryProps>
   classes: Array<string>
   dataset: Record<string, Datapoint>
-  setActiveImageId: (string) => void
+  activeImageIdDispatch: any
 }
 
 const PredProbsTable = (props: PredProbsTableProps) => {
-  const { data, classes, setActiveImageId, dataset } = props
+  const { data, classes, activeImageIdDispatch, dataset } = props
 
   return (
     <TableContainer overflowY={'auto'} height={'100%'}>
@@ -30,7 +31,7 @@ const PredProbsTable = (props: PredProbsTableProps) => {
                 key={datapoint.id}
                 classes={classes}
                 datapoint={datapoint}
-                setActiveImageId={setActiveImageId}
+                activeImageIdDispatch={activeImageIdDispatch}
               />
             ))}
           {Object.values(data).length === 0 &&
@@ -43,4 +44,8 @@ const PredProbsTable = (props: PredProbsTableProps) => {
   )
 }
 
-export default PredProbsTable
+const propsAreEqual = (prevProps, nextProps) => {
+  return deepEqual(prevProps.data, nextProps.data) && prevProps.classes === nextProps.classes
+}
+
+export default React.memo(PredProbsTable, propsAreEqual)

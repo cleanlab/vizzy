@@ -7,11 +7,11 @@ import EmptyIssues from './EmptyIssues'
 interface ResultsProps {
   issues: Record<string, LabelIssue>
   activeImageId: string
-  setActiveImageId: (imageId: string) => void
+  activeImageIdDispatch: any
 }
 
 const Issues = (props: ResultsProps) => {
-  const { issues, activeImageId, setActiveImageId } = props
+  const { issues, activeImageId, activeImageIdDispatch } = props
 
   return (
     <VStack width={'100%'} height={'100%'}>
@@ -28,7 +28,7 @@ const Issues = (props: ResultsProps) => {
                 {...datapoint}
                 id={datapoint.id}
                 isActive={datapoint.id === activeImageId}
-                setActiveImageId={setActiveImageId}
+                activeImageIdDispatch={activeImageIdDispatch}
                 showGivenLabel
               />
             </GridItem>

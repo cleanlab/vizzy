@@ -7,7 +7,7 @@ import { Datapoint } from '../dataset/types'
 interface PredProbsTableRowProps {
   datapoint: PredProbsEntryProps
   classes: string[]
-  setActiveImageId: (string) => void
+  activeImageIdDispatch: any
 }
 
 interface EmptyPredProbsTableRowProps {
@@ -35,7 +35,7 @@ export const EmptyPredProbsTableRow = (props: EmptyPredProbsTableRowProps) => {
 }
 
 export const PredProbsTableRow = (props: PredProbsTableRowProps) => {
-  const { datapoint, classes, setActiveImageId } = props
+  const { datapoint, classes, activeImageIdDispatch } = props
   return (
     <Tr>
       <Td w={'50px'} textAlign={'center'} p={'8px'}>
@@ -43,7 +43,7 @@ export const PredProbsTableRow = (props: PredProbsTableRowProps) => {
           width={'100%'}
           justify={'center'}
           align={'center'}
-          onMouseEnter={() => setActiveImageId(datapoint.id)}
+          onMouseEnter={() => activeImageIdDispatch({ type: 'setActiveImageId', id: datapoint.id })}
         >
           <Image
             height={'50px'}

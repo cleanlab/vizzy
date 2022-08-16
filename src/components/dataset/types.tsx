@@ -11,14 +11,14 @@ export interface Datapoint {
 export interface DatasetInterfaceProps {
   data: Record<string, Datapoint>
   classes: Array<string>
-  updateLabel: (string, label) => void
-  setActiveImageId: (imageId: string) => void
+  imageDatasetDispatch: any
+  activeImageIdDispatch: any
 }
 
-export interface ImageWithLabelProps extends ImageProps {
+export interface DatasetImageProps extends ImageProps {
   id: string
   givenLabel: string
   classes: string[]
-  updateLabel: (string, Datapoint) => void
-  setActiveImageId: (imageId: string) => void
+  imageDatasetDispatch: any
+  activeImageIdDispatch: any
 }

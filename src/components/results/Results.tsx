@@ -7,12 +7,12 @@ import { LabelIssue } from '../issues/types'
 interface ResultsProps {
   issues: Record<string, LabelIssue>
   activeImageId: string
-  setActiveImageId: (imageId: string) => void
+  activeImageIdDispatch: any
   OODData: Record<string, LabelIssue>
 }
 
 const Results = (props: ResultsProps) => {
-  const { issues, activeImageId, setActiveImageId, OODData } = props
+  const { issues, activeImageId, activeImageIdDispatch, OODData } = props
 
   return (
     <VStack
@@ -24,13 +24,17 @@ const Results = (props: ResultsProps) => {
       className={'tour-results'}
     >
       <Box height={'50%'} width={'100%'}>
-        <Issues issues={issues} activeImageId={activeImageId} setActiveImageId={setActiveImageId} />
+        <Issues
+          issues={issues}
+          activeImageId={activeImageId}
+          activeImageIdDispatch={activeImageIdDispatch}
+        />
       </Box>
       <Box height={'50%'} width={'100%'}>
         <OutOfDistribution
           issues={OODData}
           activeImageId={activeImageId}
-          setActiveImageId={setActiveImageId}
+          activeImageIdDispatch={activeImageIdDispatch}
         />
       </Box>
     </VStack>

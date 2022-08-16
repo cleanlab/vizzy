@@ -1,15 +1,16 @@
 import React from 'react'
 import { Box, HStack, Image, RadioGroup, useRadioGroup } from '@chakra-ui/react'
 import { RadioCard } from './RadioCard'
-import { ImageWithLabelProps } from '../types'
+import { DatasetImageProps } from '../types'
 import './DatasetImage.css'
 import placeholder from '../../../assets/placeholder.png'
 
-const DatasetImage = (props: ImageWithLabelProps) => {
-  const { id, givenLabel, classes, updateLabel, setActiveImageId, ...imageProps } = props
+const DatasetImage = (props: DatasetImageProps) => {
+  const { id, givenLabel, classes, imageDatasetDispatch, activeImageIdDispatch, ...imageProps } =
+    props
 
   const handleChange = (value) => {
-    updateLabel(id, value)
+    imageDatasetDispatch({ type: 'updateDatasetLabel', id, label: value })
   }
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'select-label',
@@ -21,7 +22,7 @@ const DatasetImage = (props: ImageWithLabelProps) => {
   return (
     <Box
       position={'relative'}
-      onMouseEnter={() => setActiveImageId(id)}
+      onMouseEnter={() => activeImageIdDispatch({ type: 'setActiveImageId', id })}
       className={'tour-label-selection'}
     >
       <RadioGroup
@@ -52,11 +53,7 @@ const DatasetImage = (props: ImageWithLabelProps) => {
 }
 
 const propsAreEqual = (prevProps, nextProps) => {
-  return (
-    prevProps.givenLabel === nextProps.givenLabel &&
-    prevProps.setActiveImageId === nextProps.setActiveImageId &&
-    prevProps.updateLabel === nextProps.updateLabel
-  )
+  return prevProps.givenLabel === nextProps.givenLabel
 }
 
 export default React.memo(DatasetImage, propsAreEqual)

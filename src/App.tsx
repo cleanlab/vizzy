@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import { Box, Button, ChakraProvider, HStack, VStack } from '@chakra-ui/react'
 import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
@@ -30,10 +30,22 @@ const Dataset: Record<string, Datapoint> = Object.entries(Embeddings).reduce(
   {}
 )
 
-const doNothing = (id: string) => null
+const nullDispatch = (action) => {}
 
 export const App = () => {
-  const [imageDataset, setImageDataset] = useState<Record<string, Datapoint>>(Dataset)
+  // track whether labels have changed since training
+  const [labelsChanged, setLabelsChanged] = useState(true)
+  const imageDatasetReducer = (state, action) => {
+    setLabelsChanged(true)
+    return { ...state, [action.id]: { ...state[action.id], givenLabel: action.label } }
+  }
+  const [imageDataset, imageDatasetDispatch] = useReducer(imageDatasetReducer, Dataset)
+
+  const activeImageIdReducer = (state, action) => {
+    return action.id
+  }
+  const [activeImageId, activeImageIdDispatch] = useReducer(activeImageIdReducer, null)
+
   const [submittedDataset, setSubmittedDataset] = useState<Record<string, Datapoint>>(Dataset)
   const [predProbsData, setPredProbsData] = useState<Record<string, PredProbsEntryProps>>(null)
   const [classThresholds, setClassThresholds] = useState<Record<string, number>>(
@@ -51,21 +63,13 @@ export const App = () => {
   const [confidentJointData, setConfidentJointData] = useState<Record<string, LabelIssue>>(null)
   const [issues, setIssues] = useState<Record<string, LabelIssue>>(null)
   const [OODData, setOODData] = useState<Record<string, LabelIssue>>(null)
-  const [activeImageId, setActiveImageId] = useState(null)
+  // const [activeImageId, setActiveImageId] = useState(null)
   const [classPercentile, setClassPercentile] = useState(50)
   const [OODPercentile, setOODPercentile] = useState(15)
   const [percentiles, setPercentiles] = useState(null)
   const [miniTourEnabled, setMiniTourEnabled] = useState<boolean>(false)
   const [tourEnabled, setTourEnabled] = useState<boolean>(false)
-  // track whether labels have changed since training
-  const [labelsChanged, setLabelsChanged] = useState(true)
 
-  const updateActiveImageId = useCallback((id: string) => setActiveImageId(id), [])
-
-  const updateDatasetLabel = (id, label) => {
-    setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
-    setLabelsChanged(true)
-  }
   // load all data
 
   const populatePredProbs = async () => {
@@ -150,8 +154,8 @@ export const App = () => {
             <DatasetInterface
               data={imageDataset}
               classes={CLASSES}
-              updateLabel={updateDatasetLabel}
-              setActiveImageId={issues ? updateActiveImageId : doNothing}
+              imageDatasetDispatch={imageDatasetDispatch}
+              activeImageIdDispatch={issues ? activeImageIdDispatch : nullDispatch}
             />
           </Box>
           <VStack
@@ -166,7 +170,7 @@ export const App = () => {
                 <PredProbs
                   data={predProbsData}
                   classes={CLASSES}
-                  setActiveImageId={setActiveImageId}
+                  activeImageIdDispatch={activeImageIdDispatch}
                   populatePredProbs={populatePredProbs}
                   labelsChanged={labelsChanged}
                   setLabelsChanged={setLabelsChanged}
@@ -178,7 +182,7 @@ export const App = () => {
                   labels={CLASSES}
                   issues={confidentJointData}
                   activeImageId={activeImageId}
-                  setActiveImageId={setActiveImageId}
+                  activeImageIdDispatch={activeImageIdDispatch}
                 />
                 <Box w={'100%'} h={'100%'}>
                   <PercentileThresholds
@@ -242,7 +246,7 @@ export const App = () => {
                     issues={issues}
                     OODData={OODData}
                     activeImageId={activeImageId}
-                    setActiveImageId={setActiveImageId}
+                    activeImageIdDispatch={activeImageIdDispatch}
                   />
                 </Box>
                 <BuiltBy />

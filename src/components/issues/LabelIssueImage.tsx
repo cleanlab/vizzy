@@ -9,7 +9,7 @@ const LabelIssueImage = (props: LabelIssueImageProps) => {
     showGivenLabel,
     suggestedLabel,
     isActive,
-    setActiveImageId,
+    activeImageIdDispatch,
     OOD,
     ...imageProps
   } = props
@@ -41,7 +41,7 @@ const LabelIssueImage = (props: LabelIssueImageProps) => {
     return (
       <Box
         position={'relative'}
-        onMouseEnter={() => setActiveImageId(id)}
+        onMouseEnter={() => activeImageIdDispatch({ type: 'setActiveImageId', id })}
         boxShadow={'lg'}
         borderWidth={'2px'}
         rounded={'md'}
@@ -53,7 +53,10 @@ const LabelIssueImage = (props: LabelIssueImageProps) => {
     )
   } else {
     return (
-      <Box position={'relative'} onMouseEnter={() => setActiveImageId(id)}>
+      <Box
+        position={'relative'}
+        onMouseEnter={() => activeImageIdDispatch({ type: 'setActiveImageId', id })}
+      >
         {renderImage()}
       </Box>
     )
