@@ -126,6 +126,9 @@ const propsAreEqual = (prevProps: PredProbsProps, nextProps: PredProbsProps) => 
   if (prevProps.labelsChanged !== nextProps.labelsChanged) {
     return false
   }
+  if (prevProps.populatePredProbs !== nextProps.populatePredProbs) {
+    return false
+  }
   return Object.entries(nextData).every((entry) => {
     const id = entry[0]
     const datapoint = entry[1]
