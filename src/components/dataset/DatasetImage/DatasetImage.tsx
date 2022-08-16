@@ -52,7 +52,10 @@ const DatasetImage = (props: ImageWithLabelProps) => {
 }
 
 const propsAreEqual = (prevProps, nextProps) => {
-  return prevProps.givenLabel === nextProps.givenLabel
+  return (
+    prevProps.givenLabel === nextProps.givenLabel &&
+    prevProps.setActiveImageId === nextProps.setActiveImageId
+  )
 }
 
 export default React.memo(DatasetImage, propsAreEqual)

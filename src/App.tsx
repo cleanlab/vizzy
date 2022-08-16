@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Box, Button, ChakraProvider, HStack, VStack } from '@chakra-ui/react'
 import { theme } from './styles/theme'
 import { ColorModeSwitcher } from './ColorModeSwitcher'
@@ -59,6 +59,8 @@ export const App = () => {
   const [tourEnabled, setTourEnabled] = useState<boolean>(false)
   // track whether labels have changed since training
   const [labelsChanged, setLabelsChanged] = useState(true)
+
+  const updateActiveImageId = useCallback((id: string) => setActiveImageId(id), [])
 
   const updateDatasetLabel = (id, label) => {
     setImageDataset({ ...imageDataset, [id]: { ...imageDataset[id], givenLabel: label } })
@@ -136,7 +138,7 @@ export const App = () => {
       >
         <HStack
           w={'100%'}
-          height={'calc(min(100vh,55vw))'}
+          height={'calc(min(100vh,60vw))'}
           width={'100vw'}
           spacing={2}
           p={1}
@@ -149,7 +151,7 @@ export const App = () => {
               data={imageDataset}
               classes={CLASSES}
               updateLabel={updateDatasetLabel}
-              setActiveImageId={issues ? setActiveImageId : doNothing}
+              setActiveImageId={issues ? updateActiveImageId : doNothing}
             />
           </Box>
           <VStack
