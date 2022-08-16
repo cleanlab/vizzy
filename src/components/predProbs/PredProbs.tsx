@@ -1,9 +1,9 @@
 import React from 'react'
 import {
-  Button,
   Flex,
   Heading,
   HStack,
+  IconButton,
   keyframes,
   Text,
   Tooltip,
@@ -36,7 +36,22 @@ const PredProbs = (props: PredProbsProps) => {
       transform: rotate(360deg)
     }
   `
+
+  const pulse = keyframes`
+    0% {
+      transform: scale(0.95);
+    }
+
+    70% {
+      transform: scale(1.10);
+    }
+
+    100% {
+      transform: scale(0.95);
+    }`
+
   const spinAnimation = `${spin} infinite 1s linear`
+  const pulseAnimation = `${pulse} infinite 2s`
 
   return (
     <VStack
@@ -63,16 +78,15 @@ const PredProbs = (props: PredProbsProps) => {
           hasArrow
         >
           <Flex>
-            <Button
-              size={'lg'}
-              as={isTraining ? FaSpinner : AiFillPlayCircle}
-              animation={isTraining ? spinAnimation : null}
-              variant={'unstyled'}
-              isLoading={isTraining}
+            <IconButton
               className={'tour-play-button'}
-              isDisabled={!labelsChanged}
+              variant={'unstyled'}
+              size={'lg'}
+              transform={'scale(1)'}
               color={buttonColor}
-              aria-label={'compute pred probs'}
+              isDisabled={!labelsChanged}
+              as={isTraining ? FaSpinner : AiFillPlayCircle}
+              animation={isTraining ? spinAnimation : labelsChanged ? pulseAnimation : null}
               _hover={{ cursor: labelsChanged ? 'pointer' : 'auto' }}
               onClick={() => {
                 if (labelsChanged && !isTraining) {
@@ -86,6 +100,7 @@ const PredProbs = (props: PredProbsProps) => {
                   }, 0)
                 }
               }}
+              aria-label={'train model'}
             />
           </Flex>
         </Tooltip>
