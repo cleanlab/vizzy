@@ -21,7 +21,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
       className={'tour-dataset-interface'}
       width={'100%'}
       height={'100%'}
-      bgColor={useColorModeValue('teal.50', 'teal.700')}
+      bgColor={useColorModeValue('blue.50', 'blue.900')}
       p={2}
       rounded={'md'}
     >

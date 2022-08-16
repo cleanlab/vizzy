@@ -53,8 +53,8 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
     : undefined
   const predictedClassThreshold = classThresholds[selectedClass]
   const predictedClassOODThreshold = OODThresholds[selectedClass]
-  const OODColor = useColorModeValue('red.400', 'red.200')
-  const confidentColor = useColorModeValue('blue.400', 'blue.200')
+  const OODColor = useColorModeValue('purple.400', 'purple.200')
+  const confidentColor = useColorModeValue('green.400', 'green.200')
 
   return (
     <HStack height={'100%'} w={'100%'} spacing={'1rem'} justify={'space-between'}>

@@ -33,8 +33,8 @@ const ExplainerImage = (props: ExplainerImageProps) => {
     return (
       <Flex justify="flex-end" pr={'1.5'}>
         <Tag
-          backgroundColor={'red.100'}
-          color={'red.800'}
+          backgroundColor={'purple.100'}
+          color={'purple.800'}
           size={'md'}
           position={'absolute'}
           bottom={'0px'}
