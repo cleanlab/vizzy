@@ -10,7 +10,11 @@ export const CLOrangeLight = '#fdd7b1'
 export const CLOrange = '#ffab40'
 export const CLOrangeDark = '#d28c2f'
 
+const config = {
+  initialColorMode: 'dark',
+}
 export const theme = extendTheme({
+  config,
   // fonts: {
   //   //"'Red Hat Display', sans-serif",
   //   // body: 'Roboto', //"'Red Hat Text', sans-serif",
