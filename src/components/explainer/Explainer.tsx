@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Text, VStack } from '@chakra-ui/react'
 import { Datapoint } from '../dataset/types'
 import { LabelIssue } from '../issues/types'
 import { PredProbsEntryProps } from '../predProbs/types'
@@ -48,8 +48,8 @@ const Explainer = (props: ExplainerProps) => {
   const givenEqualsSuggested = predictedClass === datapoint.givenLabel
 
   return (
-    <VStack h={'100%'} width={'100%'} align={'space-between'} px={1}>
-      <VStack w={'100%'} align={'center'} h={'90%'} spacing={1}>
+    <VStack h={'100%'} width={'100%'} align={'space-between'} px={1} py={1}>
+      <VStack w={'100%'} align={'center'} h={'80%'} spacing={1}>
         <ExplainerImage
           src={datapoint.src}
           givenLabel={datapoint.givenLabel}
@@ -57,7 +57,7 @@ const Explainer = (props: ExplainerProps) => {
           isOOD={isOOD}
         />
       </VStack>
-      <VStack w={'100%'} maxH={'20%'} fontSize={'sm'} px={2} align={'space-between'}>
+      <Box w={'100%'} minH={'fit-content'} fontSize={'sm'} px={2} overflowY={'auto'}>
         <Text textAlign={'justify'}>
           Model predicts <strong>{predictedClass}</strong> with p ={' '}
           <strong>{predictedClassProb.toFixed(3)}</strong>.{' '}
@@ -78,7 +78,8 @@ const Explainer = (props: ExplainerProps) => {
           {isOOD && (
             <>
               This is below the <strong>{OODPercentile}th</strong> percentile for all classes and is
-              considered out-of-distribution -- it is atypical and/or does not belong to any class.
+              considered out-of-distribution &mdash; it is atypical and/or does not belong to any
+              class.
             </>
           )}
           {!aboveClassThreshold && givenEqualsSuggested && !isOOD && (
@@ -96,7 +97,7 @@ const Explainer = (props: ExplainerProps) => {
             </>
           )}
         </Text>
-      </VStack>
+      </Box>
     </VStack>
   )
 }

@@ -223,7 +223,7 @@ export const App = () => {
                   </Button>
                   <ColorModeSwitcher justifySelf="flex-end" />
                 </HStack>
-                <Box h={'42%'}>
+                <Box h={'38%'}>
                   <Explainer
                     imageDataset={submittedDataset}
                     predProbsData={predProbsData}
@@ -235,7 +235,7 @@ export const App = () => {
                     activeImageId={activeImageId}
                   />
                 </Box>
-                <Box h={'50%'} w={'100%'}>
+                <Box h={'54%'} w={'100%'}>
                   <Results
                     issues={issues}
                     OODData={OODData}
