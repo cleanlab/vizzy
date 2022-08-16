@@ -15,6 +15,7 @@ export const miniTourSteps: Step[] = [
     placement: 'center',
     title: 'Welcome to Cleanlab Vizzy!',
     target: 'body',
+    disableBeacon: true,
   },
   {
     content: (
@@ -29,6 +30,7 @@ export const miniTourSteps: Step[] = [
     title: 'Change image labels',
     placement: 'top',
     disableScrollParentFix: true,
+    disableBeacon: true,
   },
   {
     content: (
@@ -42,6 +44,7 @@ export const miniTourSteps: Step[] = [
     target: '.tour-play-button',
     title: 'Train the model',
     placement: 'right',
+    disableBeacon: true,
   },
   {
     content: (
@@ -53,8 +56,9 @@ export const miniTourSteps: Step[] = [
       </VStack>
     ),
     target: '.tour-sliders',
-    title: 'Adjust threshold sliders',
+    title: 'Drag threshold sliders',
     placement: 'top',
+    disableBeacon: true,
   },
   {
     content: (
@@ -65,5 +69,6 @@ export const miniTourSteps: Step[] = [
     target: '.tour-guide-button',
     title: 'Guide',
     placement: 'bottom',
+    disableBeacon: true,
   },
 ]

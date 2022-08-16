@@ -20,6 +20,7 @@ export const tourSteps: Step[] = [
     ),
     placement: 'center',
     target: 'body',
+    disableBeacon: true,
   },
   {
     content: (
@@ -48,6 +49,7 @@ export const tourSteps: Step[] = [
     target: '.tour-dataset-interface',
     title: 'Dataset',
     placement: 'right',
+    disableBeacon: true,
   },
   {
     content: (
@@ -67,6 +69,7 @@ export const tourSteps: Step[] = [
     target: '.tour-pred-probs',
     title: 'Predicted probabilities',
     placement: 'right',
+    disableBeacon: true,
   },
   {
     content: (
@@ -83,6 +86,7 @@ export const tourSteps: Step[] = [
     target: '.tour-play-button',
     title: 'Train the model',
     placement: 'right',
+    disableBeacon: true,
   },
   {
     content: (
@@ -118,6 +122,7 @@ export const tourSteps: Step[] = [
     target: '.tour-confident-joint',
     title: 'Confident Joint',
     placement: 'left',
+    disableBeacon: true,
   },
   {
     content: (
@@ -135,6 +140,7 @@ export const tourSteps: Step[] = [
     target: '.tour-results',
     title: 'Results',
     placement: 'left',
+    disableBeacon: true,
   },
   {
     content: (
@@ -153,6 +159,7 @@ export const tourSteps: Step[] = [
     target: '.tour-explainer',
     title: 'Thresholds',
     placement: 'top',
+    disableBeacon: true,
   },
   {
     content: (
@@ -163,5 +170,6 @@ export const tourSteps: Step[] = [
     target: '.tour-learn-button',
     title: 'Learn',
     placement: 'bottom',
+    disableBeacon: true,
   },
 ]
