@@ -35,7 +35,7 @@ const PercentileThresholds = (props: PercentileThresholdsProps) => {
   const predProbs = activeImageId ? predProbsData[activeImageId] : null
   const datapoint = activeImageId ? dataset[activeImageId] : null
   const [showTooltip, setShowTooltip] = useState(false)
-  const OODColor = useColorModeValue('purple.400', 'purple.200')
+  const OODColor = useColorModeValue('orange.400', 'orange.200')
   const confidentColor = useColorModeValue('green.400', 'green.200')
 
   return (

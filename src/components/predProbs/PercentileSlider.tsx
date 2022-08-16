@@ -18,7 +18,7 @@ interface PercentileSliderProps {
 
 const PercentileSlider = (props: PercentileSliderProps) => {
   const { name, percentile, setPercentile } = props
-  const OODColor = useColorModeValue('purple.400', 'purple.200')
+  const OODColor = useColorModeValue('orange.400', 'orange.200')
   const confidentColor = useColorModeValue('green.400', 'green.200')
 
   return (
