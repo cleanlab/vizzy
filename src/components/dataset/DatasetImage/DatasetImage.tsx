@@ -54,7 +54,8 @@ const DatasetImage = (props: ImageWithLabelProps) => {
 const propsAreEqual = (prevProps, nextProps) => {
   return (
     prevProps.givenLabel === nextProps.givenLabel &&
-    prevProps.setActiveImageId === nextProps.setActiveImageId
+    prevProps.setActiveImageId === nextProps.setActiveImageId &&
+    prevProps.updateLabel === nextProps.updateLabel
   )
 }
 
