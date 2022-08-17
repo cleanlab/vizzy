@@ -54,7 +54,7 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
   const predictedClassThreshold = classThresholds[selectedClass]
   const predictedClassOODThreshold = OODThresholds[selectedClass]
   const OODColor = useColorModeValue('orange.400', 'orange.200')
-  const confidentColor = useColorModeValue('green.400', 'green.200')
+  const confidentColor = useColorModeValue('blue.400', 'blue.200')
 
   return (
     <HStack height={'100%'} w={'100%'} spacing={'1rem'} justify={'space-between'}>
@@ -70,7 +70,7 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
           height={'1px'}
           value={predictedClassProb}
           colorScheme="gray.200"
-          _hover={{ cursor: 'unset' }}
+          _hover={{cursor: 'unset'}}
           width={'100%'}
         >
           {/*{!thresholdsReady && <SliderThumb />}*/}
@@ -145,7 +145,7 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
                   isOpen={showTooltip}
                   label={predictedClassProb.toFixed(3)}
                 >
-                  <SliderMark value={predictedClassProb} fontSize={'xs'} />
+                  <SliderMark value={predictedClassProb} fontSize={'xs'}/>
                 </Tooltip>
               )}
               {datapoint && (
@@ -158,8 +158,8 @@ const ThresholdSlider = (props: ThresholdSliderProps) => {
                   ml={'-2'} // TODO hacky
                 >
                   <Box>
-                    <Box as={BsTriangleFill} fontSize="0.8em" />
-                    <Image src={datapoint.src} rounded="md" />
+                    <Box as={BsTriangleFill} fontSize="0.8em"/>
+                    <Image src={datapoint.src} rounded="md"/>
                   </Box>
                 </SliderThumb>
               )}

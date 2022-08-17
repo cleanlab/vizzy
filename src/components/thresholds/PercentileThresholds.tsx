@@ -36,7 +36,7 @@ const PercentileThresholds = (props: PercentileThresholdsProps) => {
   const datapoint = activeImageId ? dataset[activeImageId] : null
   const [showTooltip, setShowTooltip] = useState(false)
   const OODColor = useColorModeValue('orange.400', 'orange.200')
-  const confidentColor = useColorModeValue('green.400', 'green.200')
+  const confidentColor = useColorModeValue('blue.400', 'blue.200')
 
   return (
     <VStack align={'space-between'} h={'100%'} px={6} spacing={5} className={'tour-explainer'}>

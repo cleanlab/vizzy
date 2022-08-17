@@ -19,7 +19,7 @@ interface PercentileSliderProps {
 const PercentileSlider = (props: PercentileSliderProps) => {
   const { name, percentile, setPercentile } = props
   const OODColor = useColorModeValue('orange.400', 'orange.200')
-  const confidentColor = useColorModeValue('green.400', 'green.200')
+  const confidentColor = useColorModeValue('blue.400', 'blue.200')
 
   return (
     <VStack align={'flex-start'} width={'100%'}>

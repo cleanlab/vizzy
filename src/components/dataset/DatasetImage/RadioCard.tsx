@@ -19,16 +19,16 @@ export const RadioCard = (props) => {
         color={'gray.600'}
         boxShadow="lg"
         _checked={{
-          bg: 'blue.100',
+          bg: 'purple.100',
           color: 'black',
-          textColor: 'blue.800',
+          textColor: 'purple.800',
           fontWeight: 700,
         }}
         _focus={{
           boxShadow: 'outline',
         }}
         _hover={{
-          backgroundColor: 'blue.200',
+          backgroundColor: 'purple.200',
         }}
         px={3}
         py={0.5}

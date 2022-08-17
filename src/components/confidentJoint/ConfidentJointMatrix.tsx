@@ -15,7 +15,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
   const gridLength = 'calc(max(33.5rem, 34vw))'
   const cellSizePercent = '33%'
   const errorCellColor = 'rgba(254, 215, 215, 0.85)'
-  const goodCellColor = 'rgba(240, 255, 244, 0.85)'
+  const goodCellColor = 'rgba(235, 248, 255, 0.90)'
 
   return (
     <VStack spacing={0} align={'flex-end'}>
@@ -32,7 +32,7 @@ const ConfidentJointMatrix = (props: ConfidentJointProps) => {
         {[0, 1, 2].map((rowIdx) => (
           <HStack key={rowIdx} spacing={0} height={cellSizePercent}>
             <Flex justify={'center'} align={'flex-end'} mr={'2px'}>
-              <Tag colorScheme={'blue'} size={'md'} minWidth={'max-content'}>
+              <Tag colorScheme={'purple'} size={'md'} minWidth={'max-content'}>
                 <VStack spacing={0}>
                   <Text>given:</Text>
                   <Text>{labels[rowIdx]}</Text>
