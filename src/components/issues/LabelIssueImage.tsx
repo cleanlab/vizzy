@@ -21,8 +21,8 @@ const LabelIssueImage = (props: LabelIssueImageProps) => {
       return (
         <Flex justify="flex-start">
           <Tag
-            backgroundColor={'blue.100'}
-            color={'blue.800'}
+            backgroundColor={'purple.100'}
+            color={'purple.800'}
             size={'sm'}
             position={'absolute'}
             bottom={'0px'}
