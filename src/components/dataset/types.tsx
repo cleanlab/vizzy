@@ -4,6 +4,7 @@ export interface Datapoint {
   id: string
   src: string
   givenLabel: string
+  originalLabel: string
   embedding: Array<number>
   classes: Array<string>
 }

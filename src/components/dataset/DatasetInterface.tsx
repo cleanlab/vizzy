@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  Box,
   Flex,
   Grid,
   GridItem,
@@ -15,6 +16,12 @@ import LoadingSpinner from '../misc/Loading'
 
 const DatasetInterface = (props: DatasetInterfaceProps) => {
   const { data, classes, imageDatasetDispatch, activeImageIdDispatch } = props
+  const numQuestionableLabels = Object.values(data).reduce((acc, item) => {
+    if (item.originalLabel !== item.givenLabel) {
+      acc += 1
+    }
+    return acc
+  }, 0)
 
   return (
     <VStack
@@ -54,6 +61,24 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
           ))}
         </Grid>
       )}
+      <VStack w={'100%'} fontSize={'sm'}>
+        <HStack justify={'space-between'} w={'100%'}>
+          <Box>Dataset size</Box>
+          <Box>300</Box>
+        </HStack>
+        <HStack justify={'space-between'} w={'100%'}>
+          <Box>cats, dogs, bears</Box>
+          <Box>97, 97, 97</Box>
+        </HStack>
+        <HStack justify={'space-between'} w={'100%'}>
+          <Box>out-of-distribution</Box>
+          <Box>9</Box>
+        </HStack>
+        <HStack justify={'space-between'} w={'100%'} fontWeight={600}>
+          <Box>Questionable labels</Box>
+          <Box>{numQuestionableLabels}</Box>
+        </HStack>
+      </VStack>
     </VStack>
   )
 }
