@@ -22,7 +22,7 @@ export const RadioCard = (props) => {
           bg: 'purple.100',
           color: 'black',
           textColor: 'purple.800',
-          fontWeight: 700,
+          // fontWeight: 700,
         }}
         _focus={{
           boxShadow: 'outline',
