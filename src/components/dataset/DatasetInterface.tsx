@@ -31,6 +31,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
       bgColor={useColorModeValue('purple.50', 'purple.900')}
       p={2}
       rounded={'md'}
+      spacing={0}
     >
       <HStack spacing={2}>
         <HStack>
@@ -61,7 +62,7 @@ const DatasetInterface = (props: DatasetInterfaceProps) => {
           ))}
         </Grid>
       )}
-      <VStack w={'100%'} fontSize={'sm'}>
+      <VStack w={'100%'} fontSize={'sm'} spacing={0} pt={4} borderTop={'1px solid'}>
         <HStack justify={'space-between'} w={'100%'}>
           <Box>Dataset size</Box>
           <Box>300</Box>
