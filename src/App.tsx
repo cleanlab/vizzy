@@ -228,7 +228,7 @@ export const App = () => {
                   <Button
                     as="a"
                     variant={'ghost'}
-                    href="https://cleanlab.ai/studio"
+                    href="https://cleanlab.ai/studio/?utm_source=internal&utm_medium=vizzy&utm_campaign=vizzytostudio"
                     leftIcon={<FaVial />}
                   >
                     Try Cleanlab Studio
