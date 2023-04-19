@@ -16,7 +16,7 @@ import TourWrapper from './components/tour/TourWrapper'
 import PercentileThresholds from './components/thresholds/PercentileThresholds'
 import BuiltBy from './components/misc/BuiltBy'
 import Explainer from './components/explainer/Explainer'
-import { FaGithub } from 'react-icons/fa'
+import { FaVial } from 'react-icons/fa'
 
 const CLASSES = ['cat', 'dog', 'bear']
 const Embeddings: Record<string, Datapoint> = require('./model/output_data_embeddings_32.json')
@@ -228,10 +228,10 @@ export const App = () => {
                   <Button
                     as="a"
                     variant={'ghost'}
-                    href="https://github.com/cleanlab/cleanlab"
-                    leftIcon={<FaGithub />}
+                    href="https://cleanlab.ai/studio"
+                    leftIcon={<FaVial />}
                   >
-                    Try Cleanlab
+                    Try Cleanlab Studio
                   </Button>
                   <ColorModeSwitcher justifySelf="flex-end" />
                 </HStack>
